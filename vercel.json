@@ -7,22 +7,14 @@
     }
   ],
   "routes": [
-    // Rota para arquivos estáticos diretamente na pasta public (como style.css, script.js, favicon.ico, etc.)
-    // Uma requisição para /style.css será servida do arquivo /public/style.css
-    // Uma requisição para /script.js será servida do arquivo /public/script.js
-    // Adicionei mais extensões comuns de arquivos estáticos
     {
-      "src": "/(.*\.(?:css|js|png|jpg|jpeg|gif|svg|ico|html))$",
+      "src": "/(.*\\.(?:css|js|png|jpg|jpeg|gif|svg|ico|html))$",
       "dest": "/public/$1"
     },
-    // Rota para arquivos estáticos dentro da pasta public/apresentacoes
-    // Uma requisição para /apresentacoes/EstruturaDeDados/index.html será servida do arquivo /public/apresentacoes/EstruturaDeDados/index.html
     {
       "src": "/apresentacoes/(.*)",
       "dest": "/public/apresentacoes/$1"
     },
-    // Rota catch-all para todas as outras requisições, direcionando-as para o servidor Node.js
-    // Isso inclui as rotas /, /login e /main
     {
       "src": "/(.*)",
       "dest": "server.js"
