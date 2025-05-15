@@ -68,14 +68,7 @@ app.get('/main', (req, res) => { // <-- Rota alterada para '/main'
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// REMOVA ESTA LINHA:
-// app.use('/apresentacoes', express.static(path.join(__dirname, 'public')));
-
-// As apresentações individuais dentro de public/apresentacoes/
-// serão servidas diretamente pelo servidor web (como Vercel)
-// a partir do caminho /apresentacoes/...
-// Não precisamos de uma rota express específica para isso se o servidor web já faz o serving estático.
-
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Inicia o servidor
 app.listen(port, () => {
