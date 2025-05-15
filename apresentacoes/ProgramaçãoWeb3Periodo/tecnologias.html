@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConfLoto - Tecnologias</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #475569;
+      --light: #f8fafc;
+      --dark: #1e293b;
+      --accent: #3b82f6;
+      --success: #10b981;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      color: var(--dark);
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      background-color: var(--primary);
+      color: white;
+      padding: 1rem 0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      z-index: 100;
+      position: sticky;
+      top: 0;
+      width: 100%;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo {
+      height: 40px;
+      margin-right: 1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    nav a.active {
+      font-weight: 700;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-bottom: 3px solid white;
+    }
+
+    .menu-button {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .menu-button:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      padding-top: 1rem;
+    }
+
+    .title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    .tech-card {
+      background-color: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tech-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .tech-logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .tech-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .tech-category {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--secondary);
+      background-color: var(--light);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      margin-top: 0.5rem;
+    }
+
+    .bg-circles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+
+    @media (max-width: 900px) {
+      .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      body, html {
+        overflow-y: auto;
+        height: auto;
+        padding-top: 0;
+      }
+      
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+      
+      main {
+        padding-top: 5rem;
+        margin-top: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 73px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: var(--primary);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        padding: 1rem 0;
+        z-index: 50;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        border-radius: 0;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      .title {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .tech-card {
+        width: 150px;
+        height: 180px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-container {
+        justify-content: space-between;
+      }
+
+      nav a {
+        font-size: 0.875rem;
+        padding: 0.25rem;
+      }
+
+      .title {
+        font-size: 2rem;
+      }
+
+      .tech-card {
+        padding: 1rem;
+      }
+
+      .tech-logo {
+        width: 60px;
+        height: 60px;
+        font-size: 2.5rem;
+      }
+
+      .tech-name {
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo-container">
+        <img src="https://cdn-icons-png.freepik.com/512/7106/7106274.png?uid=R47910518&ga=GA1.1.442937866.1740979534" alt="ConfLoto Logo" class="nav-logo">
+        <span style="font-weight: bold; font-size: 1.5rem;">ConfLoto</span>
+      </div>
+      <button class="menu-button" id="menu-toggle">
+        ☰
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Introdução</a>
+        <a href="funcionalidades.html">Funcionalidades</a>
+        <a href="tecnologias.html" class="active">Tecnologias</a>
+        <a href="instalacao.html">Instalação</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <h1 class="title animate__animated animate__fadeInDown">Tecnologias</h1>
+
+    <div class="tech-grid animate__animated animate__fadeIn animate__delay-1s">
+      <div class="tech-card">
+        <div class="tech-logo">
+          <span style="color: #83CD29;">⬢</span>
+        </div>
+        <h2 class="tech-name">Node.js</h2>
+        <span class="tech-category">Backend</span>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-logo">
+          <span style="color: #61DAFB;">⚛️</span>
+        </div>
+        <h2 class="tech-name">React</h2>
+        <span class="tech-category">Frontend</span>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-logo">
+          <span style="color: #FFCA28;">🔥</span>
+        </div>
+        <h2 class="tech-name">Firebase</h2>
+        <span class="tech-category">Banco de Dados</span>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-logo">
+          <span style="color: #FFCA28;">🔥</span>
+        </div>
+        <h2 class="tech-name">Firebase Auth</h2>
+        <span class="tech-category">Autenticação</span>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-logo">
+          <span style="color: #646CFF;">⚡</span>
+        </div>
+        <h2 class="tech-name">Vite</h2>
+        <span class="tech-category">Build Tool</span>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-logo">
+          <span style="color: #38B2AC;">CSS</span>
+        </div>
+        <h2 class="tech-name">Tailwind CSS</h2>
+        <span class="tech-category">Estilização</span>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-logo">
+          <span style="color: #4B32C3;">🧹</span>
+        </div>
+        <h2 class="tech-name">ESLint</h2>
+        <span class="tech-category">Qualidade</span>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-logo">
+          <span style="color: #56B3B4;">💅</span>
+        </div>
+        <h2 class="tech-name">Prettier</h2>
+        <span class="tech-category">Formatação</span>
+      </div>
+    </div>
+
+    <div class="bg-circles">
+      <div class="circle" style="width: 300px; height: 300px; background-color: var(--primary); left: 5%; top: 20%;"></div>
+      <div class="circle" style="width: 200px; height: 200px; background-color: var(--accent); right: 10%; bottom: 15%;"></div>
+      <div class="circle" style="width: 150px; height: 150px; background-color: var(--success); left: 15%; bottom: 10%;"></div>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Funcionalidade do menu mobile
+      const menuToggle = document.getElementById('menu-toggle');
+      const navLinks = document.getElementById('nav-links');
+      
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+
+      // Fecha o menu ao clicar em um link
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+        });
+      });
+
+      // Marcar a página atual como ativa
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
