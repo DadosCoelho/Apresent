@@ -6,7 +6,7 @@ const path = require('path');
 const bodyParser = require('body-parser'); // Para processar dados de formulário
 
 const app = express();
-const port = 'https://apresent-haf6.vercel.app/'; // Porta que o servidor vai usar
+const port = process.env.PORT || 3000; // Porta que o servidor vai usar
 
 // Middleware para processar corpos de requisição (formulários)
 app.use(bodyParser.urlencoded({ extended: true }));
