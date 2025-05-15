@@ -1,0 +1,231 @@
+:root {
+    --primary: #ff8a6b;
+    --primary-hover: #ff7a57;
+    --secondary: #ffc148;
+    --accent: #faf158;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --success: #ff8a6b;
+    --gray: #6c757d;
+    --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    --hover-shadow: 0 10px 30px rgba(255, 138, 107, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #fff1e1 0%, #fff9ea 100%);
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    color: var(--dark);
+}
+
+.main-content {
+    padding: 120px 20px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.container {
+    width: 100%;
+    padding: 0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(to right, rgba(255, 138, 107, 0.05), rgba(255, 241, 137, 0.1));
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+.subtitle {
+    color: var(--gray);
+    font-size: 0.95rem;
+    background-color: #fff8e8;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(255, 193, 72, 0.2);
+    margin: 5px 0 0;
+}
+
+.card {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    padding: 30px;
+    transition: all 0.3s ease;
+    background-image: linear-gradient(to bottom right, rgba(255, 241, 137, 0.05), rgba(255, 138, 107, 0.05));
+}
+
+.presentations-list {
+    list-style: none;
+}
+
+.presentation-item {
+
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    border-left: 5px solid var(--primary);
+    cursor: pointer; /* Indica que o item é clicável */
+}
+
+.presentation-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.presentation-item:last-child {
+    margin-bottom: 0;
+}
+
+.presentation-item.hidden {
+    display: none; /* Remove o item completamente do fluxo do documento */
+}
+
+.presentation-item.expanded {
+    min-height: 400px; /* Ajuste conforme necessário */
+    transition: min-height 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+.presentation-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0; /* Remove a margem inferior aqui */
+}
+
+.presentation-icon {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-right: 15px;
+}
+
+.presentation-link {
+    color: var(--dark);
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-decoration: none;
+    flex: 1;
+    transition: color 0.2s;
+    /* Permite clicar diretamente no link */
+    pointer-events: auto;
+}
+
+.presentation-link:hover {
+    color: var(--primary);
+}
+
+/* A seção .actions não é mais necessária se o QR Code aparece direto */
+/* Mas vamos manter o .qr-container e controlar sua visibilidade */
+
+.qr-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px; /* Ajusta a margem superior */
+    overflow: hidden;
+    max-height: 0; /* Escondido por padrão */
+    transition: max-height 0.5s ease-out, padding-top 0.5s ease-out, border-top 0.5s ease-out;
+    text-align: center;
+    border-top: 0px solid rgba(0, 0, 0, 0.05); /* Borda inicial invisível */
+    padding-top: 0px; /* Padding inicial zero */
+}
+
+.qr-container.active {
+    max-height: 350px; /* Ajuste conforme necessário para caber o QR Code e a mensagem */
+    transition: max-height 0.5s ease-in, padding-top 0.5s ease-in, border-top 0.5s ease-in;
+    border-top: 1px solid rgba(0, 0, 0, 0.05); /* Borda visível */
+    padding-top: 15px; /* Padding visível */
+}
+
+.qr-container p {
+    margin-top: 10px;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--gray);
+    font-size: 0.9rem;
+    padding-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    .main-content {
+        padding: 100px 15px 30px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .presentation-title {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .presentation-icon {
+        margin-bottom: 10px;
+    }
+
+    header {
+        padding: 10px 0;
+    }
+
+    .logo {
+        font-size: 1.6rem;
+        gap: 10px;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    .subtitle {
+        font-size: 0.8rem;
+        padding: 4px 12px;
+    }
+}

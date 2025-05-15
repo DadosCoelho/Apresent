@@ -1,140 +1,70 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apresent - Página Principal</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            margin: 15px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        a {
-            text-decoration: none;
-            color: #0066cc;
-            font-size: 18px;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        button {
-            padding: 8px 12px;
-            background-color: #0066cc;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0055aa;
-        }
-        .qr-code {
-            margin-top: 10px;
-            display: none;
-        }
-        .qr-code.active {
-            display: block;
-        }
-    </style>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/8133/8133820.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
-        <h1>Apresent - Minhas Apresentações</h1>
-        <ul>
-            <li>
-                <a href="apresentacoes/EstruturaDeDados3Periodo/index.html">Estrutura de Dados - 3º Período</a>
-                <button onclick="generateQR('estruturadedados', 'https://apresent-haf6.vercel.app/apresentacoes/EstruturaDeDados3Periodo/index.html')">Mostrar QR Code</button>
-                <div id="qr-estruturadedados" class="qr-code"></div>
-            </li>
-            <li>
-                <a href="apresentacoes/ProgramaçãoWeb3Periodo/index.html">Programação Web - 3º Período</a>
-                <button onclick="generateQR('programacaoweb', 'https://apresent-haf6.vercel.app/apresentacoes/ProgramaçãoWeb3Periodo/index.html')">Mostrar QR Code</button>
-                <div id="qr-programacaoweb" class="qr-code"></div>
-            </li>
-            <li>
-                <a href="apresentacoes/Requisitos3Periodo/index.html">Requisitos - 3º Período</a>
-                <button onclick="generateQR('requisitos', 'https://apresent-haf6.vercel.app/apresentacoes/Requisitos3Periodo/index.html')">Mostrar QR Code</button>
-                <div id="qr-requisitos" class="qr-code"></div>
-            </li>
-        </ul>
+        <header>
+            <h1 class="logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/8133/8133820.png" alt="Apresent Logo">
+                present
+            </h1>
+        </header>
+
+        <div class="main-content">
+            <div class="card">
+                <ul class="presentations-list">
+                    <li class="presentation-item" style="border-left-color: var(--primary);">
+                        <div class="presentation-title">
+                            <i class="fas fa-database presentation-icon"></i>
+                            <!-- O link agora tem um data-url para o JS pegar -->
+                            <a href="apresentacoes/EstruturaDeDados/index.html" class="presentation-link" data-url="https://apresent-haf6.vercel.app/apresentacoes/EstruturaDeDados/index.html">
+                                Estrutura de Dados - 3º Período
+                            </a>
+                        </div>
+                        <!-- A seção .actions foi removida -->
+                        <div class="qr-container">
+                            <!-- Conteúdo do QR Code será gerado aqui -->
+                        </div>
+                    </li>
+
+                    <li class="presentation-item" style="border-left-color: var(--secondary);">
+                        <div class="presentation-title">
+                            <i class="fas fa-code presentation-icon"></i>
+                            <a href="apresentacoes/ProgramacaoWeb/index.html" class="presentation-link" data-url="https://apresent-haf6.vercel.app/apresentacoes/ProgramacaoWeb/index.html">
+                                Programação Web - 3º Período
+                            </a>
+                        </div>
+                        <div class="qr-container">
+                             <!-- Conteúdo do QR Code será gerado aqui -->
+                        </div>
+                    </li>
+
+                    <li class="presentation-item" style="border-left-color: var(--accent);">
+                        <div class="presentation-title">
+                            <i class="fas fa-list-check presentation-icon"></i>
+                            <a href="apresentacoes/Requisitos/index.html" class="presentation-link" data-url="https://apresent-haf6.vercel.app/apresentacoes/Requisitos/index.html">
+                                Requisitos - 3º Período
+                            </a>
+                        </div>
+                        <div class="qr-container">
+                             <!-- Conteúdo do QR Code será gerado aqui -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <!-- Biblioteca QRCode.js via CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
-    <script>
-        function generateQR(id, url) {
-            document.querySelectorAll('.qr-code').forEach(el => el.classList.remove('active'));
-            const qrContainer = document.getElementById(`qr-${id}`);
-            qrContainer.innerHTML = '';
-            new QRCode(qrContainer, {
-                text: url,
-                width: 128,
-                height: 128
-            });
-            qrContainer.classList.add('active');
-        }
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
