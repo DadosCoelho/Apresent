@@ -1,0 +1,25 @@
+{
+  "name": "apresent",
+  "version": "1.0.0",
+  "description": "## Descrição **Apresent** é um projeto simples para gerenciar e exibir apresentações em HTML. Ele consiste em uma página principal que lista links para apresentações individuais, cada uma contida em seu próprio arquivo HTML. As apresentações são organizadas em pastas separadas para facilitar a manutenção e escalabilidade. O projeto não utiliza frameworks, sendo construído apenas com HTML puro, e é hospedado no Vercel para deploy rápido e confiável.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DadosCoelho/Apresent.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DadosCoelho/Apresent/issues"
+  },
+  "homepage": "https://github.com/DadosCoelho/Apresent#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  }
+}
