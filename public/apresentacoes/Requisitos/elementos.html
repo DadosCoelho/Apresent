@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Diagrama de Atividades - Elementos</title>
+<<<<<<< HEAD
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" type="image/png">
+=======
+>>>>>>> 9872377485c6f777af3a1b13be8eae5069284433
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <style>
     :root {
@@ -130,11 +133,18 @@
 
     .elements-grid {
       display: grid;
+<<<<<<< HEAD
       grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
       width: auto;              /* Permite o grid encolher para o conteúdo */
       margin: 0 auto;           /* Centraliza o grid na página */
       justify-content: center;  /* Centraliza os itens da última linha */
+=======
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      width: 100%;
+      max-width: 1000px;
+>>>>>>> 9872377485c6f777af3a1b13be8eae5069284433
     }
 
     .element-card {
@@ -145,9 +155,13 @@
       text-align: left;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
+<<<<<<< HEAD
       flex-direction: column;
       justify-content: space-between;
       height: 100%;
+=======
+      align-items: flex-start;
+>>>>>>> 9872377485c6f777af3a1b13be8eae5069284433
     }
 
     .element-card:hover {
@@ -155,12 +169,15 @@
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
 
+<<<<<<< HEAD
     .element-card-title {
       display: flex;
       align-items: center;
       margin-bottom: 1rem;
     }
 
+=======
+>>>>>>> 9872377485c6f777af3a1b13be8eae5069284433
     .element-icon {
       margin-right: 1.5rem;
       font-size: 2.5rem;
@@ -172,7 +189,11 @@
     }
 
     .element-title {
+<<<<<<< HEAD
       font-size: 2rem;
+=======
+      font-size: 1.5rem;
+>>>>>>> 9872377485c6f777af3a1b13be8eae5069284433
       font-weight: 700;
       margin-bottom: 0.5rem;
       color: var(--dark);
@@ -296,7 +317,11 @@
   <nav>
     <div class="nav-container">
       <div class="logo-container">
+<<<<<<< HEAD
         <img src="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" alt="ConfLoto Logo" class="nav-logo">
+=======
+        <!-- Você pode substituir este span por uma imagem de logo se tiver uma -->
+>>>>>>> 9872377485c6f777af3a1b13be8eae5069284433
         <span style="font-weight: bold; font-size: 1.5rem; color: white;">Diagrama de Atividades</span>
       </div>
       <button class="menu-button" id="menu-toggle">
@@ -318,6 +343,7 @@
 
     <div class="elements-grid animate__animated animate__fadeIn animate__delay-1s">
       <div class="element-card">
+<<<<<<< HEAD
         <div class="element-card-title">
           <span class="element-icon">⚫</span>
           <div class="element-content">
@@ -379,6 +405,55 @@
           </div>
         </div>
         <p class="element-description">Divisão em faixas para indicar responsáveis, separadas por linhas.</p>
+=======
+        <span class="element-icon">⚫</span>
+        <div class="element-content">
+          <h3 class="element-title">Início</h3>
+          <p class="element-description">Ponto inicial do processo, representado por um círculo preto preenchido.</p>
+        </div>
+      </div>
+      <div class="element-card">
+        <span class="element-icon">��</span>
+        <div class="element-content">
+          <h3 class="element-title">Atividade</h3>
+          <p class="element-description">Ação ou tarefa, representada por um retângulo com bordas arredondadas.</p>
+        </div>
+      </div>
+      <div class="element-card">
+        <span class="element-icon">🔶</span>
+        <div class="element-content">
+          <h3 class="element-title">Decisão</h3>
+          <p class="element-description">Ponto de divisão do fluxo, representado por um losango.</p>
+        </div>
+      </div>
+      <div class="element-card">
+        <span class="element-icon">➡️</span>
+        <div class="element-content">
+          <h3 class="element-title">Fluxo</h3>
+          <p class="element-description">Conexão entre elementos, indicando a sequência, representada por setas.</p>
+        </div>
+      </div>
+      <div class="element-card">
+        <span class="element-icon">↔️</span>
+        <div class="element-content">
+          <h3 class="element-title">Paralelismo</h3>
+          <p class="element-description">Início/fim de atividades simultâneas, representado por barras horizontais.</p>
+        </div>
+      </div>
+      <div class="element-card">
+        <span class="element-icon">⚪</span>
+        <div class="element-content">
+          <h3 class="element-title">Fim</h3>
+          <p class="element-description">Ponto final do processo, representado por um círculo com borda preta.</p>
+        </div>
+      </div>
+      <div class="element-card">
+        <span class="element-icon">��️</span>
+        <div class="element-content">
+          <h3 class="element-title">Swimlanes</h3>
+          <p class="element-description">Divisão em faixas para indicar responsáveis, separadas por linhas.</p>
+        </div>
+>>>>>>> 9872377485c6f777af3a1b13be8eae5069284433
       </div>
     </div>
 
