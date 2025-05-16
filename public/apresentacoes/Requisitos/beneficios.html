@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ConfLoto - Funcionalidades</title>
-  <link rel="icon" href="https://cdn-icons-png.freepik.com/512/7106/7106274.png?uid=R47910518&ga=GA1.1.442937866.1740979534" type="image/png">
+  <title>Diagrama de Atividades - Benefícios</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <style>
     :root {
@@ -15,7 +15,9 @@
       --dark: #1e293b;
       --accent: #3b82f6;
       --success: #10b981;
+      --warning: #f59e0b;
       --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
     }
 
     * {
@@ -26,6 +28,7 @@
 
     body, html {
       min-height: 100vh;
+      overflow-y: auto;
       font-family: var(--font-sans);
       background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       color: var(--dark);
@@ -39,7 +42,7 @@
       padding: 1rem 0;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       z-index: 100;
-      position: sticky;  /* Muda para fixed em viewport móvel */
+      position: sticky;
       top: 0;
       width: 100%;
     }
@@ -109,7 +112,7 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       padding: 2rem;
       text-align: center;
@@ -125,15 +128,15 @@
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
-    .features-container {
+    .benefits-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
-      min-width: 100px;
       width: 100%;
+      max-width: 1000px;
     }
 
-    .feature-card {
+    .benefit-card {
       background-color: white;
       border-radius: 1rem;
       padding: 1.5rem;
@@ -141,63 +144,35 @@
       text-align: left;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
-      flex-direction: column;
       align-items: flex-start;
     }
 
-    .feature-card:hover {
+    .benefit-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
 
-    .feature-icon {
-      margin-bottom: 1rem;
-      background-color: var(--primary);
-      width: 3rem;
-      height: 3rem;
-      border-radius: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.5rem;
+    .benefit-icon {
+      margin-right: 1.5rem;
+      font-size: 2.5rem;
+      flex-shrink: 0;
     }
 
-    .feature-title {
+    .benefit-content {
+      flex: 1;
+    }
+
+    .benefit-title {
       font-size: 2rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
       color: var(--dark);
     }
 
-    .feature-description {
+    .benefit-description {
       font-size: 1.125rem;
       color: var(--secondary);
       line-height: 1.5;
-    }
-
-    .status-tag {
-      margin-top: 0.5rem;
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-
-    .status-tag.active {
-      background-color: #dcfce7;
-      color: #166534;
-    }
-
-    .status-tag.dev {
-      background-color: #ffedd5;
-      color: #9a3412;
-    }
-
-    .status-tag.future {
-      background-color: #e0e7ff;
-      color: #3730a3;
     }
 
     .bg-circles {
@@ -231,7 +206,7 @@
       }
 
       main {
-        padding-top: 5rem; /* Adiciona espaço para o nav fixo não sobrepor o conteúdo */
+        padding-top: 5rem;
         margin-top: 1rem;
       }
 
@@ -263,20 +238,31 @@
         display: block;
       }
 
-      .title {
-        font-size: 2.5rem;
-      }
-
-      .features-container {
+      .benefits-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
       }
 
-      .feature-title {
+      .title {
+        font-size: 2.5rem;
+      }
+
+      .benefit-card {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .benefit-icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+
+      .benefit-title {
         font-size: 1.25rem;
       }
 
-      .feature-description {
+      .benefit-description {
         font-size: 1rem;
       }
     }
@@ -294,10 +280,6 @@
       .title {
         font-size: 2rem;
       }
-
-      .feature-card {
-        padding: 1rem;
-      }
     }
   </style>
 </head>
@@ -305,59 +287,54 @@
   <nav>
     <div class="nav-container">
       <div class="logo-container">
-        <img src="https://cdn-icons-png.freepik.com/512/7106/7106274.png?uid=R47910518&ga=GA1.1.442937866.1740979534" alt="ConfLoto Logo" class="nav-logo">
-        <span style="font-weight: bold; font-size: 1.5rem;">ConfLoto</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" alt="ConfLoto Logo" class="nav-logo">
+        <span style="font-weight: bold; font-size: 1.5rem; color: white;">Diagrama de Atividades</span>
       </div>
       <button class="menu-button" id="menu-toggle">
         ☰
       </button>
       <div class="nav-links" id="nav-links">
         <a href="index.html">Introdução</a>
-        <a href="funcionalidades.html" class="active">Funcionalidades</a>
-        <a href="tecnologias.html">Tecnologias</a>
-        <a href="instalacao.html">Instalação</a>
+        <a href="elementos.html">Elementos</a>
+        <a href="forma-uso.html">Forma de Uso</a>
+        <a href="exemplo.html">Exemplo</a>
+        <a href="beneficios.html" class="active">Benefícios</a>
+        <a href="conclusao.html">Conclusão</a>
       </div>
     </div>
   </nav>
 
   <main>
-    <h1 class="title animate__animated animate__fadeInDown">Funcionalidades</h1>
+    <h1 class="title animate__animated animate__fadeInDown">Benefícios</h1>
 
-    <div class="features-container animate__animated animate__fadeIn animate__delay-1s">
-      <div class="feature-card">
-        <div class="feature-icon">👤</div>
-        <h2 class="feature-title">Autenticação Segura</h2>
-        <p class="feature-description">Login com email e senha, protegido com Firebase Authentication</p>
+    <div class="benefits-grid animate__animated animate__fadeIn animate__delay-1s">
+      <div class="benefit-card">
+        <span class="benefit-icon">📊</span>
+        <div class="benefit-content">
+          <h3 class="benefit-title">Clareza</h3>
+          <p class="benefit-description">Facilita a comunicação entre desenvolvedores e stakeholders.</p>
+        </div>
       </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">👥</div>
-        <h2 class="feature-title">Gestão de Usuários</h2>
-        <p class="feature-description">Administração de perfis e permissões de usuários</p>
+      <div class="benefit-card">
+        <span class="benefit-icon">✅</span>
+        <div class="benefit-content">
+          <h3 class="benefit-title">Validação</h3>
+          <p class="benefit-description">Identifica lacunas ou inconsistências nos requisitos.</p>
+        </div>
       </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">⚙️</div>
-        <h2 class="feature-title">Painel Administrativo</h2>
-        <p class="feature-description">Gerenciamento completo do sistema</p>
+      <div class="benefit-card">
+        <span class="benefit-icon">🔄</span>
+        <div class="benefit-content">
+          <h3 class="benefit-title">Flexibilidade</h3>
+          <p class="benefit-description">Usado em diferentes níveis de abstração (negócio ou sistema).</p>
+        </div>
       </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🎮</div>
-        <h2 class="feature-title">Apostas Individuais</h2>
-        <p class="feature-description">Criação e validação de jogos para diversas loterias</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🎮</div>
-        <h2 class="feature-title">Bolões</h2>
-        <p class="feature-description">Apostas em grupo para usuários premium</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">⚠️</div>
-        <h2 class="feature-title">Notificações Telegram</h2>
-        <p class="feature-description">Alertas via bot do Telegram</p>
+      <div class="benefit-card">
+        <span class="benefit-icon">🔗</span>
+        <div class="benefit-content">
+          <h3 class="benefit-title">Integração com UML</h3>
+          <p class="benefit-description">Complementa outros diagramas, como Casos de Uso e Sequência.</p>
+        </div>
       </div>
     </div>
 
@@ -373,7 +350,7 @@
       // Funcionalidade do menu mobile
       const menuToggle = document.getElementById('menu-toggle');
       const navLinks = document.getElementById('nav-links');
-      
+
       menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
       });
