@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diagrama de Atividades - Elementos</title>
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" type="image/png">
+  <title>Elevador - Instalação</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2084/2084189.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <style>
     :root {
@@ -15,9 +15,7 @@
       --dark: #1e293b;
       --accent: #3b82f6;
       --success: #10b981;
-      --warning: #f59e0b;
       --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-      --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
     }
 
     * {
@@ -28,7 +26,6 @@
 
     body, html {
       min-height: 100vh;
-      overflow-y: auto;
       font-family: var(--font-sans);
       background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       color: var(--dark);
@@ -115,7 +112,6 @@
       justify-content: flex-start;
       align-items: center;
       padding: 2rem;
-      text-align: center;
       position: relative;
       padding-top: 1rem;
     }
@@ -126,61 +122,68 @@
       margin-bottom: 2rem;
       color: var(--primary);
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      text-align: center;
     }
 
-    .elements-grid {
+    .installation-steps {
+      width: 100%;
+      max-width: 1400px;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      width: auto;              /* Permite o grid encolher para o conteúdo */
-      margin: 0 auto;           /* Centraliza o grid na página */
-      justify-content: apace-around; /* Espaçamento entre os itens */
+      grid-template-columns: 1fr 1fr; /* Largura igual para as colunas */
+      gap: 1.5rem;
     }
 
-    .element-card {
+    .step-card {
       background-color: white;
       border-radius: 1rem;
       padding: 1.5rem;
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      text-align: left;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
     }
 
-    .element-card:hover {
+    .step-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
 
-    .element-card-title {
+    .step-number {
+      display: inline-block;
+      background-color: var(--primary);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 32px;
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    .step-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--dark);
       display: flex;
       align-items: center;
-      margin-bottom: 1rem;
     }
 
-    .element-icon {
-      margin-right: 1.5rem;
-      font-size: 2.5rem;
-      flex-shrink: 0;
-    }
-
-    .element-content {
-      flex: 1;
-    }
-
-    .element-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--dark);
-    }
-
-    .element-description {
+    .step-description {
       font-size: 1.125rem;
       color: var(--secondary);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    code {
+      font-family: monospace;
+      background-color: var(--dark);
+      color: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      display: block;
+      overflow-x: auto;
+      margin: 1rem 0;
       line-height: 1.5;
     }
 
@@ -200,6 +203,14 @@
       opacity: 0.1;
     }
 
+    footer {
+      background-color: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: auto;
+    }
+
     @media (max-width: 768px) {
       body, html {
         overflow-y: auto;
@@ -215,7 +226,7 @@
       }
 
       main {
-        padding-top: 5rem;
+        padding-top: 5rem; /* Adiciona espaço para o nav fixo não sobrepor o conteúdo */
         margin-top: 1rem;
       }
 
@@ -247,31 +258,15 @@
         display: block;
       }
 
-      .elements-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
       .title {
         font-size: 2.5rem;
       }
 
-      .element-card {
-        padding: 1rem;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .element-icon {
-        margin-right: 0;
-        margin-bottom: 1rem;
-      }
-
-      .element-title {
+      .step-title {
         font-size: 1.25rem;
       }
 
-      .element-description {
+      .step-description {
         font-size: 1rem;
       }
     }
@@ -289,6 +284,16 @@
       .title {
         font-size: 2rem;
       }
+
+      .step-card {
+        padding: 1rem;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .installation-steps {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -296,89 +301,65 @@
   <nav>
     <div class="nav-container">
       <div class="logo-container">
-        <img src="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" alt="ConfLoto Logo" class="nav-logo">
-        <span style="font-weight: bold; font-size: 1.5rem; color: white;">Diagrama de Atividades</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/2084/2084189.png" alt="Elevador Logo" class="nav-logo">
+        <span style="font-weight: bold; font-size: 1.5rem;">Elevador</span>
       </div>
       <button class="menu-button" id="menu-toggle">
         ☰
       </button>
       <div class="nav-links" id="nav-links">
         <a href="index.html">Introdução</a>
-        <a href="elementos.html" class="active">Elementos</a>
-        <a href="forma-uso.html">Forma de Uso</a>
-        <a href="exemplo.html">Exemplo</a>
-        <a href="beneficios.html">Benefícios</a>
-        <a href="conclusao.html">Conclusão</a>
+        <a href="funcionalidades.html">Funcionalidades</a>
+        <a href="estruturas.html">Estruturas de Dados</a>
+        <a href="tecnologias.html">Tecnologias</a>
+        <a href="instalacao.html" class="active">Instalação</a>
       </div>
     </div>
   </nav>
 
   <main>
-    <h1 class="title animate__animated animate__fadeInDown">Elementos do Diagrama de Atividades</h1>
+    <h1 class="title animate__animated animate__fadeInDown">Instalação</h1>
 
-    <div class="elements-grid animate__animated animate__fadeIn animate__delay-1s">
-      <div class="element-card">
-        <div class="element-card-title">
-          <span class="element-icon">⚫</span>
-          <div class="element-content">
-            <h3 class="element-title">Início</h3>
-          </div>
-        </div>
-        <p class="element-description">Ponto inicial do processo, representado por um círculo preto preenchido.</p>
+    <div class="installation-steps animate__animated animate__fadeIn animate__delay-1s">
+      <div class="step-card">
+        <h3 class="step-title">
+          <span class="step-number">1</span>
+          Clone o Repositório
+        </h3>
+        <p class="step-description">Baixe o código do GitHub para sua máquina local.</p>
+        <code>git clone https://github.com/seu-usuario/Elevador.git
+cd Elevador</code>
       </div>
-      <div class="element-card">
-        <div class="element-card-title">
-          <span class="element-icon">💼</span>
-          <div class="element-content">
-            <h3 class="element-title">Atividade</h3>
-          </div>
-        </div>
-        <p class="element-description">Ação ou tarefa, representada por um retângulo com bordas arredondadas.</p>
+
+      <div class="step-card">
+        <h3 class="step-title">
+          <span class="step-number">2</span>
+          Configure o Ambiente
+        </h3>
+        <p class="step-description">Instale o JDK 8 ou superior e o Maven.</p>
+        <code># Instale o JDK
+sudo apt install openjdk-11-jdk
+
+# Instale o Maven
+sudo apt install maven</code>
       </div>
-      <div class="element-card">
-        <div class="element-card-title">
-          <span class="element-icon">🔶</span>
-          <div class="element-content">
-            <h3 class="element-title">Decisão</h3>
-          </div>
-        </div>
-        <p class="element-description">Ponto de divisão do fluxo, representado por um losango.</p>
+
+      <div class="step-card">
+        <h3 class="step-title">
+          <span class="step-number">3</span>
+          Compile e Execute
+        </h3>
+        <p class="step-description">Compile o projeto e inicie a aplicação.</p>
+        <code>mvn clean install
+mvn exec:java -Dexec.mainClass="Main"</code>
       </div>
-      <div class="element-card">
-        <div class="element-card-title">
-          <span class="element-icon">➡️</span>
-          <div class="element-content">
-            <h3 class="element-title">Fluxo</h3>
-          </div>
-        </div>
-        <p class="element-description">Conexão entre elementos, indicando a sequência, representada por setas.</p>
-      </div>
-      <div class="element-card">
-        <div class="element-card-title">
-          <span class="element-icon">↔️</span>
-          <div class="element-content">
-            <h3 class="element-title">Paralelismo</h3>
-          </div>
-        </div>
-        <p class="element-description">Início/fim de atividades simultâneas, representado por barras horizontais.</p>
-      </div>
-      <div class="element-card">
-        <div class="element-card-title">
-          <span class="element-icon">⚪</span>
-          <div class="element-content">
-            <h3 class="element-title">Fim</h3>
-          </div>
-        </div>
-        <p class="element-description">Ponto final do processo, representado por um círculo com borda preta.</p>
-      </div>
-      <div class="element-card">
-        <div class="element-card-title">
-          <span class="element-icon">🏊‍♂️</span>
-          <div class="element-content">
-            <h3 class="element-title">Swimlanes</h3>
-          </div>
-        </div>
-        <p class="element-description">Divisão em faixas para indicar responsáveis, separadas por linhas.</p>
+
+      <div class="step-card">
+        <h3 class="step-title">
+          <span class="step-number">4</span>
+          Acesse a Aplicação
+        </h3>
+        <p class="step-description">A interface gráfica será iniciada automaticamente após a execução do comando acima. A aplicação permitirá configurar os parâmetros da simulação e visualizar os elevadores em funcionamento.</p>
       </div>
     </div>
 
@@ -388,6 +369,10 @@
       <div class="circle" style="width: 150px; height: 150px; background-color: var(--success); left: 15%; bottom: 10%;"></div>
     </div>
   </main>
+
+  <footer>
+    <p>&copy; 2025 Elevador. Todos os direitos reservados.</p>
+  </footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {

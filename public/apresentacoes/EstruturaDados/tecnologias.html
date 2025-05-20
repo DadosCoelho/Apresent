@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diagrama de Atividades - Elementos</title>
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" type="image/png">
+  <title>Elevador - Tecnologias</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/14099/14099139.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <style>
     :root {
@@ -15,9 +15,7 @@
       --dark: #1e293b;
       --accent: #3b82f6;
       --success: #10b981;
-      --warning: #f59e0b;
       --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-      --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
     }
 
     * {
@@ -28,7 +26,6 @@
 
     body, html {
       min-height: 100vh;
-      overflow-y: auto;
       font-family: var(--font-sans);
       background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       color: var(--dark);
@@ -112,7 +109,7 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
       padding: 2rem;
       text-align: center;
@@ -128,57 +125,54 @@
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
-    .elements-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      width: auto;              /* Permite o grid encolher para o conteúdo */
-      margin: 0 auto;           /* Centraliza o grid na página */
-      justify-content: apace-around; /* Espaçamento entre os itens */
+    .tagline {
+      font-size: 1.5rem;
+      line-height: 1.4;
+      max-width: 1200px;
+      color: var(--secondary);
     }
 
-    .element-card {
+    .tecnologias-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      width: 100%;
+      max-width: 1400px;
+      margin-top: 2rem;
+    }
+
+    .tecnologia-card {
       background-color: white;
       border-radius: 1rem;
       padding: 1.5rem;
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      text-align: left;
+      text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
+      align-items: center;
+      justify-content: center;
     }
 
-    .element-card:hover {
+    .tecnologia-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
 
-    .element-card-title {
-      display: flex;
-      align-items: center;
+    .tecnologia-icon {
       margin-bottom: 1rem;
+      font-size: 3rem;
+      color: var(--primary);
     }
 
-    .element-icon {
-      margin-right: 1.5rem;
-      font-size: 2.5rem;
-      flex-shrink: 0;
-    }
-
-    .element-content {
-      flex: 1;
-    }
-
-    .element-title {
-      font-size: 2rem;
+    .tecnologia-title {
+      font-size: 1.5rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
       color: var(--dark);
     }
 
-    .element-description {
+    .tecnologia-description {
       font-size: 1.125rem;
       color: var(--secondary);
       line-height: 1.5;
@@ -247,31 +241,24 @@
         display: block;
       }
 
-      .elements-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
       .title {
         font-size: 2.5rem;
       }
 
-      .element-card {
-        padding: 1rem;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .element-icon {
-        margin-right: 0;
-        margin-bottom: 1rem;
-      }
-
-      .element-title {
+      .tagline {
         font-size: 1.25rem;
       }
 
-      .element-description {
+      .tecnologias-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .tecnologia-title {
+        font-size: 1.25rem;
+      }
+
+      .tecnologia-description {
         font-size: 1rem;
       }
     }
@@ -289,6 +276,10 @@
       .title {
         font-size: 2rem;
       }
+
+      .tecnologia-card {
+        padding: 1rem;
+      }
     }
   </style>
 </head>
@@ -296,89 +287,53 @@
   <nav>
     <div class="nav-container">
       <div class="logo-container">
-        <img src="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" alt="ConfLoto Logo" class="nav-logo">
-        <span style="font-weight: bold; font-size: 1.5rem; color: white;">Diagrama de Atividades</span>
+        <video src="https://cdn-icons-mp4.flaticon.com/512/14099/14099139.mp4" alt="Elevador Logo" class="nav-logo" width="40" height="40" autoplay loop muted playsinline style="object-fit: cover; border-radius: 8px; margin-right: 1rem;"></video>
+        <span style="font-weight: bold; font-size: 1.5rem;">Elevador</span>
       </div>
       <button class="menu-button" id="menu-toggle">
         ☰
       </button>
       <div class="nav-links" id="nav-links">
         <a href="index.html">Introdução</a>
-        <a href="elementos.html" class="active">Elementos</a>
-        <a href="forma-uso.html">Forma de Uso</a>
-        <a href="exemplo.html">Exemplo</a>
-        <a href="beneficios.html">Benefícios</a>
-        <a href="conclusao.html">Conclusão</a>
+        <a href="funcionalidades.html">Funcionalidades</a>
+        <a href="estruturas.html">Estruturas de Dados</a>
+        <a href="tecnologias.html" class="active">Tecnologias</a>
+        <a href="instalacao.html">Instalação</a>
       </div>
     </div>
   </nav>
 
   <main>
-    <h1 class="title animate__animated animate__fadeInDown">Elementos do Diagrama de Atividades</h1>
+    <h1 class="title animate__animated animate__fadeInDown">Tecnologias</h1>
+    <p class="tagline animate__animated animate__fadeIn animate__delay-1s">
+      O Elevador foi desenvolvido com tecnologias modernas para garantir desempenho, flexibilidade e 
+      uma experiência de usuário fluida durante a simulação de sistemas de elevadores.
+    </p>
 
-    <div class="elements-grid animate__animated animate__fadeIn animate__delay-1s">
-      <div class="element-card">
-        <div class="element-card-title">
-          <span class="element-icon">⚫</span>
-          <div class="element-content">
-            <h3 class="element-title">Início</h3>
-          </div>
-        </div>
-        <p class="element-description">Ponto inicial do processo, representado por um círculo preto preenchido.</p>
+    <div class="tecnologias-container animate__animated animate__fadeIn animate__delay-1s">
+      <div class="tecnologia-card">
+        <span class="tecnologia-icon">
+          <img src="https://cdn.iconscout.com/icon/free/png-256/free-java-60-1174953.png?f=webp&w=256" alt="Java" style="height: 64px; width: 64px;">
+        </span>
+        <h3 class="tecnologia-title">Java</h3>
+        <p class="tecnologia-description">Linguagem principal para o backend da simulação.</p>
       </div>
-      <div class="element-card">
-        <div class="element-card-title">
-          <span class="element-icon">💼</span>
-          <div class="element-content">
-            <h3 class="element-title">Atividade</h3>
-          </div>
-        </div>
-        <p class="element-description">Ação ou tarefa, representada por um retângulo com bordas arredondadas.</p>
+      <div class="tecnologia-card">
+        <span class="tecnologia-icon">
+          <img src="https://sarith-w.github.io/Portfolio/images/java-swing.png" alt="Java" style="height: 64px; width: 96px;">
+        </span>
+        <h3 class="tecnologia-title">Swing</h3>
+        <p class="tecnologia-description">Biblioteca para a interface gráfica.</p>
       </div>
-      <div class="element-card">
-        <div class="element-card-title">
-          <span class="element-icon">🔶</span>
-          <div class="element-content">
-            <h3 class="element-title">Decisão</h3>
-          </div>
-        </div>
-        <p class="element-description">Ponto de divisão do fluxo, representado por um losango.</p>
+      <div class="tecnologia-card">
+        <span class="tecnologia-icon">📦</span>
+        <h3 class="tecnologia-title">Serialização</h3>
+        <p class="tecnologia-description">Java Serialization para salvar/carregar estados.</p>
       </div>
-      <div class="element-card">
-        <div class="element-card-title">
-          <span class="element-icon">➡️</span>
-          <div class="element-content">
-            <h3 class="element-title">Fluxo</h3>
-          </div>
-        </div>
-        <p class="element-description">Conexão entre elementos, indicando a sequência, representada por setas.</p>
-      </div>
-      <div class="element-card">
-        <div class="element-card-title">
-          <span class="element-icon">↔️</span>
-          <div class="element-content">
-            <h3 class="element-title">Paralelismo</h3>
-          </div>
-        </div>
-        <p class="element-description">Início/fim de atividades simultâneas, representado por barras horizontais.</p>
-      </div>
-      <div class="element-card">
-        <div class="element-card-title">
-          <span class="element-icon">⚪</span>
-          <div class="element-content">
-            <h3 class="element-title">Fim</h3>
-          </div>
-        </div>
-        <p class="element-description">Ponto final do processo, representado por um círculo com borda preta.</p>
-      </div>
-      <div class="element-card">
-        <div class="element-card-title">
-          <span class="element-icon">🏊‍♂️</span>
-          <div class="element-content">
-            <h3 class="element-title">Swimlanes</h3>
-          </div>
-        </div>
-        <p class="element-description">Divisão em faixas para indicar responsáveis, separadas por linhas.</p>
+      <div class="tecnologia-card">
+        <span class="tecnologia-icon">🛠️</span>
+        <h3 class="tecnologia-title">Maven</h3>
+        <p class="tecnologia-description">Gerenciamento de dependências e build.</p>
       </div>
     </div>
 
