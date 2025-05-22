@@ -302,13 +302,13 @@
     <h1 class="title animate__animated animate__fadeInDown">Funcionalidades</h1>
 
     <div class="features-container animate__animated animate__fadeIn animate__delay-1s">
-      <div class="feature-card">
+      <div class="feature-card" id="elevadores-card">
         <div class="feature-icon">🛗</div>
         <h2 class="feature-title">Gerenciamento de Elevadores</h2>
         <p class="feature-description">Coordena múltiplos elevadores com heurísticas de ordem de chegada, otimização de tempo ou energia.</p>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card" id="pessoas-card">
         <div class="feature-icon">🧑‍🤝‍🧑</div>
         <h2 class="feature-title">Gestão de Pessoas</h2>
         <p class="feature-description">Controla filas de espera com prioridade para pessoas com necessidades especiais.</p>
@@ -346,6 +346,13 @@
     </div>
   </main>
 
+  <div id="video-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(30,41,59,0.85); z-index:9999; justify-content:center; align-items:center;">
+    <div style="position:relative; max-width:90vw; max-height:80vh;">
+      <button id="close-video" style="position:absolute; top:-40px; right:0; background:none; border:none; color:white; font-size:2rem; cursor:pointer;">&times;</button>
+      <video id="modal-video" controls autoplay style="max-width:100%; max-height:80vh; border-radius:1rem; box-shadow:0 4px 32px #0008;"></video>
+    </div>
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Funcionalidade do menu mobile
@@ -372,6 +379,76 @@
           link.classList.remove('active');
         }
       });
+
+      // Funcionalidade do modal de vídeo
+      const videoModal = document.getElementById('video-modal');
+      const modalVideo = document.getElementById('modal-video');
+      const closeVideo = document.getElementById('close-video');
+
+      document.querySelectorAll('.nav-logo, .nav-links a').forEach(item => {
+        item.addEventListener('click', () => {
+          const videoSrc = item.getAttribute('data-video');
+          if (videoSrc) {
+            modalVideo.setAttribute('src', videoSrc);
+            videoModal.style.display = 'flex';
+          }
+        });
+      });
+
+      closeVideo.addEventListener('click', () => {
+        videoModal.pause();
+        videoModal.setAttribute('src', '');
+        videoModal.style.display = 'none';
+      });
+
+      window.addEventListener('click', (event) => {
+        if (event.target === videoModal) {
+          closeVideo.click();
+        }
+      });
+    });
+
+    // Caminhos dos vídeos (use barra inicial para Vercel)
+    const videoPaths = {
+      elevadores: "v4.mp4",
+      pessoas: "v3.mp4"
+    };
+
+    const elevadoresCard = document.getElementById('elevadores-card');
+    const pessoasCard = document.getElementById('pessoas-card');
+    const videoModal = document.getElementById('video-modal');
+    const closeVideo = document.getElementById('close-video');
+    const modalVideo = document.getElementById('modal-video');
+
+    // Gerenciamento de Elevadores
+    elevadoresCard.addEventListener('click', () => {
+      modalVideo.src = videoPaths.elevadores;
+      videoModal.style.display = 'flex';
+      modalVideo.currentTime = 0;
+      modalVideo.play();
+    });
+
+    // Gestão de Pessoas
+    pessoasCard.addEventListener('click', () => {
+      modalVideo.src = videoPaths.pessoas;
+      videoModal.style.display = 'flex';
+      modalVideo.currentTime = 0;
+      modalVideo.play();
+    });
+
+    // Fechar modal
+    closeVideo.addEventListener('click', () => {
+      modalVideo.pause();
+      videoModal.style.display = 'none';
+      modalVideo.src = "";
+    });
+
+    videoModal.addEventListener('click', (e) => {
+      if (e.target === videoModal) {
+        modalVideo.pause();
+        videoModal.style.display = 'none';
+        modalVideo.src = "";
+      }
     });
   </script>
 </body>
