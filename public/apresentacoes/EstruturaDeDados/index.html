@@ -312,20 +312,28 @@
     </p>
 
     <div class="intro-cards-container animate__animated animate__fadeIn animate__delay-1s">
-      <div class="intro-card">
+      <div class="intro-card" id="simulacao-card">
         <span class="intro-icon">🛗</span>
         <h3 class="intro-title">Simulação Realista</h3>
         <p class="intro-description">Gerencia múltiplos andares e elevadores com base em heurísticas.</p>
       </div>
-      <div class="intro-card">
+      <div class="intro-card" id="estatisticas-card">
         <span class="intro-icon">📊</span>
         <h3 class="intro-title">Estatísticas</h3>
         <p class="intro-description">Monitora tempo de espera, energia consumida e chamadas atendidas.</p>
       </div>
-      <div class="intro-card">
+      <div class="intro-card" id="interface-card">
         <span class="intro-icon">🖥️</span>
         <h3 class="intro-title">Interface Gráfica</h3>
         <p class="intro-description">Visualiza o prédio, elevadores e pessoas em tempo real.</p>
+      </div>
+    </div>
+
+    <!-- Video Modal (reutilizável) -->
+    <div id="video-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(30,41,59,0.85); z-index:9999; justify-content:center; align-items:center;">
+      <div style="position:relative; max-width:90vw; max-height:80vh;">
+        <button id="close-video" style="position:absolute; top:-40px; right:0; background:none; border:none; color:white; font-size:2rem; cursor:pointer;">&times;</button>
+        <video id="modal-video" controls autoplay style="max-width:100%; max-height:80vh; border-radius:1rem; box-shadow:0 4px 32px #0008;"></video>
       </div>
     </div>
 
@@ -360,6 +368,79 @@
           link.classList.add('active');
         } else {
           link.classList.remove('active');
+        }
+      });
+
+      const simulacaoCard = document.getElementById('simulacao-card');
+      const estatisticasCard = document.getElementById('estatisticas-card');
+      const interfaceCard = document.getElementById('interface-card');
+      const videoModal = document.getElementById('video-modal');
+      const closeVideo = document.getElementById('close-video');
+      const modalVideo = document.getElementById('modal-video');
+
+      // Caminhos dos vídeos
+      const videoPaths = {
+        simulacao: "apresentacoes/EstruturaDeDados/v1.mp4",
+        estatisticas: "apresentacoes/EstruturaDeDados/v2.mp4"
+      };
+
+      const imagePath = "apresentacoes/EstruturaDeDados/i3.png";
+
+      simulacaoCard.addEventListener('click', () => {
+        modalVideo.src = videoPaths.simulacao;
+        videoModal.style.display = 'flex';
+        modalVideo.currentTime = 0;
+        modalVideo.play();
+      });
+
+      estatisticasCard.addEventListener('click', () => {
+        modalVideo.src = videoPaths.estatisticas;
+        videoModal.style.display = 'flex';
+        modalVideo.currentTime = 0;
+        modalVideo.play();
+      });
+
+      interfaceCard.addEventListener('click', () => {
+        // Esconde o vídeo
+        modalVideo.pause();
+        modalVideo.style.display = 'none';
+
+        // Remove imagem antiga se existir
+        const oldImg = document.getElementById('modal-img');
+        if (oldImg) oldImg.remove();
+
+        // Cria e mostra a imagem
+        const img = document.createElement('img');
+        img.id = 'modal-img';
+        img.src = imagePath;
+        img.alt = "Interface Gráfica";
+        img.style.maxWidth = '100%';
+        img.style.maxHeight = '80vh';
+        img.style.borderRadius = '1rem';
+        img.style.boxShadow = '0 4px 32px #0008';
+        modalVideo.parentNode.appendChild(img);
+
+        videoModal.style.display = 'flex';
+      });
+
+      // Ao fechar o modal, remova a imagem se existir e mostre o vídeo de novo
+      closeVideo.addEventListener('click', () => {
+        modalVideo.pause();
+        videoModal.style.display = 'none';
+        modalVideo.src = "";
+        const oldImg = document.getElementById('modal-img');
+        if (oldImg) oldImg.remove();
+        modalVideo.style.display = '';
+      });
+
+      videoModal.addEventListener('click', (e) => {
+        if (e.target === videoModal) {
+          modalVideo.pause();
+          videoModal.style.display = 'none';
+          modalVideo.src = "";
+          const oldImg = document.getElementById('modal-img');
+          if (oldImg) oldImg.remove();
+          modalVideo.style.display = '';
         }
       });
     });
