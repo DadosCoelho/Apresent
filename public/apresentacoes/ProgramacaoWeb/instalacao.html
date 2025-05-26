@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ConfLoto - Instalação</title>
-  <link rel="icon" href="https://cdn-icons-png.freepik.com/512/7106/7106274.png?uid=R47910518&ga=GA1.1.442937866.1740979534" type="image/png">
+  <link rel="icon" href=favicon.svg type="image/svg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <style>
     :root {
-      --primary: #2563eb;
+      --primary: #07966d;
       --primary-dark: #1d4ed8;
       --secondary: #475569;
       --light: #f8fafc;
@@ -36,7 +36,7 @@
     }
 
     nav {
-      background-color: var(--primary);
+      background: linear-gradient(135deg, #07966d 0%, #3982f3 100%);
       color: white;
       padding: 1rem 0;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -62,7 +62,6 @@
 
     .nav-logo {
       height: 40px;
-      margin-right: 1rem;
     }
 
     .nav-links {
@@ -123,7 +122,10 @@
       font-size: 3.5rem;
       font-weight: 800;
       margin-bottom: 2rem;
-      color: var(--primary);
+      background: linear-gradient(135deg, #07966d 0%, #3982f3 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent; 
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
@@ -255,7 +257,7 @@
         left: 0;
         width: 100%;
         flex-direction: column;
-        background-color: var(--primary);
+        background: linear-gradient(135deg, #07966d 0%, #3982f3 100%);
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         padding: 1rem 0;
         z-index: 50;
@@ -327,7 +329,9 @@
   <nav>
     <div class="nav-container">
       <div class="logo-container">
-        <img src="https://cdn-icons-png.freepik.com/512/7106/7106274.png?uid=R47910518&ga=GA1.1.442937866.1740979534" alt="ConfLoto Logo" class="nav-logo">
+        <a href="https://lottery-frontend-react-iota.vercel.app">
+          <img src="favicon.svg" alt="ConfLoto Logo" class="nav-logo">
+        </a>
         <span style="font-weight: bold; font-size: 1.5rem;">ConfLoto</span>
       </div>
       <button class="menu-button" id="menu-toggle">

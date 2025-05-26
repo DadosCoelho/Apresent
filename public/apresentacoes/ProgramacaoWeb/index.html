@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ConfLoto - Introdução</title>
-  <link rel="icon" href="https://cdn-icons-png.freepik.com/512/7106/7106274.png?uid=R47910518&ga=GA1.1.442937866.1740979534" type="image/png">
+  <link rel="icon" href=favicon.svg type="image/svg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <style>
     :root {
-      --primary: #2563eb;
+      --primary: #07966d;
       --primary-dark: #1d4ed8;
       --secondary: #475569;
       --light: #f8fafc;
@@ -35,7 +35,7 @@
     }
 
     nav {
-      background-color: var(--primary);
+      background: linear-gradient(135deg, #07966d 0%, #3982f3 100%);
       color: white;
       padding: 1rem 0;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -58,7 +58,6 @@
 
     .nav-logo {
       height: 40px;
-      margin-right: 1rem;
     }
 
     .nav-links {
@@ -107,7 +106,7 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       padding: 2rem;
       text-align: center;
@@ -118,15 +117,17 @@
       font-size: 4.5rem;
       font-weight: 800;
       margin-bottom: 1.5rem;
-      color: var(--primary);
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-      letter-spacing: -0.05em;
+      background: linear-gradient(135deg, #07966d 0%, #3982f3 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent; 
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .tagline {
       font-size: 2.5rem;
       line-height: 1.4;
-      max-width: 800px;
+      max-width: 1400px;
       color: var(--secondary);
       margin-bottom: 2rem;
     }
@@ -171,7 +172,66 @@
       max-width: 100px;
       margin: 0 auto;
       display: block;
+      width: 180px;
+      height: 100px;
     }
+
+    .card-container {
+      perspective: 1400px;
+      width: 100%;
+      max-width: 1400px;
+      height: 350px;
+      margin: 20px auto;
+      cursor: pointer;
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+    }
+
+    .card.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background-color: #f8f9fa;
+    }
+
+    .card-front {
+      z-index: 2;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .tagline {
+      font-size: 2rem;
+      color: #333;
+    }
+
     @keyframes fadeInDown {
       0% {
         opacity: 0;
@@ -215,7 +275,7 @@
         left: 0;
         width: 100%;
         flex-direction: column;
-        background-color: var(--primary);
+        background: linear-gradient(135deg, #07966d 0%, #3982f3 100%);
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         padding: 1rem 0;
         z-index: 50;
@@ -249,6 +309,11 @@
         height: 2.5rem;
         font-size: 1.2rem;
       }
+
+      .main-logo {
+        width: 80px;
+        height: 80px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -276,7 +341,9 @@
   <nav>
     <div class="nav-container">
       <div class="logo-container">
-        <img src="https://cdn-icons-png.freepik.com/512/7106/7106274.png?uid=R47910518&ga=GA1.1.442937866.1740979534" alt="ConfLoto Logo" class="nav-logo">
+        <a href="https://lottery-frontend-react-iota.vercel.app">
+          <img src="favicon.svg" alt="ConfLoto Logo" class="nav-logo">
+        </a>
         <span style="font-weight: bold; font-size: 1.5rem;">ConfLoto</span>
       </div>
       <button class="menu-button" id="menu-toggle">
@@ -292,28 +359,36 @@
   </nav>
 
   <main>
-    <img src="https://cdn-icons-png.freepik.com/512/7106/7106274.png?uid=R47910518&ga=GA1.1.442937866.1740979534" alt="ConfLoto Logo" class="main-logo entry-animation" />
+    <img src=favicon2.svg alt="ConfLoto Logo" class="main-logo entry-animation" />
     <h1 class="logo animate__animated animate__fadeInDown">ConfLoto</h1>
-    <p class="tagline animate__animated animate__fadeIn animate__delay-1s">
-      Sistema web para gerenciamento de apostas em loterias brasileiras, como Mega-Sena, 
-      Lotofácil e mais. Permite apostas individuais, bolões e administração de usuários.
-    </p>
 
-    <div class="lottery-balls animate__animated animate__bounceIn animate__delay-2s">
-      <div class="ball" style="background-color: #10b981;">01</div>
-      <div class="ball" style="background-color: #3b82f6;">10</div>
-      <div class="ball" style="background-color: #ec4899;">25</div>
-      <div class="ball" style="background-color: #f59e0b;">39</div>
-      <div class="ball" style="background-color: #8b5cf6;">47</div>
-      <div class="ball" style="background-color: #ef4444;">60</div>
-    </div>
+      <div class="card-container" onclick="this.querySelector('.card').classList.toggle('flipped')">
+        <div class="card">
+          <div class="card-face card-front animate__animated animate__fadeIn animate__delay-1s">
+            <p class="tagline">
+              A necessidade de acompanhar apostas realizadas em grupo com amigos de forma prática, organizada e colaborativa em um sistema web para gerenciamento de apostas em loterias brasileiras, como Mega-Sena e Lotofácil.
+            </p>
+            <p class="tagline">
+                Acabou!!!
+            </p>
+          </div>
+          <div class="card-face card-back">
+            <p class="tagline">
+              Gerencie suas apostas com facilidade!
+            </p>
+            <p class="tagline">
+              ConfLoto oferece uma plataforma intuitiva para organizar bolões, acompanhar resultados e dividir prêmios com seus amigos.
+            </p>
+          </div>
+        </div>
+      </div>
 
-    <div class="bg-circles">
-      <div class="circle" style="width: 300px; height: 300px; background-color: var(--primary); left: 5%; top: 20%;"></div>
-      <div class="circle" style="width: 200px; height: 200px; background-color: var(--accent); right: 10%; bottom: 15%;"></div>
-      <div class="circle" style="width: 150px; height: 150px; background-color: var(--success); left: 15%; bottom: 10%;"></div>
-    </div>
-  </main>
+      <div class="bg-circles">
+        <div class="circle" style="width: 300px; height: 300px; background-color: var(--primary); left: 5%; top: 20%;"></div>
+        <div class="circle" style="width: 200px; height: 200px; background-color: var(--accent); right: 10%; bottom: 15%;"></div>
+        <div class="circle" style="width: 150px; height: 150px; background-color: var(--success); left: 15%; bottom: 10%;"></div>
+      </div>
+    </main>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
