@@ -165,14 +165,16 @@
         }
   
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1527977966376-1c8408f9f108?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1527977966376-1c8408f9f108?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); /* Imagem de fundo do hero */
+            background-size: cover; /* Cobre todo o espaço do hero */
+            background-position-x: center; /* Centraliza horizontalmente */
+            background-position-y: center; /* Centraliza verticalmente */
+            height: 600px; /* Altura do hero */
             color: white;
-            text-align: center;
-            padding: 100px 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
+            text-align: center; /* Centraliza o texto */
+            padding: 100px 20px; /* Espaçamento interno */
+            border-radius: 8px; /* Bordas arredondadas */
+            margin-bottom: 30px; /* Espaçamento inferior para o hero */
         }
 
         /* Novo estilo para o ícone no hero */
@@ -532,7 +534,11 @@
             const main = document.querySelector('main');
             
             const heroHTML = `
-                <div class="hero" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${heroData.backgroundImage}');">
+                <div class="hero" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${heroData.backgroundImage}'); 
+                    background-size: cover; /* Cobre todo o espaço do hero */
+                    background-position-x: center; /* Centraliza horizontalmente */
+                    background-position-y: center; /* Centraliza verticalmente */
+                    height: 600px; /* Altura do hero */">
                     <!-- Ícone de drone adicionado acima do título principal -->
                     <img src="https://cdn-icons-png.flaticon.com/512/17894/17894070.png" alt="Ícone de Drone" class="hero-icon">
                     <h1>${heroData.title}</h1>
