@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Educacional de Drones</title>
+    <!-- Favicon adicionado aqui para o ícone da página -->
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/17894/17894070.png">
+    <style>
+        /* Variáveis de cores */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #ecf0f1;
+        }
+  
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+  
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+  
+        /* Cabeçalho e navegação */
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+  
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+  
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+  
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+  
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+  
+        .nav-links li {
+            margin-left: 20px;
+        }
+  
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+  
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+  
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+        }
+  
+        /* Conteúdo principal */
+        main {
+            margin-top: 80px;
+            padding: 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+  
+        section {
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+  
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+  
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+  
+        h2 {
+            font-size: 2rem;
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+            margin-top: 30px;
+        }
+  
+        h3 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-top: 25px;
+        }
+  
+        h4 {
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+  
+        p {
+            margin-bottom: 15px;
+        }
+  
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+  
+        li {
+            margin-bottom: 8px;
+        }
+  
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+  
+        a:hover {
+            text-decoration: underline;
+        }
+  
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1527977966376-1c8408f9f108?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        /* Novo estilo para o ícone no hero */
+        .hero-icon { 
+            width: 100px; /* Tamanho do ícone */
+            height: auto;
+            margin-bottom: 20px;
+            display: block; /* Para centralizar */
+            margin-left: auto;
+            margin-right: auto;
+            filter: invert(100%); /* Para transformar o ícone preto em branco no fundo escuro */
+        }
+  
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+            border-bottom: none;
+        }
+  
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+  
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+  
+        .btn:hover {
+            background-color: #2980b9;
+            text-decoration: none;
+        }
+  
+        /* Cards e grids */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+  
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+  
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+  
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+  
+        .card-body {
+            padding: 20px;
+        }
+  
+        /* Tabelas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+  
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+  
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+  
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+  
+        tr:hover {
+            background-color: #e2e2e2;
+        }
+  
+        /* Rodapé */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+  
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+  
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+  
+        .footer-section ul {
+            list-style: none;
+            margin-left: 0;
+        }
+  
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+  
+        .footer-section a {
+            color: #bdc3c7;
+            transition: color 0.3s;
+        }
+  
+        .footer-section a:hover {
+            color: var(--secondary-color);
+        }
+  
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+  
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            }
+  
+            .nav-links.active {
+                display: flex;
+            }
+  
+            .nav-links li {
+                margin: 10px 0;
+            }
+  
+            .hamburger {
+                display: block;
+            }
+  
+            h1 {
+                font-size: 2rem;
+            }
+  
+            h2 {
+                font-size: 1.7rem;
+            }
+  
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+  
+            .hero p {
+                font-size: 1rem;
+            }
+  
+            table {
+                font-size: 0.8rem;
+            }
+  
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+  
+        /* Elementos específicos */
+        .highlight {
+            background-color: #f9f9f9;
+            border-left: 3px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+        }
+  
+        .tag {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+  
+        .warning {
+            background-color: #fff3cd;
+            border-left: 3px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+        }
+  
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+  
+        .scroll-to-top.visible {
+            opacity: 1;
+        }
+  
+        /* Loader */
+        .loader-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            z-index: 9999;
+        }
+  
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--secondary-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+  
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+  
+        .table-responsive {
+            overflow-x: auto;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="loader-container" id="loader">
+        <div class="loader"></div>
+    </div>
+    
+    <header></header>
+    <main></main>
+    <footer></footer>
+    
+    <div class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+  
+    <script>
+        // Função para extrair o conteúdo JSON do Gist
+        async function fetchGistContent() {
+            try {
+                // ID do seu Gist
+                const gistId = 'c2c52700d64f31c2fe0ff5ff45e9d47b';
+                const response = await fetch(`https://api.github.com/gists/${gistId}`);
+                
+                if (!response.ok) {
+                    throw new Error('Não foi possível carregar o Gist');
+                }
+                
+                const gistData = await response.json();
+                
+                // Encontrar o primeiro arquivo no Gist (assumindo que é o JSON)
+                const fileName = Object.keys(gistData.files)[0];
+                const fileContent = gistData.files[fileName].content;
+                
+                // Parse do conteúdo JSON
+                return JSON.parse(fileContent);
+            } catch (error) {
+                console.error('Erro ao carregar o conteúdo do Gist:', error);
+                document.body.innerHTML = `
+                    <div style="text-align: center; padding: 50px;">
+                        <h2>Erro ao carregar o conteúdo</h2>
+                        <p>${error.message}</p>
+                        <button onclick="location.reload()">Tentar novamente</button>
+                    </div>
+                `;
+                throw error;
+            }
+        }
+  
+        // Função para renderizar o cabeçalho e navegação
+        function renderHeader(siteInfo, navigationItems) {
+            const header = document.querySelector('header');
+            
+            // Criar a estrutura do cabeçalho
+            const navHTML = `
+                <nav>
+                    <div class="logo">
+                        <i class="fas fa-drone"></i> ${siteInfo.title}
+                    </div>
+                    <ul class="nav-links">
+                        ${navigationItems.map(item => `
+                            <li><a href="#${item.id}">${item.label}</a></li>
+                        `).join('')}
+                    </ul>
+                    <button class="hamburger">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </nav>
+            `;
+            
+            header.innerHTML = navHTML;
+        }
+  
+        // Função para renderizar a seção hero
+        function renderHero(heroData) {
+            const main = document.querySelector('main');
+            
+            const heroHTML = `
+                <div class="hero" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${heroData.backgroundImage}');">
+                    <!-- Ícone de drone adicionado acima do título principal -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/17894/17894070.png" alt="Ícone de Drone" class="hero-icon">
+                    <h1>${heroData.title}</h1>
+                    <p>${heroData.subtitle}</p>
+                    <a href="${heroData.buttonLink}" class="btn">${heroData.buttonText}</a>
+                </div>
+            `;
+            
+            main.insertAdjacentHTML('afterbegin', heroHTML);
+        }
+  
+        // Função para renderizar uma seção
+        function renderSection(sectionId, sectionData) {
+            const main = document.querySelector('main');
+            
+            // Iniciar a seção
+            let sectionHTML = `
+                <section id="${sectionId}">
+                    <h2>${sectionData.title}</h2>
+            `;
+            
+            // Adicionar conteúdo principal, se existir
+            if (sectionData.content) {
+                sectionHTML += `<p>${sectionData.content}</p>`;
+            }
+            
+            // Adicionar introdução, se existir
+            if (sectionData.introduction) {
+                sectionHTML += `<div class="highlight"><p>${sectionData.introduction}</p></div>`;
+            }
+            
+            // Renderizar destaques, se existirem
+            if (sectionData.highlights) {
+                sectionData.highlights.forEach(highlight => {
+                    sectionHTML += renderHighlight(highlight);
+                });
+            }
+            
+            // Renderizar subseções, se existirem
+            if (sectionData.subsections) {
+                sectionData.subsections.forEach(subsection => {
+                    sectionHTML += renderSubsection(subsection);
+                });
+            }
+            
+            // Renderizar cards, se existirem
+            if (sectionData.cards) {
+                sectionHTML += `<div class="card-grid">`;
+                sectionData.cards.forEach(card => {
+                    sectionHTML += renderCard(card);
+                });
+                sectionHTML += `</div>`;
+            }
+            
+            // Renderizar drones, se existirem
+            if (sectionData.drones) {
+                sectionHTML += `<h3>Tipos de Drones</h3><div class="card-grid">`;
+                sectionData.drones.forEach(drone => {
+                    sectionHTML += renderDroneCard(drone);
+                });
+                sectionHTML += `</div>`;
+            }
+            
+            // Renderizar tabela comparativa, se existir
+            if (sectionData.comparison_table) {
+                sectionHTML += renderComparisonTable(sectionData.comparison_table);
+            }
+            
+            // Fechar a seção
+            sectionHTML += `</section>`;
+            
+            main.insertAdjacentHTML('beforeend', sectionHTML);
+        }
+  
+        // Função para renderizar um destaque
+        function renderHighlight(highlight) {
+            let highlightHTML = `
+                <div class="highlight">
+                    <h3>${highlight.title}</h3>
+            `;
+            
+            if (highlight.type === 'unordered-list') {
+                highlightHTML += `
+                    <ul>
+                        ${highlight.items.map(item => {
+                            if (typeof item === 'string') {
+                                return `<li>${item}</li>`;
+                            } else {
+                                return `<li><strong>${item.text}</strong> - ${item.description}</li>`;
+                            }
+                        }).join('')}
+                    </ul>
+                `;
+            } else if (highlight.type === 'ordered-list') {
+                highlightHTML += `
+                    <ol>
+                        ${highlight.items.map(item => `<li>${item}</li>`).join('')}
+                    </ol>
+                `;
+            }
+            
+            highlightHTML += `</div>`;
+            return highlightHTML;
+        }
+  
+        // Função para renderizar uma subseção
+        function renderSubsection(subsection) {
+            let subsectionHTML = `
+                <h3>${subsection.title}</h3>
+            `;
+            
+            if (subsection.content) {
+                subsectionHTML += `<p>${subsection.content}</p>`;
+            }
+            
+            if (subsection.type === 'unordered-list') {
+                subsectionHTML += `
+                    <ul>
+                        ${subsection.items.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                `;
+            } else if (subsection.type === 'ordered-list') {
+                subsectionHTML += `
+                    <ol>
+                        ${subsection.items.map(item => `<li>${item}</li>`).join('')}
+                    </ol>
+                `;
+            }
+            
+            if (subsection.subsections) {
+                subsection.subsections.forEach(nestedSubsection => {
+                    subsectionHTML += `
+                        <h4>${nestedSubsection.title}</h4>
+                    `;
+                    
+                    if (nestedSubsection.type === 'unordered-list') {
+                        subsectionHTML += `
+                            <ul>
+                                ${nestedSubsection.items.map(item => {
+                                    if (typeof item === 'string') {
+                                        return `<li>${item}</li>`;
+                                    } else {
+                                        let itemHTML = `<li><a href="${item.link}" >${item.text}</a>`;
+                                        if (item.description) {
+                                            itemHTML += ` - ${item.description}`;
+                                        }
+                                        itemHTML += `</li>`;
+                                        return itemHTML;
+                                    }
+                                }).join('')}
+                            </ul>
+                        `;
+                    }
+                });
+            }
+            
+            if (subsection.cards) {
+                subsectionHTML += `<div class="card-grid">`;
+                subsection.cards.forEach(card => {
+                    subsectionHTML += `
+                        <div class="card">
+                            <div class="card-header">${card.title}</div>
+                            <div class="card-body">
+                                <p>${card.content}</p>
+                                <div>
+                                    ${card.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                subsectionHTML += `</div>`;
+            }
+            
+            if (subsection.highlight) {
+                subsectionHTML = `<div class="highlight">${subsectionHTML}</div>`;
+            }
+            
+            return subsectionHTML;
+        }
+  
+        // Função para renderizar um card
+        function renderCard(card) {
+            let cardHTML = `
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-${card.icon}"></i> ${card.title}
+                    </div>
+                    <div class="card-body">
+            `;
+            
+            if (card.content) {
+                card.content.forEach(item => {
+                    if (item.type === 'field') {
+                        cardHTML += `<p><strong>${item.label}</strong> ${item.value}</p>`;
+                    } else if (item.type === 'paragraph') {
+                        cardHTML += `<p>${item.text}</p>`;
+                    } else if (item.type === 'list') {
+                        cardHTML += `
+                            <ul>
+                                ${item.items.map(listItem => `<li>${listItem}</li>`).join('')}
+                            </ul>
+                        `;
+                    } else if (item.type === 'steps') {
+                        cardHTML += `
+                            <p><strong>${item.label}</strong></p>
+                            <ol>
+                                ${item.steps.map(step => `<li>${step}</li>`).join('')}
+                            </ol>
+                        `;
+                    } else if (item.type === 'warning') {
+                        cardHTML += `
+                            <div class="warning">
+                                <p><strong>Importante:</strong> ${item.content}</p>
+                            </div>
+                        `;
+                    }
+                });
+            }
+            
+            cardHTML += `
+                    </div>
+                </div>
+            `;
+            
+            return cardHTML;
+        }
+  
+        // Função para renderizar um card de drone
+        function renderDroneCard(drone) {
+            let droneCardHTML = `
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-${drone.icon}"></i> ${drone.title}
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            ${drone.specs.map(spec => `
+                                <li><strong>${spec.label}:</strong> ${spec.value}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+            
+            return droneCardHTML;
+        }
+  
+        // Função para renderizar uma tabela comparativa
+        function renderComparisonTable(tableData) {
+            let tableHTML = `
+                <h3>${tableData.title}</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                ${tableData.headers.map(header => `<th>${header}</th>`).join('')}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${tableData.rows.map(row => `
+                                <tr>
+                                    ${row.map(cell => `<td>${cell}</td>`).join('')}
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            return tableHTML;
+        }
+  
+        // Função para renderizar o rodapé
+        function renderFooter(footerData) {
+            const footer = document.querySelector('footer');
+            
+            let footerHTML = `
+                <div class="footer-content">
+            `;
+            
+            footerData.sections.forEach(section => {
+                footerHTML += `
+                    <div class="footer-section">
+                        <h3>${section.title}</h3>
+                `;
+                
+                if (section.content) {
+                    footerHTML += `<p>${section.content}</p>`;
+                }
+                
+                if (section.links) {
+                    footerHTML += `
+                        <ul>
+                            ${section.links.map(link => `
+                                <li><a href="${link.url}" ${link.url.startsWith('http') ? '' : ''}>${link.text}</a></li>
+                            `).join('')}
+                        </ul>
+                    `;
+                }
+                
+                footerHTML += `</div>`;
+            });
+            
+            footerHTML += `
+                </div>
+                <div class="copyright">
+                    <p>${footerData.copyright}</p>
+                </div>
+            `;
+            
+            footer.innerHTML = footerHTML;
+        }
+  
+        // Função para inicializar elementos interativos
+        function initializeInteractiveElements() {
+            // Menu de navegação móvel
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+  
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+  
+            // Fechar menu ao clicar em um link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+  
+            // Rolagem suave para links de âncora
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+  
+            // Botão de voltar ao topo
+            const scrollToTopButton = document.querySelector('.scroll-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollToTopButton.classList.add('visible');
+                } else {
+                    scrollToTopButton.classList.remove('visible');
+                }
+            });
+            
+            scrollToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+  
+        // Função principal para carregar e renderizar o conteúdo do site
+        async function loadSiteContent() {
+            try {
+                // Buscar o conteúdo do Gist
+                const data = await fetchGistContent();
+                
+                // Renderizar o cabeçalho e navegação
+                renderHeader(data.site, data.navigation);
+                
+                // Renderizar a seção hero
+                renderHero(data.hero);
+                
+                // Renderizar todas as seções
+                Object.keys(data.sections).forEach(sectionId => {
+                    renderSection(sectionId, data.sections[sectionId]);
+                });
+                
+                // Renderizar o rodapé
+                renderFooter(data.footer);
+                
+                // Inicializar scripts interativos
+                initializeInteractiveElements();
+                
+                // Esconder o loader
+                document.getElementById('loader').style.display = 'none';
+                
+            } catch (error) {
+                console.error('Erro ao carregar o conteúdo do site:', error);
+                // Esconder o loader mesmo em caso de erro
+                document.getElementById('loader').style.display = 'none';
+            }
+        }
+  
+        // Inicializar o site quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', loadSiteContent);
+    </script>
+</body>
+</html>
