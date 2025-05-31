@@ -504,7 +504,7 @@
                 throw error;
             }
         }
-  
+
         // Função para renderizar o cabeçalho e navegação
         function renderHeader(siteInfo, navigationItems) {
             const header = document.querySelector('header');
@@ -528,7 +528,7 @@
             
             header.innerHTML = navHTML;
         }
-  
+
         // Função para renderizar a seção hero
         function renderHero(heroData) {
             const main = document.querySelector('main');
@@ -549,7 +549,7 @@
             
             main.insertAdjacentHTML('afterbegin', heroHTML);
         }
-  
+
         // Função para renderizar uma seção
         function renderSection(sectionId, sectionData) {
             const main = document.querySelector('main');
@@ -612,7 +612,7 @@
             
             main.insertAdjacentHTML('beforeend', sectionHTML);
         }
-  
+
         // Função para renderizar um destaque
         function renderHighlight(highlight) {
             let highlightHTML = `
@@ -643,17 +643,36 @@
             highlightHTML += `</div>`;
             return highlightHTML;
         }
-  
-        // Função para renderizar uma subseção
+
+        // Função para renderizar uma subseção (AJUSTADA)
         function renderSubsection(subsection) {
             let subsectionHTML = `
                 <h3>${subsection.title}</h3>
             `;
             
+            // Adicionar conteúdo principal, se existir (lida com strings e arrays de objetos)
             if (subsection.content) {
-                subsectionHTML += `<p>${subsection.content}</p>`;
+                if (Array.isArray(subsection.content)) {
+                    subsection.content.forEach(contentItem => {
+                        if (contentItem.type === 'paragraph') {
+                            subsectionHTML += `<p>${contentItem.text}</p>`;
+                        } else if (contentItem.type === 'list') {
+                            if (contentItem.label) {
+                                subsectionHTML += `<p><strong>${contentItem.label}</strong></p>`;
+                            }
+                            subsectionHTML += `
+                                <ul>
+                                    ${contentItem.items.map(item => `<li>${item}</li>`).join('')}
+                                </ul>
+                            `;
+                        }
+                    });
+                } else { // Se o conteúdo for uma string simples
+                    subsectionHTML += `<p>${subsection.content}</p>`;
+                }
             }
             
+            // Lógica para listas diretas na subseção (quando a subseção *é* uma lista)
             if (subsection.type === 'unordered-list') {
                 subsectionHTML += `
                     <ul>
@@ -668,6 +687,7 @@
                 `;
             }
             
+            // Lógica para subseções aninhadas (como "No Brasil:", "Internacional:", "Projetos de Referência:")
             if (subsection.subsections) {
                 subsection.subsections.forEach(nestedSubsection => {
                     subsectionHTML += `
@@ -695,32 +715,24 @@
                 });
             }
             
+            // Renderizar cards, se existirem (este bloco é para cards diretos na subseção, como em "Módulo Profissionalizante")
             if (subsection.cards) {
                 subsectionHTML += `<div class="card-grid">`;
                 subsection.cards.forEach(card => {
-                    subsectionHTML += `
-                        <div class="card">
-                            <div class="card-header">${card.title}</div>
-                            <div class="card-body">
-                                <p>${card.content}</p>
-                                <div>
-                                    ${card.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                                </div>
-                            </div>
-                        </div>
-                    `;
+                    subsectionHTML += renderCard(card); 
                 });
                 subsectionHTML += `</div>`;
             }
             
+            // Destaque para a subseção inteira (como em "Etapas da Competição")
             if (subsection.highlight) {
                 subsectionHTML = `<div class="highlight">${subsectionHTML}</div>`;
             }
             
             return subsectionHTML;
         }
-  
-        // Função para renderizar um card
+
+        // Função para renderizar um card (AJUSTADA para lidar com content string e tags)
         function renderCard(card) {
             let cardHTML = `
                 <div class="card">
@@ -731,34 +743,47 @@
             `;
             
             if (card.content) {
-                card.content.forEach(item => {
-                    if (item.type === 'field') {
-                        cardHTML += `<p><strong>${item.label}</strong> ${item.value}</p>`;
-                    } else if (item.type === 'paragraph') {
-                        cardHTML += `<p>${item.text}</p>`;
-                    } else if (item.type === 'list') {
-                        cardHTML += `
-                            <ul>
-                                ${item.items.map(listItem => `<li>${listItem}</li>`).join('')}
-                            </ul>
-                        `;
-                    } else if (item.type === 'steps') {
-                        cardHTML += `
-                            <p><strong>${item.label}</strong></p>
-                            <ol>
-                                ${item.steps.map(step => `<li>${step}</li>`).join('')}
-                            </ol>
-                        `;
-                    } else if (item.type === 'warning') {
-                        cardHTML += `
-                            <div class="warning">
-                                <p><strong>Importante:</strong> ${item.content}</p>
-                            </div>
-                        `;
-                    }
-                });
+                if (Array.isArray(card.content)) { // Se for um array (como nos cards de "Cadastros")
+                    card.content.forEach(item => {
+                        if (item.type === 'field') {
+                            cardHTML += `<p><strong>${item.label}</strong> ${item.value}</p>`;
+                        } else if (item.type === 'paragraph') {
+                            cardHTML += `<p>${item.text}</p>`;
+                        } else if (item.type === 'list') {
+                            cardHTML += `
+                                <ul>
+                                    ${item.items.map(listItem => `<li>${listItem}</li>`).join('')}
+                                </ul>
+                            `;
+                        } else if (item.type === 'steps') {
+                            cardHTML += `
+                                <p><strong>${item.label}</strong></p>
+                                <ol>
+                                    ${item.steps.map(step => `<li>${step}</li>`).join('')}
+                                </ol>
+                            `;
+                        } else if (item.type === 'warning') {
+                            cardHTML += `
+                                <div class="warning">
+                                    <p><strong>Importante:</strong> ${item.content}</p>
+                                </div>
+                            `;
+                        }
+                    });
+                } else { // Se não for um array, assume que é uma string (como nos cards de "Módulo Profissionalizante")
+                    cardHTML += `<p>${card.content}</p>`;
+                }
             }
             
+            // Adicionar tags, se existirem (específico para os cards do "Módulo Profissionalizante")
+            if (card.tags && Array.isArray(card.tags)) {
+                cardHTML += `<div>`;
+                card.tags.forEach(tag => {
+                    cardHTML += `<span class="tag">${tag}</span>`;
+                });
+                cardHTML += `</div>`;
+            }
+
             cardHTML += `
                     </div>
                 </div>
@@ -766,7 +791,7 @@
             
             return cardHTML;
         }
-  
+
         // Função para renderizar um card de drone
         function renderDroneCard(drone) {
             let droneCardHTML = `
@@ -786,7 +811,7 @@
             
             return droneCardHTML;
         }
-  
+
         // Função para renderizar uma tabela comparativa
         function renderComparisonTable(tableData) {
             let tableHTML = `
@@ -811,7 +836,7 @@
             
             return tableHTML;
         }
-  
+
         // Função para renderizar o rodapé
         function renderFooter(footerData) {
             const footer = document.querySelector('footer');
@@ -852,24 +877,24 @@
             
             footer.innerHTML = footerHTML;
         }
-  
+
         // Função para inicializar elementos interativos
         function initializeInteractiveElements() {
             // Menu de navegação móvel
             const hamburger = document.querySelector('.hamburger');
             const navLinks = document.querySelector('.nav-links');
-  
+
             hamburger.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
             });
-  
+
             // Fechar menu ao clicar em um link
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', () => {
                     navLinks.classList.remove('active');
                 });
             });
-  
+
             // Rolagem suave para links de âncora
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
@@ -886,7 +911,7 @@
                     }
                 });
             });
-  
+
             // Botão de voltar ao topo
             const scrollToTopButton = document.querySelector('.scroll-to-top');
             
@@ -905,7 +930,7 @@
                 });
             });
         }
-  
+
         // Função principal para carregar e renderizar o conteúdo do site
         async function loadSiteContent() {
             try {
@@ -938,7 +963,7 @@
                 document.getElementById('loader').style.display = 'none';
             }
         }
-  
+
         // Inicializar o site quando o DOM estiver carregado
         document.addEventListener('DOMContentLoaded', loadSiteContent);
     </script>

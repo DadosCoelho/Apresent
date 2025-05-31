@@ -1,0 +1,635 @@
+{
+  "site": {
+    "title": "Projeto Educacional de Drones",
+    "description": "Desenvolvendo conhecimento tecnológico através da construção e pilotagem de drones"
+  },
+  "navigation": [
+    {
+      "id": "objetivo",
+      "label": "Objetivo"
+    },
+    {
+      "id": "estrutura",
+      "label": "Estrutura"
+    },
+    {
+      "id": "modulos",
+      "label": "Módulos"
+    },
+    {
+      "id": "competicao",
+      "label": "Competição"
+    },
+    {
+      "id": "tipos-drones",
+      "label": "Tipos de Drones"
+    },
+    {
+      "id": "cadastros",
+      "label": "Cadastros"
+    }
+  ],
+  "hero": {
+    "title": "Tecnologia Educacional com Drones",
+    "subtitle": "Desenvolvendo conhecimento tecnológico através da construção e pilotagem de drones",
+    "buttonText": "Conheça o Projeto",
+    "buttonLink": "#objetivo",
+    "backgroundImage": "https://media.printables.com/media/prints/942571/images/7209910_b8bf06c2-9a4b-4232-908c-347a057e9ec8_79b08fb2-ceec-4cc3-9068-75bce08c12ee/thumbs/inside/1600x1200/png/projekt-bez-nazwy-13.webp"
+  },
+  "sections": {
+    "objetivo": {
+      "title": "Objetivo e Escopo",
+      "content": "Nosso projeto visa alavancar o conhecimento tecnológico na educação através da utilização e manuseio de drones, abrangendo desde a construção até a pilotagem.",
+      "highlights": [
+        {
+          "title": "Principais Objetivos:",
+          "type": "unordered-list",
+          "items": [
+            "Ensinar fundamentos na área de tecnologia",
+            "Estimular o desenvolvimento de habilidades em eletrônica, aerodinâmica e programação",
+            "Proporcionar experiência prática com tecnologias emergentes",
+            "Preparar os estudantes para o mercado de trabalho tecnológico"
+          ]
+        }
+      ]
+    },
+    "estrutura": {
+      "title": "Estrutura do Projeto",
+      "content": "O projeto é estruturado em módulos que abrangem desde os conceitos básicos até aplicações avançadas de drones.",
+      "subsections": [
+        {
+          "title": "Principais Componentes:",
+          "type": "ordered-list",
+          "items": [
+            "Ensino de fundamentos na área de tecnologia, estimulando o desenvolvimento de habilidades de eletrônica, aerodinâmica e programação",
+            "Evento VTOL com estrutura baseada em aviões",
+            "Construção de drones com componentes impressos em 3D",
+            "Utilização de hardware e software open source"
+          ]
+        },
+        {
+          "title": "Referências e Recursos",
+          "subsections": [
+            {
+              "title": "No Brasil:",
+              "type": "unordered-list",
+              "items": [
+                {
+                  "text": "Drone Lab Brasil",
+                  "link": "https://www.dronelabbrasil.com",
+                  "description": "Laboratório especializado em drones"
+                },
+                {
+                  "text": "Impressão 3D: Loja 3D Lab",
+                  "link": "https://www.3dlab.com.br",
+                  "description": "Impressoras, filamentos, peças e mais"
+                }
+              ]
+            },
+            {
+              "title": "Internacional:",
+              "type": "unordered-list",
+              "items": [
+                {
+                  "text": "Aviões RC impressos em 3D - Flightory",
+                  "link": "https://www.flightory.com"
+                },
+                {
+                  "text": "GetFPV",
+                  "link": "https://www.getfpv.com",
+                  "description": "Drones FPV, Quadricópteros, Racing Drones, Motores e Óculos FPV"
+                },
+                {
+                  "text": "BETAFPV",
+                  "link": "https://www.betafpv.com",
+                  "description": "Pioneiros em Micro Drones FPV e Componentes"
+                }
+              ]
+            },
+            {
+              "title": "Projetos de Referência:",
+              "type": "unordered-list",
+              "items": [
+                {
+                  "text": "Drone Quadricóptero T4 da Brendan22 - Thingiverse",
+                  "link": "https://www.thingiverse.com/thing:4782755"
+                },
+                {
+                  "text": "3D Printed 10 Quad. Pixhawk 5X. Build Log - PX4 Autopilot",
+                  "link": "https://discuss.px4.io/t/3d-printed-10-quad-pixhawk-5x-build-log/26269"
+                },
+                {
+                  "text": "Successful first flight of modified mini skywalker VTOL - PX4 Autopilot",
+                  "link": "https://discuss.px4.io/t/successful-first-flight-of-modified-mini-skywalker-vtol/6245"
+                },
+                {
+                  "text": "Inviting FPV into Your Life – FlyFish RC",
+                  "link": "https://www.flyfishrc.com/inviting-fpv-into-your-life/"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "modulos": {
+      "title": "Módulo de Construção de Drones",
+      "subsections": [
+        {
+          "title": "Introdução aos Drones",
+          "type": "unordered-list",
+          "items": [
+            "História e evolução dos drones",
+            "Tipos de drones e suas aplicações (recreativo, profissional, industrial)"
+          ]
+        },
+        {
+          "title": "Princípios de Aerodinâmica e Física de Voo",
+          "type": "unordered-list",
+          "items": [
+            "Forças atuantes (sustentação, arrasto, empuxo e peso)",
+            "Estabilidade e controle no voo de multirotores"
+          ]
+        },
+        {
+          "title": "Componentes de um Drone",
+          "type": "unordered-list",
+          "items": [
+            "Estrutura (frame)",
+            "Motores",
+            "Hélices",
+            "Controladora de voo",
+            "ESCs (controladores de velocidade eletrônicos)",
+            "Baterias (LiPo)",
+            "GPS, sensores e módulos adicionais",
+            "Rádio controle e receptor"
+          ]
+        },
+        {
+          "title": "Eletrônica e Montagem",
+          "type": "unordered-list",
+          "items": [
+            "Soldagem de componentes",
+            "Distribuição de energia (PDB)",
+            "Montagem física do drone",
+            "Instalação de sistemas de transmissão de vídeo (FPV)"
+          ]
+        },
+        {
+          "title": "Programação e Configuração de Controladores",
+          "type": "unordered-list",
+          "items": [
+            "Softwares (Betaflight, ArduPilot, INAV, etc.)",
+            "Calibração de sensores",
+            "Configuração de modos de voo",
+            "PID tuning (ajuste fino do controle de voo)"
+          ]
+        },
+        {
+          "title": "Baterias e Gerenciamento de Energia",
+          "type": "unordered-list",
+          "items": [
+            "Tipos de baterias",
+            "Cuidados, carregamento e armazenamento seguro",
+            "Cálculo de autonomia de voo"
+          ]
+        },
+        {
+          "title": "Manutenção e Reparos",
+          "type": "unordered-list",
+          "items": [
+            "Diagnóstico de falhas",
+            "Substituição de peças",
+            "Procedimentos de segurança"
+          ]
+        }
+      ]
+    },
+    "pilotagem": {
+      "title": "Módulo de Pilotagem",
+      "subsections": [
+        {
+          "title": "Fundamentos da Pilotagem de Drones",
+          "type": "unordered-list",
+          "items": [
+            "Entendimento dos comandos (pitch, roll, yaw, throttle)",
+            "Modos de voo (estabilizado, acro, altitude hold, GPS hold)",
+            "Checagens pré-voo"
+          ]
+        },
+        {
+          "title": "Prática de Voo Básica e Avançada",
+          "type": "unordered-list",
+          "items": [
+            "Voo estacionário",
+            "Deslocamento em todas as direções",
+            "Manobras avançadas (FPV freestyle, cinema, inspeção, etc.)",
+            "Gerenciamento de emergências (perda de sinal, falhas)"
+          ]
+        }
+      ]
+    },
+    "legislacao": {
+	  "title": "Módulo de Legalização e Segurança",
+	  "subsections": [
+		{
+		  "title": "Normas para Construção de Drones no Brasil",
+		  "content": [
+			{
+			  "type": "paragraph",
+			  "text": "Não há uma regulamentação específica para a construção caseira de drones, mas qualquer drone, seja industrial ou construído artesanalmente, deve seguir as normas de operação definidas pela ANAC, DECEA e ANATEL."
+			},
+			{
+			  "type": "list",
+			  "label": "É obrigatório que o drone:",
+			  "items": [
+				"Esteja cadastrado na ANAC, se pesar acima de 250 gramas.",
+				"Tenha certificação de radiofrequência na ANATEL (controle remoto e transmissão de vídeo).",
+				"Possua equipamentos que garantam a segurança da navegação aérea (como Failsafe, RTH, GPS, entre outros) para drones de maiores categorias."
+			  ]
+			}
+		  ]
+		},
+		{
+		  "title": "Normas de Operação e Pilotagem (ANAC - RBAC-E nº 94)",
+		  "content": [
+			{
+			  "type": "list",
+			  "label": "Classificação por Peso:",
+			  "items": [
+				"Até 250g: Sem necessidade de cadastro (exceto voos comerciais próximos de pessoas).",
+				"250g a 25kg: Necessita cadastro na ANAC (SISANT) e autorização do DECEA (SARPAS NG) para voos além de 120m ou em áreas controladas.",
+				"Acima de 25kg: Exige certificado de aeronavegabilidade e licença de piloto remoto."
+			  ]
+			},
+			{
+			  "type": "list",
+			  "label": "Altura Máxima Permitida:",
+			  "items": [
+				"120 metros (400 pés) sem necessidade de autorização especial."
+			  ]
+			},
+			{
+			  "type": "list",
+			  "label": "Distância de Pessoas e Propriedades:",
+			  "items": [
+				"30 metros de distância lateral mínima, exceto se houver autorização formal das pessoas envolvidas."
+			  ]
+			},
+			{
+			  "type": "list",
+			  "label": "Linha de Visada (VLOS):",
+			  "items": [
+				"O drone deve ser operado dentro do campo de visão do piloto (salvo operações específicas BVLOS com autorização especial)."
+			  ]
+			}
+		  ]
+		},
+		{
+		  "title": "Órgãos Reguladores no Brasil",
+		  "content": [
+			{
+			  "type": "list",
+			  "items": [
+				"ANAC (Agência Nacional de Aviação Civil): Responsável pela regulamentação do uso civil dos drones no espaço aéreo.",
+				"DECEA (Departamento de Controle do Espaço Aéreo): Autoriza o uso do espaço aéreo, garantindo segurança nas operações.",
+				"ANATEL (Agência Nacional de Telecomunicações): Regula o uso das frequências de rádio utilizadas pelos drones."
+			  ]
+			}
+		  ]
+		},
+		{
+		  "title": "Ética, Segurança e Boas Práticas",
+		  "content": [
+			{
+			  "type": "list",
+			  "items": [
+				"Segurança no voo (própria e de terceiros)",
+				"Privacidade",
+				"Boas práticas para voos recreativos e profissionais"
+			  ]
+			}
+		  ]
+		}
+	  ]
+	},
+    "profissional": {
+      "title": "Módulo Profissionalizante",
+      "subsections": [
+        {
+          "title": "Aplicações Profissionais dos Drones",
+          "cards": [
+            {
+              "title": "Agricultura de Precisão",
+              "content": "Utilização de drones para monitoramento de plantações, análise de saúde vegetal, pulverização de defensivos e fertilizantes, e mapeamento de áreas agrícolas.",
+              "tags": ["Mapeamento", "Pulverização", "NDVI"]
+            },
+            {
+              "title": "Mapeamento e Topografia",
+              "content": "Criação de modelos 3D, ortomosaicos, curvas de nível e cálculos volumétricos para engenharia civil, mineração e construção.",
+              "tags": ["Fotogrametria", "LiDAR", "GIS"]
+            },
+            {
+              "title": "Inspeção Industrial",
+              "content": "Inspeção de torres, linhas de transmissão, painéis solares, pontes, barragens e outras infraestruturas de difícil acesso.",
+              "tags": ["Termografia", "Segurança", "Manutenção"]
+            }
+          ]
+        },
+        {
+          "title": "Empreendedorismo com Drones",
+          "type": "unordered-list",
+          "items": [
+            "Como montar um negócio com drones",
+            "Precificação de serviços",
+            "Marketing e vendas no setor",
+            "Requisitos legais para operação comercial"
+          ]
+        }
+      ]
+    },
+	"competicao": {
+      "title": "Competição Educacional",
+      "subsections": [
+        {
+          "title": "Projeto (dentro das normas do modelo)",
+          "type": "unordered-list",
+          "items": [
+            "Escolha de componentes (frame, motores, hélices, baterias)",
+            "Planejamento de peso, autonomia e desempenho",
+            "Montagem dentro dos parâmetros de segurança e regulamento",
+            "Análise do código"
+          ]
+        },
+        {
+          "title": "Aerodinâmica",
+          "type": "unordered-list",
+          "items": [
+            "Resistência ao clima (vento, chuva leve)",
+            "Estabilidade em voo",
+            "Eficiência energética"
+          ]
+        },
+        {
+          "title": "Pilotagem",
+          "type": "unordered-list",
+          "items": [
+            "Controle básico e avançado",
+            "Treinamento em circuitos simulados",
+            "Competições de habilidade e precisão",
+            "Desafios de missões específicas"
+          ]
+        },
+        {
+          "title": "Etapas da Competição",
+          "highlight": true,
+          "type": "ordered-list",
+          "items": [
+            "<strong>Fase de Projeto:</strong> Equipes desenvolvem e documentam seus projetos",
+            "<strong>Fase de Construção:</strong> Montagem dos drones seguindo o projeto",
+            "<strong>Fase de Testes:</strong> Verificação de funcionamento e segurança",
+            "<strong>Fase de Competição:</strong> Provas de habilidade, precisão e missões específicas",
+            "<strong>Apresentação Final:</strong> Demonstração e defesa do projeto"
+          ]
+        }
+      ]
+    },
+    "tipos-drones": {
+      "title": "Tipos de Drones e Características",
+      "introduction": "Existem diversos tipos de drones, cada um com características específicas para diferentes aplicações. Abaixo, apresentamos os principais tipos e suas características.",
+      "drones": [
+        {
+          "title": "Racing Drone (Drone de Corrida / FPV)",
+          "icon": "bolt",
+          "specs": [
+            {"label": "Uso", "value": "Corridas, acrobacias, freestyle"},
+            {"label": "Peso", "value": "250g a 800g"},
+            {"label": "Consumo", "value": "Alto (baterias 4S ou 6S de 850mAh a 1500mAh)"},
+            {"label": "Velocidade", "value": "120 km/h até 180 km/h (alguns chegam a 200 km/h)"},
+            {"label": "Autonomia", "value": "3 a 6 minutos"},
+            {"label": "Construção", "value": "Fibra de carbono + impressão 3D para suporte"},
+            {"label": "Visão", "value": "FPV (First Person View) via óculos ou monitor"}
+          ]
+        },
+        {
+          "title": "Cinewhoop (Drone de Filmagem FPV)",
+          "icon": "film",
+          "specs": [
+            {"label": "Uso", "value": "Filmagens próximas, indoor, cineastas FPV"},
+            {"label": "Peso", "value": "250g a 600g"},
+            {"label": "Consumo", "value": "Médio (baterias 4S ou 6S de 850mAh a 1300mAh)"},
+            {"label": "Velocidade", "value": "50-100 km/h (não é foco)"},
+            {"label": "Autonomia", "value": "3 a 6 minutos"},
+            {"label": "Construção", "value": "Frame com ductos, protegido para voar perto de pessoas/obstáculos"},
+            {"label": "Câmeras", "value": "GoPro, DJI Action ou câmeras Naked (sem carcaça)"}
+          ]
+        },
+        {
+          "title": "Long Range FPV (Drone de Longo Alcance)",
+          "icon": "route",
+          "specs": [
+            {"label": "Uso", "value": "Voos de longa distância, exploração, paisagens"},
+            {"label": "Peso", "value": "600g a 2kg"},
+            {"label": "Consumo", "value": "Alto (baterias Li-Ion ou LiPo 6S até 6000mAh)"},
+            {"label": "Velocidade", "value": "60 a 120 km/h"},
+            {"label": "Autonomia", "value": "10 a 40 minutos (dependendo do setup)"},
+            {"label": "Alcance", "value": "10 km até 40 km (dependendo do sistema de rádio e vídeo)"},
+            {"label": "Construção", "value": "Fibra de carbono + impressão 3D, frames maiores (7\", 8\", 10\")"}
+          ]
+        },
+        {
+          "title": "Drones de Filmagem Profissional",
+          "icon": "camera",
+          "specs": [
+            {"label": "Uso", "value": "Cinema, vídeos profissionais, fotografia aérea"},
+            {"label": "Peso", "value": "600g a 7kg (DJI Mini até DJI Inspire, Freefly Alta)"},
+            {"label": "Consumo", "value": "Alto, múltiplas baterias LiPo 4S, 6S ou 12S"},
+            {"label": "Velocidade", "value": "50 a 100 km/h (não é prioridade)"},
+            {"label": "Autonomia", "value": "20 a 45 minutos"},
+            {"label": "Câmeras", "value": "Câmeras de cinema, mirrorless, gimbals estabilizados"}
+          ]
+        },
+        {
+          "title": "Drones de Carga",
+          "icon": "truck-loading",
+          "specs": [
+            {"label": "Uso", "value": "Transporte de carga, logística, entrega"},
+            {"label": "Peso", "value": "10 kg até 500 kg (dependendo do drone)"},
+            {"label": "Consumo", "value": "Muito alto (baterias industriais ou híbridos com combustível)"},
+            {"label": "Velocidade", "value": "50 a 100 km/h"},
+            {"label": "Autonomia", "value": "20 a 60 minutos"},
+            {"label": "Carga útil", "value": "de 5 kg até mais de 200 kg (ex.: drones agrícolas ou logísticos)"}
+          ]
+        },
+        {
+          "title": "Drones Agrícolas",
+          "icon": "seedling",
+          "specs": [
+            {"label": "Uso", "value": "Pulverização, mapeamento, análise de lavoura"},
+            {"label": "Peso", "value": "10 kg a 70 kg"},
+            {"label": "Consumo", "value": "Muito alto (baterias LiPo 12S ou sistemas híbridos)"},
+            {"label": "Velocidade", "value": "30-60 km/h (baixa para precisão)"},
+            {"label": "Autonomia", "value": "10-25 minutos"},
+            {"label": "Capacidade de tanque", "value": "10 a 50 litros (pulverização)"}
+          ]
+        }
+      ],
+      "comparison_table": {
+        "title": "Tabela Comparativa de Drones",
+        "headers": ["Tipo", "Peso", "Velocidade", "Autonomia", "Consumo", "Uso Principal"],
+        "rows": [
+          ["Racing FPV", "250-800g", "120-180 km/h", "3-6 min", "Alto", "Corridas, acrobacias"],
+          ["Cinewhoop", "250-600g", "50-100 km/h", "3-6 min", "Médio", "Filmagem indoor e FPV"],
+          ["Long Range", "600g-2kg", "60-120 km/h", "10-40 min", "Alto", "Exploração, paisagens"],
+          ["Filmagem Pro", "600g-7kg", "50-100 km/h", "20-45 min", "Alto", "Cinema, vídeos profissionais"],
+          ["Carga", "10-500kg", "50-100 km/h", "20-60 min", "Muito alto", "Logística, transporte"],
+          ["Agrícola", "10-70kg", "30-60 km/h", "10-25 min", "Muito alto", "Pulverização, mapeamento"],
+          ["Mapeamento", "500g-15kg", "40-80 km/h", "20-60 min", "Médio/Alto", "Topografia, construção"],
+          ["Asa Fixa", "1-25kg", "60-150 km/h", "1-6 horas", "Baixo", "Longo alcance, mapeamento"],
+          ["Micro/Nano", "20-100g", "30-60 km/h", "3-6 min", "Muito baixo", "Indoor, FPV, recreação"]
+        ]
+      }
+    },
+    "cadastros": {
+      "title": "Cadastros Obrigatórios",
+      "cards": [
+        {
+          "title": "Cadastro na ANAC",
+          "icon": "plane",
+          "content": [
+            {
+              "type": "field",
+              "label": "Obrigatório?",
+              "value": "Sim, para drones acima de 250 gramas."
+            },
+            {
+              "type": "field",
+              "label": "Custo:",
+              "value": "100% gratuito."
+            },
+            {
+              "type": "steps",
+              "label": "Como fazer o cadastro:",
+              "steps": [
+                "Acesse o site: <a href=\"https://sistemas.anac.gov.br/Sisant/\" target=\"_blank\">https://sistemas.anac.gov.br/Sisant/</a>",
+                "Crie um login ou entre com sua conta gov.br.",
+                "Cadastre seu drone, preenchendo dados como: <ul><li>Fabricante (ou 'artesanal' se for construído)</li><li>Modelo</li><li>Número de série (ou qualquer identificador que você adote se for artesanal)</li><li>Peso máximo de decolagem</li></ul>",
+                "Após o cadastro, o sistema gera um número de identificação (RPA) que deve ser fixado no drone (adesivo ou plaqueta)."
+              ]
+            },
+            {
+              "type": "warning",
+              "content": "Para drones até 250g, o cadastro na ANAC não é obrigatório, exceto em operações comerciais próximas de pessoas."
+            }
+          ]
+        },
+        {
+          "title": "Cadastro no DECEA",
+          "icon": "map-marked-alt",
+          "content": [
+            {
+              "type": "field",
+              "label": "Obrigatório?",
+              "value": "Sim, para qualquer voo em espaço controlado, próximo de aeroportos, cidades, áreas urbanas e zonas restritas."
+            },
+            {
+              "type": "paragraph",
+              "text": "Para voos em áreas rurais isoladas e abaixo de 120m, não é obrigatório, mas é altamente recomendado."
+            },
+            {
+              "type": "field",
+              "label": "Custo:",
+              "value": "Gratuito."
+            },
+            {
+              "type": "steps",
+              "label": "Como fazer o cadastro:",
+              "steps": [
+                "Acesse o sistema: <a href=\"https://sarpas.decea.mil.br/\" target=\"_blank\">https://sarpas.decea.mil.br/</a>",
+                "Crie uma conta (ou use login gov.br).",
+                "Cadastre seu drone na plataforma.",
+                "Sempre que for voar, faça uma solicitação de missão, informando: <ul><li>Localização do voo</li><li>Altitude</li><li>Data e hora</li><li>Finalidade (recreativo, comercial, pesquisa, etc.)</li></ul>"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "O sistema verifica se há restrições de espaço aéreo e retorna com aprovação automática, manual ou negativa."
+            }
+          ]
+        },
+        {
+          "title": "Homologação na ANATEL",
+          "icon": "broadcast-tower",
+          "content": [
+            {
+              "type": "field",
+              "label": "Obrigatório?",
+              "value": "Sim, para qualquer drone que utilize radiofrequência, como:"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Controle remoto",
+                "Sistema FPV (transmissão de vídeo)",
+                "Telemetria"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Se o equipamento já tem homologação de fábrica (ex.: DJI, Autel, Skydio), não é necessário fazer novamente. Basta verificar no site da ANATEL se o modelo está homologado."
+            },
+            {
+              "type": "field",
+              "label": "Custo:",
+              "value": ""
+            },
+            {
+              "type": "list",
+              "items": [
+                "Se o equipamento já está homologado no Brasil, não há custo adicional para o piloto.",
+                "Para drones construídos artesanalmente ou rádios importados sem homologação, será necessário realizar a homologação, que custa em média entre R$ 200 a R$ 600 por equipamento, dependendo do laboratório autorizado."
+              ]
+            },
+            {
+              "type": "steps",
+              "label": "Como verificar ou fazer homologação:",
+              "steps": [
+                "Consulte se seu equipamento já está homologado: <a href=\"https://sistemas.anatel.gov.br/homologacao\" target=\"_blank\">https://sistemas.anatel.gov.br/homologacao/</a>",
+                "Se não estiver, solicite a homologação via um organismo de certificação designado (OCD) credenciado pela ANATEL.",
+                "Envie os equipamentos para testes de radiofrequência.",
+                "Ao final, recebe um certificado de homologação válido em todo o território nacional."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+    
+  },
+    "footer": {
+    "sections": [
+      {
+        "title": "Projeto Educacional de Drones",
+        "content": "Desenvolvendo conhecimento tecnológico através da construção e pilotagem de drones."
+      },
+      {
+        "title": "Links Úteis",
+        "links": [
+          {"text": "Objetivo e Escopo", "url": "#objetivo"},
+          {"text": "Estrutura do Projeto", "url": "#estrutura"},
+          {"text": "Módulos", "url": "#modulos"},
+          {"text": "Legislação", "url": "#legislacao"}
+        ]
+      },
+      {
+        "title": "Órgãos Reguladores",
+        "links": [
+          {"text": "ANAC", "url": "https://www.gov.br/anac/pt-br"},
+          {"text": "DECEA", "url": "https://www.gov.br/decea/pt-br"},
+          {"text": "ANATEL", "url": "https://www.gov.br/anatel/pt-br"}
+        ]
+      }
+    ],
+    "copyright": "&copy; 2023 Projeto Educacional de Drones. Todos os direitos reservados."
+  }
+}
