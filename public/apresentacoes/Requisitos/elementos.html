@@ -16,19 +16,32 @@
       --accent: #3b82f6;
       --success: #10b981;
       --warning: #f59e0b;
+      --error: #ef4444; /* Adicionado para consistência com exemplo.html */
       --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
       --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      --nav-height: 80px; /* Altura padrão da navbar */
     }
 
+    /* Reset básico para todos os elementos */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* Remove scrollbar completamente */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    * {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+
+    /* Estilos globais para body e html (sem rolagem no body, rolagem no main) */
     body, html {
-      min-height: 100vh;
-      overflow-y: auto;
+      height: 100vh; /* Garante que o corpo ocupa a altura total da viewport */
+      overflow: hidden; /* Remove rolagem do body */
       font-family: var(--font-sans);
       background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       color: var(--dark);
@@ -36,15 +49,19 @@
       flex-direction: column;
     }
 
+    /* Estilos da barra de navegação */
     nav {
       background-color: var(--primary);
       color: white;
       padding: 1rem 0;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       z-index: 100;
-      position: sticky;
+      position: sticky; /* Permanece no topo (com overflow:hidden no body, se comporta como fixed) */
       top: 0;
       width: 100%;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
     }
 
     .nav-container {
@@ -54,6 +71,7 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1rem;
+      width: 100%; /* Garante que ocupe a largura total dentro do nav */
     }
 
     .logo-container {
@@ -75,7 +93,7 @@
     nav a {
       color: white;
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-weight: 500;
       padding: 0.5rem 1rem;
       border-radius: 0.375rem;
@@ -94,7 +112,7 @@
     }
 
     .menu-button {
-      display: none;
+      display: none; /* Escondido por padrão (desktop) */
       background: none;
       border: none;
       color: white;
@@ -108,33 +126,40 @@
       color: rgba(255, 255, 255, 0.8);
     }
 
+    /* Estilos da área principal de conteúdo */
     main {
-      flex: 1;
+      flex: 1; /* Permite que a main ocupe o espaço restante */
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
-      padding: 2rem;
+      padding: 1rem; /* Reduzido para dar mais espaço */
       text-align: center;
       position: relative;
-      padding-top: 1rem;
+      overflow-y: auto; /* Permite rolagem dentro da main */
+      overflow-x: hidden; /* Esconde rolagem horizontal */
+      height: calc(100vh - var(--nav-height)); /* Ocupa altura restante */
     }
 
+    /* Estilos específicos para esta página */
     .title {
       font-size: 3.5rem;
       font-weight: 800;
       margin-bottom: 2rem;
       color: var(--primary);
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      flex-shrink: 0; /* Impede que o título encolha */
     }
 
     .elements-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
-      width: auto;              /* Permite o grid encolher para o conteúdo */
-      margin: 0 auto;           /* Centraliza o grid na página */
-      justify-content: apace-around; /* Espaçamento entre os itens */
+      width: auto;
+      margin: 0 auto;
+      justify-content: center;
+      flex-shrink: 0; /* Impede que o grid encolha */
+      padding-bottom: 2rem; /* Adiciona padding para o último elemento não ficar no final da rolagem */
     }
 
     .element-card {
@@ -200,29 +225,35 @@
       opacity: 0.1;
     }
 
+    /* Media queries para responsividade */
     @media (max-width: 768px) {
+      :root {
+        --nav-height: 70px; /* Altura menor da navbar em mobile */
+      }
       body, html {
-        overflow-y: auto;
-        height: auto;
+        overflow-y: hidden; /* Sem rolagem no body, controlado pelo main */
+        height: 100vh;
         padding-top: 0;
       }
-
       nav {
-        position: fixed;
+        position: fixed; /* Navbar fixa no topo em mobile */
         top: 0;
         left: 0;
         width: 100%;
+        height: var(--nav-height);
+        padding: 0.75rem 0; /* Padding ajustado */
       }
-
       main {
-        padding-top: 5rem;
-        margin-top: 1rem;
+        padding-top: var(--nav-height); /* Empurra o conteúdo para baixo da navbar fixa */
+        height: 100vh; /* Ocupa a altura total da viewport no mobile */
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        padding-bottom: 0.75rem;
       }
-
       .nav-links {
         display: none;
         position: absolute;
-        top: 73px;
+        top: var(--nav-height); /* Posiciona abaixo da navbar */
         left: 0;
         width: 100%;
         flex-direction: column;
@@ -231,63 +262,80 @@
         padding: 1rem 0;
         z-index: 50;
       }
-
       .nav-links.active {
         display: flex;
       }
-
       .nav-links a {
         width: 100%;
         text-align: center;
         padding: 1rem;
         border-radius: 0;
+        font-size: 1rem;
       }
-
       .menu-button {
-        display: block;
+        display: block; /* Mostra o botão de menu em mobile */
       }
-
       .elements-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Uma coluna em mobile */
         gap: 1.5rem;
       }
-
       .title {
         font-size: 2.5rem;
       }
-
       .element-card {
         padding: 1rem;
         flex-direction: column;
         align-items: flex-start;
       }
-
       .element-icon {
         margin-right: 0;
         margin-bottom: 1rem;
       }
-
       .element-title {
         font-size: 1.25rem;
       }
-
       .element-description {
         font-size: 1rem;
       }
     }
 
     @media (max-width: 480px) {
+      :root {
+        --nav-height: 65px; /* Altura menor para telas muito pequenas */
+      }
       .nav-container {
         justify-content: space-between;
+        padding: 0 0.75rem;
       }
-
+      .nav-logo {
+        height: 32px;
+        margin-right: 0.75rem;
+      }
+      .logo-container span {
+        font-size: 1.2rem !important;
+      }
       nav a {
-        font-size: 0.875rem;
-        padding: 0.25rem;
+        font-size: 0.9rem;
+        padding: 0.75rem;
       }
-
       .title {
         font-size: 2rem;
+      }
+      main {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .title {
+        font-size: 1.6rem;
+      }
+      .element-title {
+        font-size: 1rem;
+      }
+      .element-description {
+        font-size: 0.8rem;
       }
     }
   </style>
@@ -296,7 +344,7 @@
   <nav>
     <div class="nav-container">
       <div class="logo-container">
-        <img src="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" alt="ConfLoto Logo" class="nav-logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" alt="Logo" class="nav-logo">
         <span style="font-weight: bold; font-size: 1.5rem; color: white;">Diagrama de Atividades</span>
       </div>
       <button class="menu-button" id="menu-toggle">
@@ -304,7 +352,8 @@
       </button>
       <div class="nav-links" id="nav-links">
         <a href="index.html">Introdução</a>
-        <a href="elementos.html" class="active">Elementos</a>
+        <a href="definicao.html">Definição</a>
+        <a href="elementos.html">Elementos</a>
         <a href="forma-uso.html">Forma de Uso</a>
         <a href="exemplo.html">Exemplo</a>
         <a href="beneficios.html">Benefícios</a>
@@ -317,68 +366,195 @@
     <h1 class="title animate__animated animate__fadeInDown">Elementos do Diagrama de Atividades</h1>
 
     <div class="elements-grid animate__animated animate__fadeIn animate__delay-1s">
+      <!-- Início -->
       <div class="element-card">
         <div class="element-card-title">
-          <span class="element-icon">⚫</span>
+          <span class="element-icon">
+            <!-- Círculo preto preenchido -->
+            <svg width="32" height="32"><circle cx="16" cy="16" r="12" fill="#222" /></svg>
+          </span>
           <div class="element-content">
             <h3 class="element-title">Início</h3>
           </div>
         </div>
         <p class="element-description">Ponto inicial do processo, representado por um círculo preto preenchido.</p>
       </div>
+
+      <!-- Atividade -->
       <div class="element-card">
         <div class="element-card-title">
-          <span class="element-icon">💼</span>
+          <span class="element-icon">
+            <!-- Retângulo com bordas arredondadas -->
+            <svg width="38" height="28"><rect x="2" y="4" rx="10" ry="10" width="34" height="20" fill="#3b82f6" stroke="#1e293b" stroke-width="2"/></svg>
+          </span>
           <div class="element-content">
             <h3 class="element-title">Atividade</h3>
           </div>
         </div>
         <p class="element-description">Ação ou tarefa, representada por um retângulo com bordas arredondadas.</p>
       </div>
+
+      <!-- Decisão -->
       <div class="element-card">
         <div class="element-card-title">
-          <span class="element-icon">🔶</span>
+          <span class="element-icon">
+            <!-- Losango -->
+            <svg width="32" height="32"><polygon points="16,4 28,16 16,28 4,16" fill="#f59e0b" stroke="#1e293b" stroke-width="2"/></svg>
+          </span>
           <div class="element-content">
             <h3 class="element-title">Decisão</h3>
           </div>
         </div>
         <p class="element-description">Ponto de divisão do fluxo, representado por um losango.</p>
       </div>
+
+      <!-- Fluxo -->
       <div class="element-card">
         <div class="element-card-title">
-          <span class="element-icon">➡️</span>
+          <span class="element-icon">
+            <!-- Seta -->
+            <svg width="40" height="20"><line x1="4" y1="10" x2="32" y2="10" stroke="#2563eb" stroke-width="3"/><polygon points="32,5 38,10 32,15" fill="#2563eb"/></svg>
+          </span>
           <div class="element-content">
             <h3 class="element-title">Fluxo</h3>
           </div>
         </div>
         <p class="element-description">Conexão entre elementos, indicando a sequência, representada por setas.</p>
       </div>
+
+      <!-- Paralelismo (Fork/Join) -->
       <div class="element-card">
         <div class="element-card-title">
-          <span class="element-icon">↔️</span>
+          <span class="element-icon">
+            <!-- Barra horizontal grossa -->
+            <svg width="40" height="16"><rect x="4" y="6" width="32" height="4" fill="#10b981" stroke="#1e293b" stroke-width="1"/></svg>
+          </span>
           <div class="element-content">
-            <h3 class="element-title">Paralelismo</h3>
+            <h3 class="element-title">Paralelismo (Fork/Join)</h3>
           </div>
         </div>
-        <p class="element-description">Início/fim de atividades simultâneas, representado por barras horizontais.</p>
+        <p class="element-description">Início ou fim de atividades simultâneas, representado por uma barra horizontal grossa.</p>
       </div>
+
+      <!-- Fim -->
       <div class="element-card">
         <div class="element-card-title">
-          <span class="element-icon">⚪</span>
+          <span class="element-icon">
+            <!-- Círculo com borda preta e círculo interno preto -->
+            <svg width="32" height="32">
+              <circle cx="16" cy="16" r="12" fill="white" stroke="#222" stroke-width="3"/>
+              <circle cx="16" cy="16" r="7" fill="#222"/>
+            </svg>
+          </span>
           <div class="element-content">
             <h3 class="element-title">Fim</h3>
           </div>
         </div>
-        <p class="element-description">Ponto final do processo, representado por um círculo com borda preta.</p>
+        <p class="element-description">Ponto final do processo, representado por um círculo com borda preta e círculo interno preto.</p>
       </div>
+
+      <!-- Swimlanes -->
       <div class="element-card">
         <div class="element-card-title">
-          <span class="element-icon">🏊‍♂️</span>
+          <span class="element-icon">
+            <!-- Swimlanes: linhas verticais e texto -->
+            <svg width="38" height="32">
+              <rect x="2" y="4" width="34" height="24" fill="#f8fafc" stroke="#1e293b" stroke-width="1"/>
+              <line x1="14" y1="4" x2="14" y2="28" stroke="#3b82f6" stroke-width="2"/>
+              <line x1="26" y1="4" x2="26" y2="28" stroke="#3b82f6" stroke-width="2"/>
+            </svg>
+          </span>
           <div class="element-content">
             <h3 class="element-title">Swimlanes</h3>
           </div>
         </div>
-        <p class="element-description">Divisão em faixas para indicar responsáveis, separadas por linhas.</p>
+        <p class="element-description">Divisão em faixas para indicar responsáveis, separadas por linhas verticais.</p>
+      </div>
+
+      <!-- Nota -->
+      <div class="element-card">
+        <div class="element-card-title">
+          <span class="element-icon">
+            <!-- Nota: retângulo com canto dobrado -->
+            <svg width="32" height="32">
+              <rect x="4" y="6" width="22" height="18" fill="#fffbe7" stroke="#f59e0b" stroke-width="2"/>
+              <polyline points="22,6 28,6 28,12" fill="none" stroke="#f59e0b" stroke-width="2"/>
+              <polygon points="22,6 28,6 22,12" fill="#fffbe7" stroke="#f59e0b" stroke-width="2"/>
+            </svg>
+          </span>
+          <div class="element-content">
+            <h3 class="element-title">Nota</h3>
+          </div>
+        </div>
+        <p class="element-description">Comentário ou explicação adicional, representado por um retângulo com canto dobrado.</p>
+      </div>
+
+      <!-- Objeto -->
+      <div class="element-card">
+        <div class="element-card-title">
+          <span class="element-icon">
+            <!-- Objeto: retângulo com sublinhado -->
+            <svg width="38" height="28">
+              <rect x="2" y="4" width="34" height="16" fill="#e0e7ef" stroke="#475569" stroke-width="2"/>
+              <line x1="2" y1="22" x2="36" y2="22" stroke="#475569" stroke-width="2"/>
+            </svg>
+          </span>
+          <div class="element-content">
+            <h3 class="element-title">Objeto</h3>
+          </div>
+        </div>
+        <p class="element-description">Representa um objeto manipulado durante o processo, geralmente com nome sublinhado.</p>
+      </div>
+
+      <!-- Sinal (Envio/Recebimento) -->
+      <div class="element-card">
+        <div class="element-card-title">
+          <span class="element-icon">
+            <!-- Envelope para sinal -->
+            <svg width="32" height="24">
+              <rect x="2" y="4" width="28" height="16" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+              <polyline points="2,4 16,16 30,4" fill="none" stroke="#2563eb" stroke-width="2"/>
+            </svg>
+          </span>
+          <div class="element-content">
+            <h3 class="element-title">Sinal</h3>
+          </div>
+        </div>
+        <p class="element-description">Envio ou recebimento de sinal, representado por um envelope.</p>
+      </div>
+
+      <!-- Tempo (Tempo/Espera) -->
+      <div class="element-card">
+        <div class="element-card-title">
+          <span class="element-icon">
+            <!-- Relógio -->
+            <svg width="32" height="32">
+              <circle cx="16" cy="16" r="12" fill="#fff" stroke="#1e293b" stroke-width="2"/>
+              <line x1="16" y1="16" x2="16" y2="9" stroke="#f59e0b" stroke-width="2"/>
+              <line x1="16" y1="16" x2="22" y2="16" stroke="#f59e0b" stroke-width="2"/>
+            </svg>
+          </span>
+          <div class="element-content">
+            <h3 class="element-title">Tempo/Espera</h3>
+          </div>
+        </div>
+        <p class="element-description">Indica espera ou passagem de tempo, geralmente representado por um relógio.</p>
+      </div>
+
+      <!-- Exceção -->
+      <div class="element-card">
+        <div class="element-card-title">
+          <span class="element-icon">
+            <!-- Raio para exceção -->
+            <svg width="32" height="32">
+              <polyline points="12,6 20,16 14,16 20,26" fill="none" stroke="#ef4444" stroke-width="3"/>
+            </svg>
+          </span>
+          <div class="element-content">
+            <h3 class="element-title">Exceção</h3>
+          </div>
+        </div>
+        <p class="element-description">Representa tratamento de erro ou fluxo alternativo, geralmente com símbolo de raio.</p>
       </div>
     </div>
 
@@ -404,6 +580,14 @@
         link.addEventListener('click', () => {
           navLinks.classList.remove('active');
         });
+      });
+
+      // Fecha o menu ao clicar fora dele
+      document.addEventListener('click', (e) => {
+        const navElement = document.querySelector('nav');
+        if (navElement && !navElement.contains(e.target) && navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+        }
       });
 
       // Marcar a página atual como ativa

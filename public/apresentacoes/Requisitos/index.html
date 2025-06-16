@@ -16,19 +16,23 @@
       --accent: #3b82f6;
       --success: #10b981;
       --warning: #f59e0b;
+      --error: #ef4444; /* Adicionado para consistência com exemplo.html */
       --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
       --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      --nav-height: 80px; /* Altura padrão da navbar */
     }
 
+    /* Reset básico para todos os elementos */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* Estilos globais para body e html (com rolagem vertical) */
     body, html {
-      min-height: 100vh;
-      overflow-y: auto;
+      min-height: 100vh; /* Garante que o corpo ocupa a altura mínima da viewport */
+      overflow-y: auto; /* Permite rolagem vertical quando o conteúdo exceder */
       font-family: var(--font-sans);
       background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       color: var(--dark);
@@ -36,15 +40,19 @@
       flex-direction: column;
     }
 
+    /* Estilos da barra de navegação */
     nav {
       background-color: var(--primary);
       color: white;
       padding: 1rem 0;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       z-index: 100;
-      position: sticky;
+      position: sticky; /* Permanece no topo ao rolar */
       top: 0;
       width: 100%;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
     }
 
     .nav-container {
@@ -54,6 +62,7 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1rem;
+      width: 100%; /* Garante que ocupe a largura total dentro do nav */
     }
 
     .logo-container {
@@ -75,7 +84,7 @@
     nav a {
       color: white;
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-weight: 500;
       padding: 0.5rem 1rem;
       border-radius: 0.375rem;
@@ -94,7 +103,7 @@
     }
 
     .menu-button {
-      display: none;
+      display: none; /* Escondido por padrão (desktop) */
       background: none;
       border: none;
       color: white;
@@ -108,18 +117,20 @@
       color: rgba(255, 255, 255, 0.8);
     }
 
+    /* Estilos da área principal de conteúdo */
     main {
-      flex: 1;
+      flex: 1; /* Permite que a main ocupe o espaço restante */
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
-      padding: 2rem;
+      padding: 2rem; /* Mantém o padding original desta página */
       text-align: center;
       position: relative;
-      padding-top: 1rem;
+      padding-top: 1rem; /* Mantém o padding-top original */
     }
 
+    /* Estilos específicos para esta página */
     .title {
       font-size: 3.5rem;
       font-weight: 800;
@@ -128,37 +139,47 @@
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
-    .content-card {
-      background-color: white;
-      border-radius: 1rem;
+    .timeline-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .timeline-step {
+      flex: 1 1 260px;
+      background: white;
+      border-radius: 1.5rem;
       padding: 1.5rem;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      text-align: left;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      width: 100%;
-      max-width: 1200px;
-      margin-bottom: 1.5rem;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
     }
 
-    .content-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    .timeline-step:hover {
+      transform: translateY(-4px);
     }
 
-    .card-title {
+    .timeline-step .icon {
       font-size: 2rem;
-      font-weight: 700;
       margin-bottom: 0.5rem;
-      color: var(--dark);
     }
 
-    .card-description {
-      font-size: 2rem;
+    .timeline-step h3 {
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-step p {
+      font-size: 1rem;
       color: var(--secondary);
-      line-height: 1.5;
     }
 
-    .bg-circles {
+    .bg-circles { /* Adicionado para consistência */
       position: absolute;
       top: 0;
       left: 0;
@@ -168,35 +189,38 @@
       z-index: -1;
     }
 
-    .circle {
+    .circle { /* Adicionado para consistência */
       position: absolute;
       border-radius: 50%;
       opacity: 0.1;
     }
 
+    /* Media queries para responsividade */
     @media (max-width: 768px) {
+      :root {
+        --nav-height: 70px; /* Altura menor da navbar em mobile */
+      }
       body, html {
-        overflow-y: auto;
-        height: auto;
+        overflow-y: auto; /* Garante rolagem no mobile */
+        height: auto; /* Permite que a altura do corpo se ajuste ao conteúdo */
         padding-top: 0;
       }
-
       nav {
-        position: fixed;
+        position: fixed; /* Navbar fixa no topo em mobile */
         top: 0;
         left: 0;
         width: 100%;
+        height: var(--nav-height);
+        padding: 0.75rem 0; /* Padding ajustado */
       }
-
       main {
-        padding-top: 5rem; /* Adiciona espaço para o nav fixo não sobrepor o conteúdo */
+        padding-top: 5rem; /* Empurra o conteúdo para baixo da navbar fixa */
         margin-top: 1rem;
       }
-
       .nav-links {
         display: none;
         position: absolute;
-        top: 73px;
+        top: var(--nav-height); /* Posiciona abaixo da navbar */
         left: 0;
         width: 100%;
         flex-direction: column;
@@ -205,49 +229,49 @@
         padding: 1rem 0;
         z-index: 50;
       }
-
       .nav-links.active {
         display: flex;
       }
-
       .nav-links a {
         width: 100%;
         text-align: center;
         padding: 1rem;
         border-radius: 0;
+        font-size: 1rem;
       }
-
       .menu-button {
-        display: block;
+        display: block; /* Mostra o botão de menu em mobile */
       }
-
       .title {
         font-size: 2.5rem;
       }
-
-      .content-card {
-        padding: 1rem;
+      .timeline-step h3 { /* Ajuste para evitar conflito com .card h3 */
+        font-size: 1.1rem;
       }
-
-      .card-title {
-        font-size: 1.5rem;
-      }
-
-      .card-description {
-        font-size: 1rem;
+      .timeline-step p { /* Ajuste para evitar conflito com .card p */
+        font-size: 0.95rem;
       }
     }
 
     @media (max-width: 480px) {
+      :root {
+        --nav-height: 65px; /* Altura menor para telas muito pequenas */
+      }
       .nav-container {
         justify-content: space-between;
+        padding: 0 0.75rem;
       }
-
+      .nav-logo {
+        height: 32px;
+        margin-right: 0.75rem;
+      }
+      .logo-container span {
+        font-size: 1.2rem !important;
+      }
       nav a {
-        font-size: 0.875rem;
-        padding: 0.25rem;
+        font-size: 0.9rem;
+        padding: 0.75rem;
       }
-
       .title {
         font-size: 2rem;
       }
@@ -258,14 +282,15 @@
   <nav>
     <div class="nav-container">
       <div class="logo-container">
-        <img src="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" alt="ConfLoto Logo" class="nav-logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" alt="Logo" class="nav-logo">
         <span style="font-weight: bold; font-size: 1.5rem; color: white;">Diagrama de Atividades</span>
       </div>
       <button class="menu-button" id="menu-toggle">
         ☰
       </button>
       <div class="nav-links" id="nav-links">
-        <a href="index.html" class="active">Introdução</a>
+        <a href="index.html">Introdução</a>
+        <a href="definicao.html">Definição</a>
         <a href="elementos.html">Elementos</a>
         <a href="forma-uso.html">Forma de Uso</a>
         <a href="exemplo.html">Exemplo</a>
@@ -276,15 +301,39 @@
   </nav>
 
   <main>
-    <h1 class="title animate__animated animate__fadeInDown">Introdução</h1>
+    <h1 class="title animate__animated animate__fadeInDown">Introdução ao Diagrama de Atividades</h1>
 
-    <div class="content-card animate__animated animate__fadeIn animate__delay-1s">
-      <p class="card-description">
-        O <strong>Diagrama de Atividades</strong> é um diagrama comportamental da UML, usado para modelar fluxos de trabalho e processos de negócio. Ele visualiza sequências de atividades, decisões e fluxos de controle, sendo essencial na elicitação e modelagem de requisitos.
-      </p>
-      <p class="card-description mt-4">
-        Este seminário apresenta sua definição, elementos, uso prático e benefícios, alinhado à disciplina de Requisitos e Modelagem de Software.
-      </p>
+    <div class="timeline-container">
+      <div class="timeline-step">
+        <div class="icon">📊</div>
+        <h3>Diagrama UML</h3>
+        <p>Modelo visual que representa o comportamento de um sistema.</p>
+      </div>
+      <div class="timeline-step">
+        <div class="icon">🛠</div>
+        <h3>Processos e Tarefas</h3>
+        <p>Permite descrever sequências de atividades em fluxos de trabalho.</p>
+      </div>
+      <div class="timeline-step">
+        <div class="icon">🔁</div>
+        <h3>Fluxo de Controle</h3>
+        <p>Indica a ordem lógica das ações executadas no sistema.</p>
+      </div>
+      <div class="timeline-step">
+        <div class="icon">👥</div>
+        <h3>Interações</h3>
+        <p>Mostra como atores e sistemas participam dos processos.</p>
+      </div>
+      <div class="timeline-step">
+        <div class="icon">💡</div>
+        <h3>Visual Intuitiva</h3>
+        <p>Facilita a leitura e o entendimento dos fluxos por qualquer pessoa.</p>
+      </div>
+      <div class="timeline-step">
+        <div class="icon">📚</div>
+        <h3>Engenharia de Requisitos</h3>
+        <p>Ferramenta essencial na análise e modelagem funcional.</p>
+      </div>
     </div>
 
     <div class="bg-circles">
@@ -293,7 +342,7 @@
       <div class="circle" style="width: 150px; height: 150px; background-color: var(--success); left: 15%; bottom: 10%;"></div>
     </div>
   </main>
-
+    
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Funcionalidade do menu mobile
@@ -309,6 +358,14 @@
         link.addEventListener('click', () => {
           navLinks.classList.remove('active');
         });
+      });
+
+      // Fecha o menu ao clicar fora dele
+      document.addEventListener('click', (e) => {
+        const navElement = document.querySelector('nav');
+        if (navElement && !navElement.contains(e.target) && navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+        }
       });
 
       // Marcar a página atual como ativa

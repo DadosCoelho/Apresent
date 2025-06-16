@@ -16,19 +16,32 @@
       --accent: #3b82f6;
       --success: #10b981;
       --warning: #f59e0b;
+      --error: #ef4444; /* Adicionado para consistência com exemplo.html */
       --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
       --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      --nav-height: 80px; /* Altura padrão da navbar */
     }
 
+    /* Reset básico para todos os elementos */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* Remove scrollbar completamente */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    * {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+
+    /* Estilos globais para body e html (sem rolagem no body, rolagem no main) */
     body, html {
-      min-height: 100vh;
-      overflow-y: auto;
+      height: 100vh; /* Garante que o corpo ocupa a altura total da viewport */
+      overflow: hidden; /* Remove rolagem do body */
       font-family: var(--font-sans);
       background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       color: var(--dark);
@@ -36,15 +49,19 @@
       flex-direction: column;
     }
 
+    /* Estilos da barra de navegação */
     nav {
       background-color: var(--primary);
       color: white;
       padding: 1rem 0;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       z-index: 100;
-      position: sticky;
+      position: sticky; /* Permanece no topo (com overflow:hidden no body, se comporta como fixed) */
       top: 0;
       width: 100%;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
     }
 
     .nav-container {
@@ -54,6 +71,7 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1rem;
+      width: 100%; /* Garante que ocupe a largura total dentro do nav */
     }
 
     .logo-container {
@@ -75,7 +93,7 @@
     nav a {
       color: white;
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-weight: 500;
       padding: 0.5rem 1rem;
       border-radius: 0.375rem;
@@ -94,7 +112,7 @@
     }
 
     .menu-button {
-      display: none;
+      display: none; /* Escondido por padrão (desktop) */
       background: none;
       border: none;
       color: white;
@@ -108,24 +126,80 @@
       color: rgba(255, 255, 255, 0.8);
     }
 
+    /* Estilos da área principal de conteúdo */
     main {
-      flex: 1;
+      flex: 1; /* Permite que a main ocupe o espaço restante */
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
-      padding: 2rem;
+      padding: 1rem; /* Reduzido para dar mais espaço */
       text-align: center;
       position: relative;
-      padding-top: 1rem;
+      overflow-y: auto; /* Permite rolagem dentro da main */
+      overflow-x: hidden; /* Esconde rolagem horizontal */
+      height: calc(100vh - var(--nav-height)); /* Ocupa altura restante */
     }
 
+    /* Estilos específicos para esta página */
     .title {
       font-size: 3.5rem;
       font-weight: 800;
       margin-bottom: 2rem;
       color: var(--primary);
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      flex-shrink: 0; /* Impede que o título encolha */
+    }
+
+    .section-card {
+      background-color: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      text-align: left;
+      margin-bottom: 2rem;
+      width: 100%;
+      max-width: 900px;
+      flex-shrink: 0; /* Impede que o card encolha */
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    .section-description {
+      font-size: 1.125rem;
+      color: var(--secondary);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .section-card {
+      background-color: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      text-align: left;
+      margin-bottom: 2rem;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    .section-description {
+      font-size: 1.125rem;
+      color: var(--secondary);
+      line-height: 1.6;
+      margin-bottom: 1rem;
     }
 
     .steps-container {
@@ -133,39 +207,35 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 800px;
+      max-width: 900px;
+      padding-bottom: 2rem; /* Adiciona padding para o último elemento não ficar no final da rolagem */
     }
 
     .step-card {
-      background-color: white;
+      background-color: #f8fafc;
       border-radius: 1rem;
       padding: 1.5rem;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 8px -2px rgba(0,0,0,0.06);
       text-align: left;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
       align-items: flex-start;
       width: 100%;
-      margin-bottom: 1.5rem;
-    }
-
-    .step-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      margin-bottom: 1.2rem;
+      border-left: 6px solid var(--primary);
     }
 
     .step-number {
       background-color: var(--primary);
       color: white;
-      width: 3rem;
-      height: 3rem;
+      width: 2.5rem;
+      height: 2.5rem;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: bold;
-      margin-right: 1.5rem;
+      margin-right: 1.2rem;
       flex-shrink: 0;
     }
 
@@ -174,14 +244,14 @@
     }
 
     .step-title {
-      font-size: 2rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
       color: var(--dark);
     }
 
     .step-description {
-      font-size: 1.125rem;
+      font-size: 1.05rem;
       color: var(--secondary);
       line-height: 1.5;
     }
@@ -202,29 +272,57 @@
       opacity: 0.1;
     }
 
+    /* Media queries para responsividade */
     @media (max-width: 768px) {
+      :root {
+        --nav-height: 70px; /* Altura menor da navbar em mobile */
+      }
       body, html {
-        overflow-y: auto;
-        height: auto;
+        overflow-y: hidden; /* Sem rolagem no body, controlado pelo main */
+        height: 100vh;
         padding-top: 0;
       }
-
       nav {
-        position: fixed;
+        position: fixed; /* Navbar fixa no topo em mobile */
         top: 0;
         left: 0;
         width: 100%;
+        height: var(--nav-height);
+        padding: 0.75rem 0; /* Padding ajustado */
       }
-
       main {
-        padding-top: 5rem;
-        margin-top: 1rem;
+        padding-top: var(--nav-height); /* Empurra o conteúdo para baixo da navbar fixa */
+        height: 100vh; /* Ocupa a altura total da viewport no mobile */
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        padding-bottom: 0.75rem;
       }
-
+      .section-card, .steps-container {
+        padding: 1rem;
+        max-width: 100%;
+      }
+      .title {
+        font-size: 2.5rem;
+      }
+      .step-card {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .step-number {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+      .step-title {
+        font-size: 1.1rem;
+      }
+      .step-description {
+        font-size: 1rem;
+      }
       .nav-links {
         display: none;
         position: absolute;
-        top: 73px;
+        top: var(--nav-height);
         left: 0;
         width: 100%;
         flex-direction: column;
@@ -233,70 +331,82 @@
         padding: 1rem 0;
         z-index: 50;
       }
-
       .nav-links.active {
         display: flex;
       }
-
       .nav-links a {
         width: 100%;
         text-align: center;
         padding: 1rem;
         border-radius: 0;
+        font-size: 1rem;
       }
-
       .menu-button {
         display: block;
       }
-
+      .section-card, .steps-container {
+        padding: 1rem;
+        max-width: 100%;
+      }
       .title {
         font-size: 2.5rem;
       }
-
       .step-card {
         padding: 1rem;
         flex-direction: column;
         align-items: flex-start;
       }
-
       .step-number {
         margin-right: 0;
         margin-bottom: 1rem;
       }
-
       .step-title {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
       }
-
       .step-description {
         font-size: 1rem;
       }
     }
 
     @media (max-width: 480px) {
+      :root {
+        --nav-height: 65px; /* Altura menor para telas muito pequenas */
+      }
       .nav-container {
         justify-content: space-between;
+        padding: 0 0.75rem;
       }
-
+      .nav-logo {
+        height: 32px;
+        margin-right: 0.75rem;
+      }
+      .logo-container span {
+        font-size: 1.2rem !important;
+      }
       nav a {
-        font-size: 0.875rem;
-        padding: 0.25rem;
+        font-size: 0.9rem;
+        padding: 0.75rem;
       }
-
       .title {
         font-size: 2rem;
       }
-    }
-
-    @media (min-width: 900px) {
-      .steps-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-        max-width: 1400px;
+      main {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
       }
-      .step-card {
-        margin-bottom: 0;
+    }
+    @media (max-width: 360px) {
+      .title {
+        font-size: 1.6rem;
+      }
+      .section-title {
+        font-size: 1.4rem;
+      }
+      .step-title {
+        font-size: 1.1rem;
+      }
+      .step-description {
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -305,7 +415,7 @@
   <nav>
     <div class="nav-container">
       <div class="logo-container">
-        <img src="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" alt="ConfLoto Logo" class="nav-logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" alt="Logo" class="nav-logo">
         <span style="font-weight: bold; font-size: 1.5rem; color: white;">Diagrama de Atividades</span>
       </div>
       <button class="menu-button" id="menu-toggle">
@@ -313,8 +423,9 @@
       </button>
       <div class="nav-links" id="nav-links">
         <a href="index.html">Introdução</a>
+        <a href="definicao.html">Definição</a>
         <a href="elementos.html">Elementos</a>
-        <a href="forma-uso.html" class="active">Forma de Uso</a>
+        <a href="forma-uso.html">Forma de Uso</a>
         <a href="exemplo.html">Exemplo</a>
         <a href="beneficios.html">Benefícios</a>
         <a href="conclusao.html">Conclusão</a>
@@ -325,47 +436,71 @@
   <main>
     <h1 class="title animate__animated animate__fadeInDown">Forma de Uso</h1>
 
-    <div class="steps-container animate__animated animate__fadeIn animate__delay-1s">
-      <div class="step-card">
-        <div class="step-number">1</div>
-        <div class="step-content">
-          <h3 class="step-title">Identificar o Processo</h3>
-          <p class="step-description">Definir o escopo do processo ou caso de uso a ser modelado (ex.: "Processar Pedido Online").</p>
+    <div class="section-card animate__animated animate__fadeIn">
+      <h2 class="section-title">Onde o Diagrama de Atividades é Aplicado?</h2>
+      <p class="section-description">
+        O Diagrama de Atividades é utilizado em diversas etapas do desenvolvimento de software, especialmente na análise e modelagem de processos de negócio, requisitos e fluxos de trabalho. Ele é aplicado para:
+      </p>
+      <ul class="section-description" style="margin-bottom: 0.5rem; padding-left: 1.5rem;">
+        <li><strong>Levantamento de Requisitos:</strong> Para detalhar casos de uso e processos do sistema.</li>
+        <li><strong>Análise de Processos:</strong> Para visualizar e otimizar fluxos de atividades.</li>
+        <li><strong>Documentação:</strong> Para registrar o funcionamento de funcionalidades e regras de negócio.</li>
+        <li><strong>Comunicação:</strong> Para facilitar o entendimento entre equipe técnica e stakeholders.</li>
+        <li><strong>Modelagem de Fluxos:</strong> Para representar paralelismo, decisões, exceções e interações entre atores.</li>
+      </ul>
+    </div>
+
+    <div class="section-card animate__animated animate__fadeIn animate__delay-1s">
+      <h2 class="section-title">Passos para Criar um Diagrama de Atividades</h2>
+      <div class="steps-container">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3 class="step-title">Definir o Escopo</h3>
+            <p class="step-description">Escolha o processo, caso de uso ou funcionalidade que será modelado.</p>
+          </div>
         </div>
-      </div>
-      <div class="step-card">
-        <div class="step-number">2</div>
-        <div class="step-content">
-          <h3 class="step-title">Listar Atividades</h3>
-          <p class="step-description">Enumerar as ações realizadas no processo (ex.: "Verificar Estoque", "Confirmar Pagamento").</p>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3 class="step-title">Identificar Atividades</h3>
+            <p class="step-description">Liste todas as ações, tarefas e eventos envolvidos no fluxo.</p>
+          </div>
         </div>
-      </div>
-      <div class="step-card">
-        <div class="step-number">3</div>
-        <div class="step-content">
-          <h3 class="step-title">Definir Fluxos e Decisões</h3>
-          <p class="step-description">Estabelecer a sequência e pontos de decisão (ex.: "Se pagamento aprovado, prosseguir").</p>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3 class="step-title">Determinar Sequência e Decisões</h3>
+            <p class="step-description">Estabeleça a ordem das atividades, pontos de decisão e possíveis caminhos alternativos.</p>
+          </div>
         </div>
-      </div>
-      <div class="step-card">
-        <div class="step-number">4</div>
-        <div class="step-content">
-          <h3 class="step-title">Mapear Atores</h3>
-          <p class="step-description">Identificar quem realiza cada atividade (usuário, sistema, etc.).</p>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3 class="step-title">Mapear Responsáveis (Swimlanes)</h3>
+            <p class="step-description">Divida o diagrama em faixas para indicar quem executa cada atividade (usuário, sistema, etc.).</p>
+          </div>
         </div>
-      </div>
-      <div class="step-card">
-        <div class="step-number">5</div>
-        <div class="step-content">
-          <h3 class="step-title">Desenhar o Diagrama</h3>
-          <p class="step-description">Usar ferramentas como Lucidchart, Visual Paradigm ou StarUML para criar a representação visual.</p>
+        <div class="step-card">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <h3 class="step-title">Adicionar Elementos Especiais</h3>
+            <p class="step-description">Inclua paralelismo (fork/join), sinais, objetos, exceções e notas conforme necessário.</p>
+          </div>
         </div>
-      </div>
-      <div class="step-card">
-        <div class="step-number">6</div>
-        <div class="step-content">
-          <h3 class="step-title">Validar com Stakeholders</h3>
-          <p class="step-description">Garantir que o diagrama reflete o processo corretamente.</p>
+        <div class="step-card">
+          <div class="step-number">6</div>
+          <div class="step-content">
+            <h3 class="step-title">Desenhar o Diagrama</h3>
+            <p class="step-description">Utilize ferramentas como Lucidchart, Visual Paradigm, StarUML ou papel para criar o diagrama visualmente.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">7</div>
+          <div class="step-content">
+            <h3 class="step-title">Validar com Stakeholders</h3>
+            <p class="step-description">Revise o diagrama com a equipe e partes interessadas para garantir que representa corretamente o processo.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -392,6 +527,14 @@
         link.addEventListener('click', () => {
           navLinks.classList.remove('active');
         });
+      });
+
+      // Fecha o menu ao clicar fora dele
+      document.addEventListener('click', (e) => {
+        const navElement = document.querySelector('nav');
+        if (navElement && !navElement.contains(e.target) && navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+        }
       });
 
       // Marcar a página atual como ativa

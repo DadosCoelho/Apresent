@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diagrama de Atividades - Benefícios</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diagrama de Atividades - Definição</title>
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" type="image/png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <style>
     :root {
       --primary: #2563eb;
@@ -124,7 +124,6 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
-      padding: 2rem; /* Mantém o padding original desta página */
       text-align: center;
       position: relative;
       padding-top: 1rem; /* Mantém o padding-top original */
@@ -132,61 +131,54 @@
 
     /* Estilos específicos para esta página */
     .title {
-      font-size: 3.5rem;
-      font-weight: 800;
-      margin-bottom: 2rem;
+      font-size: 3rem;
       color: var(--primary);
+      font-weight: bold;
+      margin-bottom: 2rem;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-      width: 100%;
-      max-width: 1000px;
-    }
-
-    .benefit-card {
-      background-color: white;
-      border-radius: 1rem;
-      padding: 1.5rem;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      text-align: left;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .timeline-container {
       display: flex;
-      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem;
     }
 
-    .benefit-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    .timeline-step {
+      flex: 1 1 260px;
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
     }
 
-    .benefit-icon {
-      margin-right: 1.5rem;
-      font-size: 2.5rem;
-      flex-shrink: 0;
+    .timeline-step:hover {
+      transform: translateY(-4px);
     }
 
-    .benefit-content {
-      flex: 1;
-    }
-
-    .benefit-title {
+    .timeline-step .icon {
       font-size: 2rem;
-      font-weight: 700;
       margin-bottom: 0.5rem;
-      color: var(--dark);
     }
 
-    .benefit-description {
-      font-size: 1.125rem;
+    .timeline-step h3 {
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-step p {
+      font-size: 1rem;
       color: var(--secondary);
-      line-height: 1.5;
     }
 
-    .bg-circles {
+    .bg-circles { /* Adicionado para consistência */
       position: absolute;
       top: 0;
       left: 0;
@@ -196,7 +188,7 @@
       z-index: -1;
     }
 
-    .circle {
+    .circle { /* Adicionado para consistência */
       position: absolute;
       border-radius: 50%;
       opacity: 0.1;
@@ -249,26 +241,13 @@
       .menu-button {
         display: block; /* Mostra o botão de menu em mobile */
       }
-      .benefits-grid {
-        grid-template-columns: 1fr; /* Uma coluna em mobile */
-        gap: 1.5rem;
-      }
       .title {
         font-size: 2.5rem;
       }
-      .benefit-card {
-        padding: 1rem;
-        flex-direction: column;
-        align-items: flex-start;
+      .timeline-step h3 { /* Ajuste para evitar conflito com .card h3 */
+        font-size: 1.3rem;
       }
-      .benefit-icon {
-        margin-right: 0;
-        margin-bottom: 1rem;
-      }
-      .benefit-title {
-        font-size: 1.25rem;
-      }
-      .benefit-description {
+      .timeline-step p { /* Ajuste para evitar conflito com .card p */
         font-size: 1rem;
       }
     }
@@ -302,8 +281,8 @@
   <nav>
     <div class="nav-container">
       <div class="logo-container">
-        <img src="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" alt="Logo" class="nav-logo">
-        <span style="font-weight: bold; font-size: 1.5rem; color: white;">Diagrama de Atividades</span>
+        <img src="https://cdn-icons-png.flaticon.com/512/14202/14202868.png" class="nav-logo" alt="Logo" />
+        <span style="font-size: 1.5rem; font-weight: bold;">Diagrama de Atividades</span>
       </div>
       <button class="menu-button" id="menu-toggle">
         ☰
@@ -321,50 +300,48 @@
   </nav>
 
   <main>
-    <h1 class="title animate__animated animate__fadeInDown">Benefícios</h1>
+    <h1 class="title animate__animated animate__fadeInDown">Definição</h1>
 
-    <div class="benefits-grid animate__animated animate__fadeIn animate__delay-1s">
-      <div class="benefit-card">
-        <span class="benefit-icon">📊</span>
-        <div class="benefit-content">
-          <h3 class="benefit-title">Clareza</h3>
-          <p class="benefit-description">Facilita a comunicação entre desenvolvedores e stakeholders.</p>
-        </div>
+    <div class="timeline-container">
+      <div class="timeline-step">
+        <div class="icon">📋</div>
+        <h3>O que é?</h3>
+        <p>Descreve graficamente a sequência de atividades de um processo.</p>
       </div>
-      <div class="benefit-card">
-        <span class="benefit-icon">🔍</span>
-        <div class="benefit-content">
-          <h3 class="benefit-title">Análise</h3>
-          <p class="benefit-description">Permite identificar gargalos e otimizar processos.</p>
-        </div>
+      <div class="timeline-step">
+        <div class="icon">🔍</div>
+        <h3>Objetivo</h3>
+        <p>Modelar o fluxo de controle de um sistema ou processo de negócio.</p>
       </div>
-      <div class="benefit-card">
-        <span class="benefit-icon">✅</span>
-        <div class="benefit-content">
-          <h3 class="benefit-title">Validação</h3>
-          <p class="benefit-description">Identifica lacunas ou inconsistências nos requisitos.</p>
-        </div>
+      <div class="timeline-step">
+        <div class="icon">��</div>
+        <h3>Fluxo de Controle</h3>
+        <p>Define a ordem em que as atividades são executadas.</p>
       </div>
-      <div class="benefit-card">
-        <span class="benefit-icon">��</span>
-        <div class="benefit-content">
-          <h3 class="benefit-title">Flexibilidade</h3>
-          <p class="benefit-description">Usado em diferentes níveis de abstração (negócio ou sistema).</p>
-        </div>
+      <div class="timeline-step">
+        <div class="icon">🔀</div>
+        <h3>Decisões</h3>
+        <p>Mostra pontos de bifurcação baseados em condições.</p>
       </div>
-      <div class="benefit-card">
-        <span class="benefit-icon">🔗</span>
-        <div class="benefit-content">
-          <h3 class="benefit-title">Integração com UML</h3>
-          <p class="benefit-description">Complementa outros diagramas, como Casos de Uso e Sequência.</p>
-        </div>
+      <div class="timeline-step">
+        <div class="icon">⏩</div>
+        <h3>Paralelismo</h3>
+        <p>Permite que atividades ocorram simultaneamente.</p>
       </div>
-      <div class="benefit-card">
-        <span class="benefit-icon">🚀</span>
-        <div class="benefit-content">
-          <h3 class="benefit-title">Eficiência</h3>
-          <p class="benefit-description">Reduz retrabalho e melhora a qualidade do software.</p>
-        </div>
+      <div class="timeline-step">
+        <div class="icon">��</div>
+        <h3>Interações</h3>
+        <p>Mostra participação de atores ou sistemas no processo.</p>
+      </div>
+      <div class="timeline-step">
+        <div class="icon">��</div>
+        <h3>Alto e Baixo Nível</h3>
+        <p>Aplica-se a processos de negócio ou fluxos internos.</p>
+      </div>
+      <div class="timeline-step">
+        <div class="icon">🧠</div>
+        <h3>Requisitos</h3>
+        <p>É essencial para documentar requisitos funcionais.</p>
       </div>
     </div>
 
@@ -374,7 +351,6 @@
       <div class="circle" style="width: 150px; height: 150px; background-color: var(--success); left: 15%; bottom: 10%;"></div>
     </div>
   </main>
-
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Funcionalidade do menu mobile
