@@ -16,45 +16,35 @@
       --accent: #3b82f6;
       --success: #10b981;
       --warning: #f59e0b;
-      --error: #ef4444; /* Adicionado para consistência com exemplo.html */
+      --error: #ef4444;
       --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-      --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-      --nav-height: 80px; /* Altura padrão da navbar */
+      --nav-height: 80px;
     }
-
-    /* Reset básico para todos os elementos */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    /* Estilos globais para body e html (com rolagem vertical) */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    ::-webkit-scrollbar { display: none; }
+    * { -ms-overflow-style: none; scrollbar-width: none; }
     body, html {
-      min-height: 100vh; /* Garante que o corpo ocupa a altura mínima da viewport */
-      overflow-y: auto; /* Permite rolagem vertical quando o conteúdo exceder */
+      height: 100vh;
+      overflow: hidden;
       font-family: var(--font-sans);
       background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       color: var(--dark);
       display: flex;
       flex-direction: column;
     }
-
-    /* Estilos da barra de navegação */
     nav {
       background-color: var(--primary);
       color: white;
       padding: 1rem 0;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       z-index: 100;
-      position: sticky; /* Permanece no topo ao rolar */
+      position: sticky;
       top: 0;
       width: 100%;
       height: var(--nav-height);
       display: flex;
       align-items: center;
     }
-
     .nav-container {
       display: flex;
       justify-content: space-between;
@@ -62,25 +52,21 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1rem;
-      width: 100%; /* Garante que ocupe a largura total dentro do nav */
+      width: 100%;
     }
-
     .logo-container {
       display: flex;
       align-items: center;
     }
-
     .nav-logo {
       height: 40px;
       margin-right: 1rem;
     }
-
     .nav-links {
       display: flex;
       justify-content: space-around;
       align-items: center;
     }
-
     nav a {
       color: white;
       text-decoration: none;
@@ -90,20 +76,17 @@
       border-radius: 0.375rem;
       transition: all 0.3s ease;
     }
-
     nav a:hover {
       background-color: rgba(255, 255, 255, 0.1);
       transform: translateY(-2px);
     }
-
     nav a.active {
       font-weight: 700;
       background-color: rgba(255, 255, 255, 0.2);
       border-bottom: 3px solid white;
     }
-
     .menu-button {
-      display: none; /* Escondido por padrão (desktop) */
+      display: none;
       background: none;
       border: none;
       color: white;
@@ -112,57 +95,66 @@
       padding: 0.5rem;
       transition: all 0.3s ease;
     }
-
     .menu-button:hover {
       color: rgba(255, 255, 255, 0.8);
     }
-
-    /* Estilos da área principal de conteúdo */
     main {
-      flex: 1; /* Permite que a main ocupe o espaço restante */
+      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
-      padding: 2rem; /* Mantém o padding original desta página */
+      padding: 1rem;
       text-align: center;
       position: relative;
-      padding-top: 1rem; /* Mantém o padding-top original */
+      overflow-y: auto;
+      overflow-x: hidden;
+      height: calc(100vh - var(--nav-height));
     }
-
-    /* Estilos específicos para esta página */
     .title {
       font-size: 3.5rem;
       font-weight: 800;
       margin-bottom: 2rem;
       color: var(--primary);
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      flex-shrink: 0;
     }
-
-    .content-card {
-      background-color: white;
-      border-radius: 1rem;
-      padding: 1.5rem;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      text-align: left;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .conclusion-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       width: 100%;
-      max-width: 1200px;
-      margin-bottom: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      flex: 1;
+      overflow: hidden;
     }
-
-    .content-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-
-    /* Ajuste para o tamanho da fonte da descrição no content-card se necessário, mantendo o original por enquanto */
-    .card-description {
-      font-size: 2rem; /* Este tamanho parece grande, mantendo o original do documento */
+    .conclusion-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 2.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      margin-bottom: 2rem;
+      width: 100%;
+      font-size: 1.25rem;
       color: var(--secondary);
-      line-height: 1.5;
+      line-height: 1.7;
     }
-
+    .conclusion-highlight {
+      color: var(--primary-dark);
+      font-weight: bold;
+    }
+    .conclusion-list {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      color: var(--dark);
+    }
+    .conclusion-list li {
+      margin-bottom: 0.7rem;
+      font-size: 1.1rem;
+    }
     .bg-circles {
       position: absolute;
       top: 0;
@@ -172,96 +164,21 @@
       overflow: hidden;
       z-index: -1;
     }
-
     .circle {
       position: absolute;
       border-radius: 50%;
       opacity: 0.1;
     }
-
-    /* Media queries para responsividade */
     @media (max-width: 768px) {
-      :root {
-        --nav-height: 70px; /* Altura menor da navbar em mobile */
-      }
-      body, html {
-        overflow-y: auto; /* Garante rolagem no mobile */
-        height: auto; /* Permite que a altura do corpo se ajuste ao conteúdo */
-        padding-top: 0;
-      }
-      nav {
-        position: fixed; /* Navbar fixa no topo em mobile */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: var(--nav-height);
-        padding: 0.75rem 0; /* Padding ajustado */
-      }
-      main {
-        padding-top: 5rem; /* Empurra o conteúdo para baixo da navbar fixa */
-        margin-top: 1rem;
-      }
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: var(--nav-height); /* Posiciona abaixo da navbar */
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        background-color: var(--primary);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        padding: 1rem 0;
-        z-index: 50;
-      }
-      .nav-links.active {
-        display: flex;
-      }
-      .nav-links a {
-        width: 100%;
-        text-align: center;
-        padding: 1rem;
-        border-radius: 0;
-        font-size: 1rem;
-      }
-      .menu-button {
-        display: block; /* Mostra o botão de menu em mobile */
-      }
-      .title {
-        font-size: 2.5rem;
-      }
-      .content-card {
-        padding: 1rem;
-      }
-      .card-title {
-        font-size: 1.5rem;
-      }
-      .card-description {
-        font-size: 1rem;
-      }
+      .title { font-size: 2.2rem; margin-bottom: 1.5rem; }
+      .conclusion-card { padding: 1.5rem; font-size: 1.05rem; }
+      .conclusion-container { padding: 0 0.5rem; }
     }
-
     @media (max-width: 480px) {
-      :root {
-        --nav-height: 65px; /* Altura menor para telas muito pequenas */
-      }
-      .nav-container {
-        justify-content: space-between;
-        padding: 0 0.75rem;
-      }
-      .nav-logo {
-        height: 32px;
-        margin-right: 0.75rem;
-      }
-      .logo-container span {
-        font-size: 1.2rem !important;
-      }
-      nav a {
-        font-size: 0.9rem;
-        padding: 0.75rem;
-      }
-      .title {
-        font-size: 2rem;
-      }
+      .nav-container { justify-content: space-between; }
+      nav a { font-size: 0.875rem; padding: 0.25rem; }
+      .title { font-size: 1.5rem; }
+      .conclusion-card { padding: 1rem; }
     }
   </style>
 </head>
@@ -282,56 +199,48 @@
         <a href="forma-uso.html">Forma de Uso</a>
         <a href="exemplo.html">Exemplo</a>
         <a href="beneficios.html">Benefícios</a>
-        <a href="conclusao.html">Conclusão</a>
+        <a href="conclusao.html" class="active">Conclusão</a>
       </div>
     </div>
   </nav>
 
   <main>
     <h1 class="title animate__animated animate__fadeInDown">Conclusão</h1>
-
-    <div class="content-card animate__animated animate__fadeIn animate__delay-1s">
-      <p class="card-description">
-        O <strong>Diagrama de Atividades</strong> é uma ferramenta essencial para modelagem de requisitos, permitindo representar fluxos de trabalho de forma clara e estruturada. Ele facilita a visualização de processos, decisões e interações, sendo amplamente utilizado no levantamento e validação de requisitos, além de complementar outros diagramas UML.
-      </p>
-      <p class="card-description mt-4">
-        Sua aplicação capacita a elicitação, especificação e validação de requisitos, contribuindo para o desenvolvimento de software de qualidade. Práticas com exemplos reforçam sua importância na disciplina de Requisitos e Modelagem de Software.
-      </p>
+    <div class="conclusion-container">
+      <div class="conclusion-card animate__animated animate__fadeIn">
+        O <span class="conclusion-highlight">Diagrama de Atividades</span> é uma poderosa ferramenta de modelagem que auxilia na visualização, análise e comunicação dos fluxos de trabalho em sistemas de software. Sua utilização proporciona:
+        <ul class="conclusion-list">
+          <li>Clareza na documentação dos processos e regras de negócio;</li>
+          <li>Facilidade na identificação de paralelismos, decisões e exceções;</li>
+          <li>Melhoria na comunicação entre equipe técnica e stakeholders;</li>
+          <li>Agilidade na análise e otimização de processos;</li>
+          <li>Base sólida para o desenvolvimento e validação de requisitos.</li>
+        </ul>
+        Ao adotar o Diagrama de Atividades nas etapas de desenvolvimento, as equipes conseguem alinhar expectativas, reduzir ambiguidades e garantir maior qualidade nas entregas. 
+        <br><br>
+        <span class="conclusion-highlight">Recomenda-se</span> o uso desse diagrama sempre que houver necessidade de detalhar fluxos complexos, promover entendimento entre diferentes áreas ou documentar processos críticos do sistema.
+      </div>
     </div>
-
     <div class="bg-circles">
       <div class="circle" style="width: 300px; height: 300px; background-color: var(--primary); left: 5%; top: 20%;"></div>
       <div class="circle" style="width: 200px; height: 200px; background-color: var(--accent); right: 10%; bottom: 15%;"></div>
       <div class="circle" style="width: 150px; height: 150px; background-color: var(--success); left: 15%; bottom: 10%;"></div>
     </div>
   </main>
-
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Funcionalidade do menu mobile
+      // Menu mobile
       const menuToggle = document.getElementById('menu-toggle');
       const navLinks = document.getElementById('nav-links');
-
       menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
       });
-
-      // Fecha o menu ao clicar em um link
       document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
           navLinks.classList.remove('active');
         });
       });
-
-      // Fecha o menu ao clicar fora dele
-      document.addEventListener('click', (e) => {
-        const navElement = document.querySelector('nav');
-        if (navElement && !navElement.contains(e.target) && navLinks.classList.contains('active')) {
-          navLinks.classList.remove('active');
-        }
-      });
-
-      // Marcar a página atual como ativa
+      // Página ativa
       const currentPage = window.location.pathname.split('/').pop() || 'index.html';
       document.querySelectorAll('.nav-links a').forEach(link => {
         if (link.getAttribute('href') === currentPage) {
@@ -342,5 +251,3 @@
       });
     });
   </script>
-</body>
-</html>

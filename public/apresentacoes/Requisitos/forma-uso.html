@@ -16,54 +16,35 @@
       --accent: #3b82f6;
       --success: #10b981;
       --warning: #f59e0b;
-      --error: #ef4444; /* Adicionado para consistência com exemplo.html */
+      --error: #ef4444;
       --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-      --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-      --nav-height: 80px; /* Altura padrão da navbar */
+      --nav-height: 80px;
     }
-
-    /* Reset básico para todos os elementos */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    /* Remove scrollbar completamente */
-    ::-webkit-scrollbar {
-      display: none;
-    }
-    * {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
-    }
-
-    /* Estilos globais para body e html (sem rolagem no body, rolagem no main) */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    ::-webkit-scrollbar { display: none; }
+    * { -ms-overflow-style: none; scrollbar-width: none; }
     body, html {
-      height: 100vh; /* Garante que o corpo ocupa a altura total da viewport */
-      overflow: hidden; /* Remove rolagem do body */
+      height: 100vh;
+      overflow: hidden;
       font-family: var(--font-sans);
       background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       color: var(--dark);
       display: flex;
       flex-direction: column;
     }
-
-    /* Estilos da barra de navegação */
     nav {
       background-color: var(--primary);
       color: white;
       padding: 1rem 0;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       z-index: 100;
-      position: sticky; /* Permanece no topo (com overflow:hidden no body, se comporta como fixed) */
+      position: sticky;
       top: 0;
       width: 100%;
       height: var(--nav-height);
       display: flex;
       align-items: center;
     }
-
     .nav-container {
       display: flex;
       justify-content: space-between;
@@ -71,25 +52,21 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1rem;
-      width: 100%; /* Garante que ocupe a largura total dentro do nav */
+      width: 100%;
     }
-
     .logo-container {
       display: flex;
       align-items: center;
     }
-
     .nav-logo {
       height: 40px;
       margin-right: 1rem;
     }
-
     .nav-links {
       display: flex;
       justify-content: space-around;
       align-items: center;
     }
-
     nav a {
       color: white;
       text-decoration: none;
@@ -99,20 +76,17 @@
       border-radius: 0.375rem;
       transition: all 0.3s ease;
     }
-
     nav a:hover {
       background-color: rgba(255, 255, 255, 0.1);
       transform: translateY(-2px);
     }
-
     nav a.active {
       font-weight: 700;
       background-color: rgba(255, 255, 255, 0.2);
       border-bottom: 3px solid white;
     }
-
     .menu-button {
-      display: none; /* Escondido por padrão (desktop) */
+      display: none;
       background: none;
       border: none;
       color: white;
@@ -121,203 +95,267 @@
       padding: 0.5rem;
       transition: all 0.3s ease;
     }
-
     .menu-button:hover {
       color: rgba(255, 255, 255, 0.8);
     }
-
-    /* Estilos da área principal de conteúdo */
     main {
-      flex: 1; /* Permite que a main ocupe o espaço restante */
+      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
-      padding: 1rem; /* Reduzido para dar mais espaço */
+      padding: 1rem;
       text-align: center;
       position: relative;
-      overflow-y: auto; /* Permite rolagem dentro da main */
-      overflow-x: hidden; /* Esconde rolagem horizontal */
-      height: calc(100vh - var(--nav-height)); /* Ocupa altura restante */
+      overflow-y: auto;
+      overflow-x: hidden;
+      height: calc(100vh - var(--nav-height));
     }
-
-    /* Estilos específicos para esta página */
     .title {
       font-size: 3.5rem;
       font-weight: 800;
       margin-bottom: 2rem;
       color: var(--primary);
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-      flex-shrink: 0; /* Impede que o título encolha */
+      flex-shrink: 0;
     }
-
-    .section-card {
-      background-color: white;
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      text-align: left;
-      margin-bottom: 2rem;
-      width: 100%;
-      max-width: 900px;
-      flex-shrink: 0; /* Impede que o card encolha */
-    }
-
-    .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--dark);
-    }
-
-    .section-description {
-      font-size: 1.125rem;
-      color: var(--secondary);
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .section-card {
-      background-color: white;
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      text-align: left;
-      margin-bottom: 2rem;
-      width: 100%;
-      max-width: 900px;
-    }
-
-    .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--dark);
-    }
-
-    .section-description {
-      font-size: 1.125rem;
-      color: var(--secondary);
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .steps-container {
+    .usage-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 900px;
-      padding-bottom: 2rem; /* Adiciona padding para o último elemento não ficar no final da rolagem */
+      max-width: 1200px;
+      flex: 1;
+      overflow: hidden;
     }
-
-    .step-card {
-      background-color: #f8fafc;
-      border-radius: 1rem;
-      padding: 1.5rem;
-      box-shadow: 0 4px 8px -2px rgba(0,0,0,0.06);
-      text-align: left;
+    .scenarios-grid {
       display: flex;
-      align-items: flex-start;
+      flex-direction: column;
+      gap: 2rem;
       width: 100%;
-      margin-bottom: 1.2rem;
-      border-left: 6px solid var(--primary);
-    }
-
-    .step-number {
-      background-color: var(--primary);
-      color: white;
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
+      margin-bottom: 2rem;
       justify-content: center;
-      font-size: 1.3rem;
-      font-weight: bold;
-      margin-right: 1.2rem;
+      align-items: center;
       flex-shrink: 0;
     }
-
-    .step-content {
+    .scenario-card {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      border-radius: 1rem;
+      padding: 2.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      text-align: center;
       flex: 1;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
-
-    .step-title {
-      font-size: 1.3rem;
+    .scenario-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+    .scenario-title {
+      font-size: 2.2rem;
       font-weight: 700;
-      margin-bottom: 0.3rem;
-      color: var(--dark);
+      margin-bottom: 1rem;
     }
-
+    .scenario-description {
+      font-size: 1.4rem;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+    .steps-container {
+      display: none;
+      width: 100%;
+      flex: 1;
+      overflow: hidden;
+      padding: 0 1rem;
+      position: relative;
+    }
+    .steps-container.active {
+      display: flex;
+      flex-direction: column;
+      animation: fadeIn 0.5s ease-in;
+    }
+    .steps-content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-top: 3rem;
+    }
+    .steps-content::-webkit-scrollbar { display: none; }
+    .step-card {
+      background: white;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      border-left: 4px solid var(--primary);
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.3s ease;
+      position: relative;
+      text-align: left;
+    }
+    .step-card.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .step-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--dark);
+      display: inline;
+    }
     .step-description {
-      font-size: 1.05rem;
+      font-size: 1.15rem;
       color: var(--secondary);
+      margin-top: 0.75rem;
       line-height: 1.5;
     }
-
-    .bg-circles {
+    .step-icon {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin-right: 1rem;
+      text-align: center;
+      line-height: 32px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: white;
+      vertical-align: middle;
+      background-color: var(--primary);
+    }
+    .buttons-container {
       position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 10;
+    }
+    .back-button {
+      background: rgba(71, 85, 105, 0.95);
+      color: white;
+      border: none;
+      border-radius: 0.375rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .back-button:hover {
+      background: rgba(30, 41, 59, 0.95);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .visual-button {
+      background: rgba(59, 130, 246, 0.95);
+      color: white;
+      border: none;
+      border-radius: 0.375rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .visual-button:hover {
+      background: rgba(37, 99, 235, 0.95);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .visual-modal {
+      display: none;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      overflow: hidden;
-      z-index: -1;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
     }
-
-    .circle {
+    .visual-modal.active { display: flex; }
+    .visual-content {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      max-width: 95%;
+      max-height: 95%;
+      overflow: auto;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    }
+    .close-modal {
       position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--error);
+      color: white;
+      border: none;
       border-radius: 50%;
-      opacity: 0.1;
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
     }
-
-    /* Media queries para responsividade */
+    .close-modal:hover {
+      background: #dc2626;
+      transform: scale(1.1);
+    }
+    .diagram-image {
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      border: 2px solid #e2e8f0;
+    }
+    .image-caption {
+      text-align: center;
+      color: var(--secondary);
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      font-style: italic;
+    }
+    .modal-title {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
     @media (max-width: 768px) {
-      :root {
-        --nav-height: 70px; /* Altura menor da navbar em mobile */
-      }
-      body, html {
-        overflow-y: hidden; /* Sem rolagem no body, controlado pelo main */
-        height: 100vh;
-        padding-top: 0;
-      }
+      :root { --nav-height: 70px; }
       nav {
-        position: fixed; /* Navbar fixa no topo em mobile */
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: var(--nav-height);
-        padding: 0.75rem 0; /* Padding ajustado */
-      }
-      main {
-        padding-top: var(--nav-height); /* Empurra o conteúdo para baixo da navbar fixa */
-        height: 100vh; /* Ocupa a altura total da viewport no mobile */
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
-        padding-bottom: 0.75rem;
-      }
-      .section-card, .steps-container {
-        padding: 1rem;
-        max-width: 100%;
-      }
-      .title {
-        font-size: 2.5rem;
-      }
-      .step-card {
-        padding: 1rem;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .step-number {
-        margin-right: 0;
-        margin-bottom: 1rem;
-      }
-      .step-title {
-        font-size: 1.1rem;
-      }
-      .step-description {
-        font-size: 1rem;
+        padding: 0.75rem 0;
       }
       .nav-links {
         display: none;
@@ -331,9 +369,7 @@
         padding: 1rem 0;
         z-index: 50;
       }
-      .nav-links.active {
-        display: flex;
-      }
+      .nav-links.active { display: flex; }
       .nav-links a {
         width: 100%;
         text-align: center;
@@ -341,73 +377,30 @@
         border-radius: 0;
         font-size: 1rem;
       }
-      .menu-button {
-        display: block;
-      }
-      .section-card, .steps-container {
-        padding: 1rem;
-        max-width: 100%;
-      }
-      .title {
-        font-size: 2.5rem;
-      }
-      .step-card {
-        padding: 1rem;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .step-number {
-        margin-right: 0;
-        margin-bottom: 1rem;
-      }
-      .step-title {
-        font-size: 1.1rem;
-      }
-      .step-description {
-        font-size: 1rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      :root {
-        --nav-height: 65px; /* Altura menor para telas muito pequenas */
-      }
-      .nav-container {
-        justify-content: space-between;
-        padding: 0 0.75rem;
-      }
-      .nav-logo {
-        height: 32px;
-        margin-right: 0.75rem;
-      }
-      .logo-container span {
-        font-size: 1.2rem !important;
-      }
-      nav a {
-        font-size: 0.9rem;
-        padding: 0.75rem;
-      }
-      .title {
-        font-size: 2rem;
-      }
+      .menu-button { display: block; }
       main {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+        padding-top: var(--nav-height);
+        height: 100vh;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        padding-bottom: 0.75rem;
       }
-    }
-    @media (max-width: 360px) {
-      .title {
-        font-size: 1.6rem;
-      }
-      .section-title {
-        font-size: 1.4rem;
-      }
-      .step-title {
-        font-size: 1.1rem;
-      }
-      .step-description {
-        font-size: 0.9rem;
-      }
+      .title { font-size: 2.2rem; margin-bottom: 1.5rem; margin-top: 1rem; flex-shrink: 0; }
+      .scenarios-grid { flex-direction: column; gap: 1rem; margin-bottom: 1rem; }
+      .scenario-card { padding: 1.75rem; }
+      .scenario-title { font-size: 1.6rem; }
+      .scenario-description { font-size: 1rem; }
+      .steps-container { padding: 0 0.5rem; }
+      .steps-content { padding-top: 2.5rem; }
+      .step-card { padding: 1.25rem; margin-bottom: 0.75rem; }
+      .step-icon { width: 28px; height: 28px; line-height: 28px; font-size: 0.875rem; margin-right: 0.75rem; }
+      .step-title { font-size: 1.3rem; }
+      .step-description { font-size: 1rem; margin-top: 0.5rem; }
+      .buttons-container { gap: 0.375rem; }
+      .back-button, .visual-button { padding: 0.5rem 0.625rem; font-size: 0.8rem; }
+      .visual-content { padding: 1rem; margin: 0.5rem; max-width: calc(100% - 1rem); max-height: calc(100% - 1rem); }
+      .modal-title { font-size: 1.4rem; margin-bottom: 1rem; }
+      .image-caption { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -425,7 +418,7 @@
         <a href="index.html">Introdução</a>
         <a href="definicao.html">Definição</a>
         <a href="elementos.html">Elementos</a>
-        <a href="forma-uso.html">Forma de Uso</a>
+        <a href="forma-uso.html" class="active">Forma de Uso</a>
         <a href="exemplo.html">Exemplo</a>
         <a href="beneficios.html">Benefícios</a>
         <a href="conclusao.html">Conclusão</a>
@@ -435,109 +428,145 @@
 
   <main>
     <h1 class="title animate__animated animate__fadeInDown">Forma de Uso</h1>
-
-    <div class="section-card animate__animated animate__fadeIn">
-      <h2 class="section-title">Onde o Diagrama de Atividades é Aplicado?</h2>
-      <p class="section-description">
-        O Diagrama de Atividades é utilizado em diversas etapas do desenvolvimento de software, especialmente na análise e modelagem de processos de negócio, requisitos e fluxos de trabalho. Ele é aplicado para:
-      </p>
-      <ul class="section-description" style="margin-bottom: 0.5rem; padding-left: 1.5rem;">
-        <li><strong>Levantamento de Requisitos:</strong> Para detalhar casos de uso e processos do sistema.</li>
-        <li><strong>Análise de Processos:</strong> Para visualizar e otimizar fluxos de atividades.</li>
-        <li><strong>Documentação:</strong> Para registrar o funcionamento de funcionalidades e regras de negócio.</li>
-        <li><strong>Comunicação:</strong> Para facilitar o entendimento entre equipe técnica e stakeholders.</li>
-        <li><strong>Modelagem de Fluxos:</strong> Para representar paralelismo, decisões, exceções e interações entre atores.</li>
-      </ul>
-    </div>
-
-    <div class="section-card animate__animated animate__fadeIn animate__delay-1s">
-      <h2 class="section-title">Passos para Criar um Diagrama de Atividades</h2>
-      <div class="steps-container">
-        <div class="step-card">
-          <div class="step-number">1</div>
-          <div class="step-content">
-            <h3 class="step-title">Definir o Escopo</h3>
-            <p class="step-description">Escolha o processo, caso de uso ou funcionalidade que será modelado.</p>
+    <div class="usage-container">
+      <div class="scenarios-grid">
+        <div class="scenario-card animate__animated animate__fadeIn" id="aplicacao-card">
+          <div class="scenario-title">📌 Onde é aplicado?</div>
+          <div class="scenario-description">
+            Descubra em quais etapas do desenvolvimento de software o Diagrama de Atividades é utilizado.
           </div>
         </div>
-        <div class="step-card">
-          <div class="step-number">2</div>
-          <div class="step-content">
-            <h3 class="step-title">Identificar Atividades</h3>
-            <p class="step-description">Liste todas as ações, tarefas e eventos envolvidos no fluxo.</p>
-          </div>
-        </div>
-        <div class="step-card">
-          <div class="step-number">3</div>
-          <div class="step-content">
-            <h3 class="step-title">Determinar Sequência e Decisões</h3>
-            <p class="step-description">Estabeleça a ordem das atividades, pontos de decisão e possíveis caminhos alternativos.</p>
-          </div>
-        </div>
-        <div class="step-card">
-          <div class="step-number">4</div>
-          <div class="step-content">
-            <h3 class="step-title">Mapear Responsáveis (Swimlanes)</h3>
-            <p class="step-description">Divida o diagrama em faixas para indicar quem executa cada atividade (usuário, sistema, etc.).</p>
-          </div>
-        </div>
-        <div class="step-card">
-          <div class="step-number">5</div>
-          <div class="step-content">
-            <h3 class="step-title">Adicionar Elementos Especiais</h3>
-            <p class="step-description">Inclua paralelismo (fork/join), sinais, objetos, exceções e notas conforme necessário.</p>
-          </div>
-        </div>
-        <div class="step-card">
-          <div class="step-number">6</div>
-          <div class="step-content">
-            <h3 class="step-title">Desenhar o Diagrama</h3>
-            <p class="step-description">Utilize ferramentas como Lucidchart, Visual Paradigm, StarUML ou papel para criar o diagrama visualmente.</p>
-          </div>
-        </div>
-        <div class="step-card">
-          <div class="step-number">7</div>
-          <div class="step-content">
-            <h3 class="step-title">Validar com Stakeholders</h3>
-            <p class="step-description">Revise o diagrama com a equipe e partes interessadas para garantir que representa corretamente o processo.</p>
+        <div class="scenario-card animate__animated animate__fadeIn" id="passos-card">
+          <div class="scenario-title">📝 Como criar um Diagrama de Atividades?</div>
+          <div class="scenario-description">
+            Veja os passos essenciais para construir um diagrama eficiente e claro.
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="bg-circles">
-      <div class="circle" style="width: 300px; height: 300px; background-color: var(--primary); left: 5%; top: 20%;"></div>
-      <div class="circle" style="width: 200px; height: 200px; background-color: var(--accent); right: 10%; bottom: 15%;"></div>
-      <div class="circle" style="width: 150px; height: 150px; background-color: var(--success); left: 15%; bottom: 10%;"></div>
+      <!-- Aplicação -->
+      <div class="steps-container" id="aplicacao-steps">
+        <div class="buttons-container">
+          <button class="back-button" id="aplicacao-back">← Voltar</button>
+        </div>
+        <div class="steps-content">
+          <div class="step-card visible">
+            <span class="step-icon">1</span>
+            <span class="step-title">Levantamento de Requisitos</span>
+            <div class="step-description">
+              Utilizado para detalhar casos de uso, processos e regras de negócio, facilitando o entendimento do que o sistema deve fazer.
+            </div>
+          </div>
+          <div class="step-card">
+            <span class="step-icon">2</span>
+            <span class="step-title">Análise de Processos</span>
+            <div class="step-description">
+              Permite visualizar, analisar e otimizar fluxos de atividades, identificando gargalos e oportunidades de melhoria.
+            </div>
+          </div>
+          <div class="step-card">
+            <span class="step-icon">3</span>
+            <span class="step-title">Documentação</span>
+            <div class="step-description">
+              Serve para registrar o funcionamento de funcionalidades, fluxos alternativos e exceções do sistema.
+            </div>
+          </div>
+          <div class="step-card">
+            <span class="step-icon">4</span>
+            <span class="step-title">Comunicação</span>
+            <div class="step-description">
+              Facilita a comunicação entre equipe técnica, clientes e stakeholders, tornando o entendimento do processo mais acessível.
+            </div>
+          </div>
+          <div class="step-card">
+            <span class="step-icon">5</span>
+            <span class="step-title">Modelagem de Fluxos</span>
+            <div class="step-description">
+              Representa paralelismo, decisões, exceções e interações entre atores, sendo útil em projetos ágeis e tradicionais.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Passos -->
+      <div class="steps-container" id="passos-steps">
+        <div class="buttons-container">
+          <button class="back-button" id="passos-back">← Voltar</button>
+        </div>
+        <div class="steps-content">
+          <div class="step-card visible">
+            <span class="step-icon">1</span>
+            <span class="step-title">Definir o Escopo</span>
+            <div class="step-description">
+              Escolha o processo, caso de uso ou funcionalidade a ser modelado.
+            </div>
+          </div>
+          <div class="step-card">
+            <span class="step-icon">2</span>
+            <span class="step-title">Identificar Atividades</span>
+            <div class="step-description">
+              Liste todas as ações, tarefas e eventos envolvidos no fluxo.
+            </div>
+          </div>
+          <div class="step-card">
+            <span class="step-icon">3</span>
+            <span class="step-title">Determinar Sequência e Decisões</span>
+            <div class="step-description">
+              Estabeleça a ordem das atividades, pontos de decisão e caminhos alternativos.
+            </div>
+          </div>
+          <div class="step-card">
+            <span class="step-icon">4</span>
+            <span class="step-title">Mapear Responsáveis (Swimlanes)</span>
+            <div class="step-description">
+              Divida o diagrama em faixas para indicar quem executa cada atividade.
+            </div>
+          </div>
+          <div class="step-card">
+            <span class="step-icon">5</span>
+            <span class="step-title">Adicionar Elementos Especiais</span>
+            <div class="step-description">
+              Inclua paralelismo, sinais, objetos, exceções e notas conforme necessário.
+            </div>
+          </div>
+          <div class="step-card">
+            <span class="step-icon">6</span>
+            <span class="step-title">Desenhar o Diagrama</span>
+            <div class="step-description">
+              Utilize ferramentas como Lucidchart, Visual Paradigm, StarUML ou papel para criar o diagrama visualmente.
+            </div>
+          </div>
+          <div class="step-card">
+            <span class="step-icon">7</span>
+            <span class="step-title">Validar com Stakeholders</span>
+            <div class="step-description">
+              Revise o diagrama com a equipe e partes interessadas para garantir que representa corretamente o processo.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Visual Aplicação -->
+      <div class="visual-modal" id="aplicacao-modal" style="display:none"></div>
+      <!-- Modal Visual Passos -->
+      <div class="visual-modal" id="passos-modal" style="display:none"></div>
     </div>
   </main>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Funcionalidade do menu mobile
+      // Menu mobile
       const menuToggle = document.getElementById('menu-toggle');
       const navLinks = document.getElementById('nav-links');
-
       menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
       });
-
-      // Fecha o menu ao clicar em um link
       document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
           navLinks.classList.remove('active');
         });
       });
-
-      // Fecha o menu ao clicar fora dele
-      document.addEventListener('click', (e) => {
-        const navElement = document.querySelector('nav');
-        if (navElement && !navElement.contains(e.target) && navLinks.classList.contains('active')) {
-          navLinks.classList.remove('active');
-        }
-      });
-
-      // Marcar a página atual como ativa
+      // Página ativa
       const currentPage = window.location.pathname.split('/').pop() || 'index.html';
       document.querySelectorAll('.nav-links a').forEach(link => {
         if (link.getAttribute('href') === currentPage) {
@@ -545,6 +574,51 @@
         } else {
           link.classList.remove('active');
         }
+      });
+
+      // Cards e containers
+      const aplicacaoCard = document.getElementById('aplicacao-card');
+      const passosCard = document.getElementById('passos-card');
+      const scenariosGrid = document.querySelector('.scenarios-grid');
+      const aplicacaoSteps = document.getElementById('aplicacao-steps');
+      const passosSteps = document.getElementById('passos-steps');
+      const aplicacaoBack = document.getElementById('aplicacao-back');
+      const passosBack = document.getElementById('passos-back');
+
+      function animateSteps(container) {
+        const stepCards = container.querySelectorAll('.step-card');
+        stepCards.forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.add('visible');
+          }, index * 200);
+        });
+      }
+      function resetSteps(container) {
+        const stepCards = container.querySelectorAll('.step-card');
+        stepCards.forEach(card => {
+          card.classList.remove('visible');
+        });
+      }
+
+      aplicacaoCard.addEventListener('click', () => {
+        scenariosGrid.style.display = 'none';
+        aplicacaoSteps.classList.add('active');
+        animateSteps(aplicacaoSteps);
+      });
+      passosCard.addEventListener('click', () => {
+        scenariosGrid.style.display = 'none';
+        passosSteps.classList.add('active');
+        animateSteps(passosSteps);
+      });
+      aplicacaoBack.addEventListener('click', () => {
+        aplicacaoSteps.classList.remove('active');
+        scenariosGrid.style.display = 'flex';
+        resetSteps(aplicacaoSteps);
+      });
+      passosBack.addEventListener('click', () => {
+        passosSteps.classList.remove('active');
+        scenariosGrid.style.display = 'flex';
+        resetSteps(passosSteps);
       });
     });
   </script>
