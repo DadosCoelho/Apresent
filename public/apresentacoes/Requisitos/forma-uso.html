@@ -21,11 +21,9 @@
       --nav-height: 80px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    ::-webkit-scrollbar { display: none; }
-    * { -ms-overflow-style: none; scrollbar-width: none; }
     body, html {
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
+      overflow-y: auto;
       font-family: var(--font-sans);
       background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       color: var(--dark);
@@ -107,9 +105,6 @@
       padding: 1rem;
       text-align: center;
       position: relative;
-      overflow-y: auto;
-      overflow-x: hidden;
-      height: calc(100vh - var(--nav-height));
     }
     .title {
       font-size: 3.5rem;
@@ -179,13 +174,8 @@
     }
     .steps-content {
       flex: 1;
-      overflow-y: auto;
-      overflow-x: hidden;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
       padding-top: 3rem;
     }
-    .steps-content::-webkit-scrollbar { display: none; }
     .step-card {
       background: white;
       border-radius: 0.75rem;
@@ -378,9 +368,13 @@
         font-size: 1rem;
       }
       .menu-button { display: block; }
+      body, html {
+        overflow-y: auto;
+        height: auto;
+        padding-top: 0;
+      }
       main {
         padding-top: var(--nav-height);
-        height: 100vh;
         padding-left: 0.75rem;
         padding-right: 0.75rem;
         padding-bottom: 0.75rem;
@@ -402,6 +396,92 @@
       .modal-title { font-size: 1.4rem; margin-bottom: 1rem; }
       .image-caption { font-size: 0.9rem; }
     }
+    @media (max-width: 480px) {
+      :root { --nav-height: 65px; }
+      .nav-container {
+        padding: 0 0.75rem;
+      }
+      .nav-logo {
+        height: 32px;
+        margin-right: 0.75rem;
+      }
+      .logo-container span {
+        font-size: 1.2rem !important; /* Adicionado para padronizar o tamanho do texto do logo */
+      }
+      nav a { font-size: 0.9rem; padding: 0.75rem; }
+      main {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+      .title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        margin-top: 0.75rem;
+      }
+      .scenario-card {
+        padding: 1.5rem;
+      }
+      .scenario-title {
+        font-size: 1.4rem;
+        margin-bottom: 0.75rem;
+      }
+      .scenario-description {
+        font-size: 0.95rem;
+      }
+      .step-card {
+        padding: 1rem;
+      }
+      .step-icon {
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        font-size: 0.75rem;
+        margin-right: 0.5rem;
+      }
+      .step-title {
+        font-size: 1.1rem;
+      }
+      .step-description {
+        font-size: 0.9rem;
+      }
+      .step-option {
+        font-size: 0.8rem;
+      }
+      .back-button, .visual-button {
+        padding: 0.4rem 0.5rem;
+        font-size: 0.75rem;
+      }
+      .visual-content {
+        padding: 0.75rem;
+        margin: 0.25rem;
+      }
+      .modal-title {
+        font-size: 1.2rem;
+      }
+      .swimlane-title {
+        font-size: 1rem;
+      }
+      .swimlane-content {
+        font-size: 0.85rem;
+      }
+    }
+    @media (max-width: 360px) {
+      .title {
+        font-size: 1.6rem;
+      }
+      .scenario-title {
+        font-size: 1.2rem;
+      }
+      .scenario-description {
+        font-size: 0.85rem;
+      }
+      .step-title {
+        font-size: 1rem;
+      }
+      .step-description {
+        font-size: 0.8rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -419,13 +499,13 @@
         <a href="definicao.html">Definição</a>
         <a href="elementos.html">Elementos</a>
         <a href="forma-uso.html" class="active">Forma de Uso</a>
-        <a href="exemplo.html">Exemplo</a>
         <a href="beneficios.html">Benefícios</a>
+        <a href="exemplo.html">Exemplo</a>
         <a href="conclusao.html">Conclusão</a>
       </div>
     </div>
   </nav>
-
+  
   <main>
     <h1 class="title animate__animated animate__fadeInDown">Forma de Uso</h1>
     <div class="usage-container">
@@ -443,7 +523,7 @@
           </div>
         </div>
       </div>
-
+  
       <!-- Aplicação -->
       <div class="steps-container" id="aplicacao-steps">
         <div class="buttons-container">
@@ -487,7 +567,7 @@
           </div>
         </div>
       </div>
-
+  
       <!-- Passos -->
       <div class="steps-container" id="passos-steps">
         <div class="buttons-container">
@@ -545,14 +625,14 @@
           </div>
         </div>
       </div>
-
+  
       <!-- Modal Visual Aplicação -->
       <div class="visual-modal" id="aplicacao-modal" style="display:none"></div>
       <!-- Modal Visual Passos -->
       <div class="visual-modal" id="passos-modal" style="display:none"></div>
     </div>
   </main>
-
+  
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Menu mobile
@@ -575,7 +655,7 @@
           link.classList.remove('active');
         }
       });
-
+  
       // Cards e containers
       const aplicacaoCard = document.getElementById('aplicacao-card');
       const passosCard = document.getElementById('passos-card');
@@ -584,7 +664,7 @@
       const passosSteps = document.getElementById('passos-steps');
       const aplicacaoBack = document.getElementById('aplicacao-back');
       const passosBack = document.getElementById('passos-back');
-
+  
       function animateSteps(container) {
         const stepCards = container.querySelectorAll('.step-card');
         stepCards.forEach((card, index) => {
@@ -599,7 +679,7 @@
           card.classList.remove('visible');
         });
       }
-
+  
       aplicacaoCard.addEventListener('click', () => {
         scenariosGrid.style.display = 'none';
         aplicacaoSteps.classList.add('active');

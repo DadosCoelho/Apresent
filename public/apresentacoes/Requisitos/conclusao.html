@@ -18,14 +18,15 @@
       --warning: #f59e0b;
       --error: #ef4444;
       --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
       --nav-height: 80px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    ::-webkit-scrollbar { display: none; }
-    * { -ms-overflow-style: none; scrollbar-width: none; }
+    ::-webkit-scrollbar { width: 8px; background: #e2e8f0; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     body, html {
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
+      overflow-y: auto;
       font-family: var(--font-sans);
       background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       color: var(--dark);
@@ -38,7 +39,7 @@
       padding: 1rem 0;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       z-index: 100;
-      position: sticky;
+      position: sticky; /* Mantido sticky para desktop, fixed será aplicado em mobile */
       top: 0;
       width: 100%;
       height: var(--nav-height);
@@ -63,7 +64,7 @@
       margin-right: 1rem;
     }
     .nav-links {
-      display: flex;
+      display: flex; /* Este display:flex é o padrão para desktop */
       justify-content: space-around;
       align-items: center;
     }
@@ -86,7 +87,7 @@
       border-bottom: 3px solid white;
     }
     .menu-button {
-      display: none;
+      display: none; /* Escondido por padrão (desktop) */
       background: none;
       border: none;
       color: white;
@@ -104,12 +105,11 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
-      padding: 1rem;
       text-align: center;
       position: relative;
       overflow-y: auto;
       overflow-x: hidden;
-      height: calc(100vh - var(--nav-height));
+      min-height: 0;
     }
     .title {
       font-size: 3.5rem;
@@ -119,41 +119,68 @@
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
       flex-shrink: 0;
     }
-    .conclusion-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      flex: 1;
-      overflow: hidden;
+    .conclusion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      width: 1400px;
+      margin-bottom: 2rem;
     }
     .conclusion-card {
-      background: white;
+      background-color: white;
       border-radius: 1rem;
-      padding: 2.5rem;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
       text-align: left;
-      margin-bottom: 2rem;
-      width: 100%;
-      font-size: 1.25rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      align-items: flex-start;
+      font-size: 1.15rem;
       color: var(--secondary);
       line-height: 1.7;
+    }
+    .conclusion-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .conclusion-icon {
+      margin-right: 1.5rem;
+      font-size: 2.5rem;
+      flex-shrink: 0;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+    .conclusion-content {
+      flex: 1;
     }
     .conclusion-highlight {
       color: var(--primary-dark);
       font-weight: bold;
     }
     .conclusion-list {
-      margin-top: 1.5rem;
-      margin-bottom: 1.5rem;
+      margin-top: 1.2rem;
+      margin-bottom: 1.2rem;
       padding-left: 1.5rem;
       color: var(--dark);
     }
     .conclusion-list li {
       margin-bottom: 0.7rem;
       font-size: 1.1rem;
+    }
+    .conclusion-final {
+      grid-column: 1 / -1;
+      background-color: #f8fafc;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 8px -2px rgba(0,0,0,0.06);
+      font-size: 1.15rem;
+      color: var(--dark);
+      margin-top: 1rem;
+      text-align: center;
     }
     .bg-circles {
       position: absolute;
@@ -163,22 +190,114 @@
       height: 100%;
       overflow: hidden;
       z-index: -1;
+      pointer-events: none;
     }
     .circle {
       position: absolute;
       border-radius: 50%;
       opacity: 0.1;
     }
+    @media (max-width: 1024px) {
+      .conclusion-grid {
+        max-width: 98vw;
+      }
+      .conclusion-card {
+        padding: 1.5rem;
+        font-size: 1rem;
+      }
+      .title {
+        font-size: 2.5rem;
+      }
+    }
     @media (max-width: 768px) {
-      .title { font-size: 2.2rem; margin-bottom: 1.5rem; }
-      .conclusion-card { padding: 1.5rem; font-size: 1.05rem; }
-      .conclusion-container { padding: 0 0.5rem; }
+      :root {
+        --nav-height: 70px;
+      }
+      body, html {
+        overflow-y: auto;
+        height: auto;
+        padding-top: 0;
+      }
+      nav {
+        position: fixed; /* Torna a navbar fixa no topo em mobile */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--nav-height);
+        padding: 0.75rem 0;
+      }
+      main {
+        padding-top: 5rem; /* Empurra o conteúdo para baixo da navbar fixa */
+        margin-top: 1rem;
+      }
+      .nav-logo {
+        height: 32px;
+      }
+      .title {
+        font-size: 2rem;
+        margin-bottom: 1.2rem;
+      }
+      .conclusion-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .conclusion-card {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .conclusion-icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+      .conclusion-final {
+        padding: 1rem;
+        font-size: 1rem;
+      }
+      .nav-links {
+        display: none; /* MUITO IMPORTANTE: Garante que o menu esteja oculto por padrão */
+        position: absolute;
+        top: var(--nav-height);
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: var(--primary);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        padding: 1rem 0;
+        z-index: 50;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .nav-links a { /* Estilo dos links dentro do menu mobile */
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        border-radius: 0;
+        font-size: 1rem;
+      }
+      .menu-button {
+        display: block;
+      }
     }
     @media (max-width: 480px) {
+      :root {
+          --nav-height: 65px; /* Altura menor para telas muito pequenas */
+      }
       .nav-container { justify-content: space-between; }
       nav a { font-size: 0.875rem; padding: 0.25rem; }
-      .title { font-size: 1.5rem; }
-      .conclusion-card { padding: 1rem; }
+      .title { font-size: 1.2rem; }
+      .logo-container span {
+        font-size: 1.2rem !important;
+      }
+      .conclusion-card { padding: 0.7rem; font-size: 0.95rem; }
+      .conclusion-list li { font-size: 0.95rem; }
+      .conclusion-final { padding: 0.7rem; font-size: 0.95rem; }
+    }
+    @media (max-width: 360px) {
+      .title { font-size: 1rem; }
+      .conclusion-card { padding: 0.4rem; font-size: 0.85rem; }
+      .conclusion-final { padding: 0.4rem; font-size: 0.85rem; }
     }
   </style>
 </head>
@@ -197,28 +316,50 @@
         <a href="definicao.html">Definição</a>
         <a href="elementos.html">Elementos</a>
         <a href="forma-uso.html">Forma de Uso</a>
-        <a href="exemplo.html">Exemplo</a>
         <a href="beneficios.html">Benefícios</a>
+        <a href="exemplo.html">Exemplo</a>
         <a href="conclusao.html" class="active">Conclusão</a>
       </div>
     </div>
   </nav>
-
+  
   <main>
     <h1 class="title animate__animated animate__fadeInDown">Conclusão</h1>
-    <div class="conclusion-container">
-      <div class="conclusion-card animate__animated animate__fadeIn">
-        O <span class="conclusion-highlight">Diagrama de Atividades</span> é uma poderosa ferramenta de modelagem que auxilia na visualização, análise e comunicação dos fluxos de trabalho em sistemas de software. Sua utilização proporciona:
-        <ul class="conclusion-list">
-          <li>Clareza na documentação dos processos e regras de negócio;</li>
-          <li>Facilidade na identificação de paralelismos, decisões e exceções;</li>
-          <li>Melhoria na comunicação entre equipe técnica e stakeholders;</li>
-          <li>Agilidade na análise e otimização de processos;</li>
-          <li>Base sólida para o desenvolvimento e validação de requisitos.</li>
-        </ul>
-        Ao adotar o Diagrama de Atividades nas etapas de desenvolvimento, as equipes conseguem alinhar expectativas, reduzir ambiguidades e garantir maior qualidade nas entregas. 
-        <br><br>
-        <span class="conclusion-highlight">Recomenda-se</span> o uso desse diagrama sempre que houver necessidade de detalhar fluxos complexos, promover entendimento entre diferentes áreas ou documentar processos críticos do sistema.
+    <div class="conclusion-grid animate__animated animate__fadeIn animate__delay-1s">
+      <div class="conclusion-card">
+        <span class="conclusion-icon">🔎</span>
+        <div class="conclusion-content">
+          <span class="conclusion-highlight">Visualização e Análise:</span>
+          <br>
+          O Diagrama de Atividades permite mapear e compreender fluxos de trabalho, facilitando a identificação de gargalos, paralelismos e decisões.
+        </div>
+      </div>
+      <div class="conclusion-card">
+        <span class="conclusion-icon">💬</span>
+        <div class="conclusion-content">
+          <span class="conclusion-highlight">Comunicação:</span>
+          <br>
+          Melhora o entendimento entre equipe técnica e stakeholders, tornando os processos mais claros e acessíveis para todos.
+        </div>
+      </div>
+      <div class="conclusion-card">
+        <span class="conclusion-icon">📝</span>
+        <div class="conclusion-content">
+          <span class="conclusion-highlight">Documentação:</span>
+          <br>
+          Proporciona uma documentação visual eficiente dos processos, facilitando futuras manutenções e treinamentos.
+        </div>
+      </div>
+      <div class="conclusion-card">
+        <span class="conclusion-icon">🚀</span>
+        <div class="conclusion-content">
+          <span class="conclusion-highlight">Qualidade e Eficiência:</span>
+          <br>
+          Reduz ambiguidades, melhora a qualidade das entregas e contribui para o sucesso do desenvolvimento de software.
+        </div>
+      </div>
+      <div class="conclusion-final">
+        <span class="conclusion-highlight">Recomenda-se</span> o uso do Diagrama de Atividades sempre que houver necessidade de detalhar fluxos complexos, promover entendimento entre diferentes áreas ou documentar processos críticos do sistema.
       </div>
     </div>
     <div class="bg-circles">
@@ -229,18 +370,30 @@
   </main>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Menu mobile
+      // Funcionalidade do menu mobile
       const menuToggle = document.getElementById('menu-toggle');
       const navLinks = document.getElementById('nav-links');
+
       menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
       });
+
+      // Fecha o menu ao clicar em um link
       document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
           navLinks.classList.remove('active');
         });
       });
-      // Página ativa
+
+      // Fecha o menu ao clicar fora dele
+      document.addEventListener('click', (e) => {
+        const navElement = document.querySelector('nav');
+        if (navElement && !navElement.contains(e.target) && navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+        }
+      });
+      
+      // Marcar a página atual como ativa
       const currentPage = window.location.pathname.split('/').pop() || 'index.html';
       document.querySelectorAll('.nav-links a').forEach(link => {
         if (link.getAttribute('href') === currentPage) {
@@ -251,3 +404,5 @@
       });
     });
   </script>
+</body>
+</html>
